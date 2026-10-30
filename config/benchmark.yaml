@@ -1,0 +1,60 @@
+# =============================================================================
+# Configuração de uma rodada REAL do benchmark (chama as APIs)
+#   python -m kpibench estimate --config config/benchmark.yaml   # custo antes de rodar
+#   python -m kpibench run      --config config/benchmark.yaml
+# =============================================================================
+
+run:
+  name: benchmark_kpis
+  output_dir: outputs
+  seed: 42
+  max_workers: 8              # chamadas concorrentes (respeite o rate limit do deployment)
+  max_retries: 4              # retries com backoff exponencial para erros transitórios
+  cache_path: .cache/llm_cache.sqlite   # respostas cacheadas: rerun é grátis e retomável
+  invalid_policy: pessimistic # saída inválida conta como erro (não é descartada)
+
+data:
+  path: data/input/exemplo_kpis_validacao.csv   # .csv | .xlsx | .parquet
+  id_column: call_id
+  summary_column: resumo
+  transcript_column: transcricao                # opcional
+  reference_summary_column: resumo_referencia   # opcional (habilita métricas com referência)
+  baseline_prefix: prod_      # opcional: colunas prod_<kpi> = saída do modelo hoje em produção
+  sample: null                # inteiro para amostrar N linhas (estratificação simples por seed)
+
+models:
+  - gpt-4.1
+  - gpt-4o-mini
+  - claude-haiku-5-5
+  - claude-haiku-4-5
+  - claude-sonnet-5-5
+  - claude-opus-5-5
+
+kpis: all                     # ou lista: [csat, razao_ligacao, ...]
+
+judge:
+  # Juiz para KPIs de texto livre (razao_csat, solver_reasoning).
+  # Todos os modelos (incluindo o juiz) passam pelo gateway Nexus; o padrão é
+  # gpt-4o-mini, mas qualquer id presente em config/models.yaml pode ser usado.
+  enabled: true
+  model: gpt-4o-mini
+
+summary_metrics:
+  # Suíte de meta-avaliação do KPI "qualidade do resumo":
+  # cada métrica é correlacionada com a nota humana (gt_qualidade_resumo).
+  efficient: [rouge, bleu, chrf, source_rouge, numeric_consistency, novel_ngrams, tfidf_cosine]
+  modern: [bertscore, embedding_cosine, summac_zs, claim_faithfulness, geval]
+  bertscore_model: xlm-roberta-large
+  embedding_model: intfloat/multilingual-e5-base
+  nli_model: MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7
+  claim_judge_model: gpt-4o-mini
+  device: cpu                 # cuda se disponível
+
+statistics:
+  n_bootstrap: 2000
+  ci: 0.95
+
+projection:
+  monthly_calls: 1000000      # volume mensal de chamadas para projetar custo
+  cache_hit_ratio: 0.9        # fração do prefixo estático servida do cache
+  use_batch: true             # KPIs pós-chamada toleram latência -> Batch API (-50%)

@@ -1,0 +1,34 @@
+# Núcleo (roda o demo offline e todas as métricas lexicais/estatísticas)
+pandas>=2.0
+numpy>=1.24
+scipy>=1.10
+scikit-learn>=1.3
+pyyaml>=6.0
+pydantic>=2.5
+jinja2>=3.1
+matplotlib>=3.7
+tabulate>=0.9
+openpyxl>=3.1
+
+# Provedores reais (pip install -e ".[llm]")
+# openai>=1.40
+# anthropic>=0.40
+# tiktoken>=0.7
+# python-dotenv>=1.0
+
+# Métricas neurais de resumo: BERTScore, SummaC-ZS (NLI), embeddings (pip install -e ".[neural]")
+# torch>=2.2
+# transformers>=4.44
+# bert-score>=0.3.13
+# sentence-transformers>=3.0
+
+# Carregador de dados via Azure Blob Storage (pip install -e ".[azure]")
+# azure-storage-blob>=12.19
+# azure-identity>=1.15
+
+# Gráficos interativos em notebooks (pip install -e ".[notebooks]")
+# plotly>=5.20
+# nbformat>=5.9
+
+# Dev
+# pytest>=8.0

@@ -1,0 +1,83 @@
+# =============================================================================
+# DEMO OFFLINE — nenhuma API é chamada.
+# Os modelos são simulados (provider mock) com perfis de habilidade fictícios.
+# Tokens são estimados a partir dos prompts reais renderizados; preços vêm de
+# config/models.yaml. As métricas lexicais de resumo são calculadas de verdade.
+# Os NÚMEROS DE PERFORMANCE DOS MODELOS SÃO SIMULADOS: servem para validar o
+# pipeline, não para escolher modelo.
+# =============================================================================
+
+run:
+  name: demo
+  output_dir: outputs
+  seed: 7
+  max_workers: 4
+  max_retries: 0
+  cache_path: null
+  invalid_policy: pessimistic
+  mock: true
+
+data:
+  path: data/input/exemplo_kpis_validacao.csv
+  id_column: call_id
+  summary_column: resumo
+  transcript_column: transcricao
+  reference_summary_column: resumo_referencia
+  baseline_prefix: prod_
+  sample: null
+
+models:
+  - gpt-4.1
+  - gpt-4o-mini
+  - claude-haiku-5-5
+  - claude-haiku-4-5
+  - claude-sonnet-5-5
+  - claude-opus-5-5
+
+kpis: all
+
+judge:
+  enabled: true
+  model: claude-opus-5-5
+
+summary_metrics:
+  efficient: [rouge, bleu, chrf, source_rouge, numeric_consistency, novel_ngrams, tfidf_cosine]
+  modern: [bertscore, embedding_cosine, summac_zs, claim_faithfulness, geval]
+  bertscore_model: xlm-roberta-large
+  embedding_model: intfloat/multilingual-e5-base
+  nli_model: MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7
+  claim_judge_model: claude-sonnet-5-5
+  device: cpu
+
+statistics:
+  n_bootstrap: 1000
+  ci: 0.95
+
+projection:
+  monthly_calls: 1000000
+  cache_hit_ratio: 0.9
+  use_batch: true
+
+# Perfis de simulação (só usados pelo provider mock)
+#   skill: prob. de acerto base; ordinal_spread: desvio típico quando erra
+#   invalid_rate: fração de JSON inválido; out_tokens: tokens de saída médios
+#   (inclui raciocínio p/ modelos reasoning); latency_s: latência mediana
+simulation:
+  gpt-5-nano:            {skill: 0.70, invalid_rate: 0.03, out_tokens: 420, latency_s: 2.4}
+  gpt-5.4-mini:          {skill: 0.84, invalid_rate: 0.01, out_tokens: 380, latency_s: 2.9}
+  gpt-5.4:               {skill: 0.90, invalid_rate: 0.00, out_tokens: 450, latency_s: 5.8}
+  claude-haiku-5-5:      {skill: 0.83, invalid_rate: 0.01, out_tokens: 160, latency_s: 1.3}
+  claude-sonnet-5-5:     {skill: 0.91, invalid_rate: 0.00, out_tokens: 190, latency_s: 3.1}
+  claude-opus-5-5:       {skill: 0.94, invalid_rate: 0.00, out_tokens: 210, latency_s: 5.0}
+  gemini-2.5-flash-lite: {skill: 0.72, invalid_rate: 0.04, out_tokens: 150, latency_s: 1.1}
+  kpi_difficulty:        # subtraído do skill
+    qualidade_resumo: 0.10
+    csat: 0.08
+    razao_csat: 0.05
+    solicitacao_resolvida: 0.00
+    solver_reasoning: 0.05
+    razao_ligacao: -0.05
+    first_call_resolution: 0.06
+    empatia: 0.12
+    clareza_informacoes: 0.10
+    odc: 0.04

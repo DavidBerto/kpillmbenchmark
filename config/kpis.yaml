@@ -1,0 +1,132 @@
+# =============================================================================
+# Definição dos KPIs
+# -----------------------------------------------------------------------------
+# type:
+#   ordinal      escala inteira [min, max]  -> métrica primária: QWK (kappa quadrático)
+#   categorical  rótulos fechados           -> métrica primária: macro-F1
+#   text         justificativa livre        -> métrica primária: nota do juiz (0-1)
+#                                              ou similaridade (chrF) se juiz desligado
+# gt_column       coluna do arquivo de entrada com o valor já validado
+# prompt          arquivo em prompts/kpis/  (UM prompt por KPI, igual para todos os modelos)
+# output_field    chave do JSON de saída que contém o valor do KPI
+# ni_margin       margem de não-inferioridade (mesma unidade da métrica primária)
+#                 usada para decidir se um modelo mais barato "empata" com o melhor
+# =============================================================================
+
+kpis:
+
+  qualidade_resumo:
+    display: "Qualidade do resumo"
+    type: ordinal
+    scale: {min: 1, max: 5}
+    gt_column: gt_qualidade_resumo
+    prompt: qualidade_resumo.md
+    output_field: nota_final
+    ni_margin: 0.05
+    needs_transcript: true    # sem transcrição, só coerência/fluência são avaliáveis
+
+  csat:
+    display: "CSAT (inferido)"
+    type: ordinal
+    scale: {min: 1, max: 5}
+    gt_column: gt_csat
+    prompt: csat.md
+    output_field: csat
+    ni_margin: 0.05
+
+  razao_csat:
+    display: "Razão do CSAT"
+    type: text
+    gt_column: gt_razao_csat
+    prompt: razao_csat.md
+    output_field: razao_csat
+    ni_margin: 0.05
+    judge_prompt: reasoning_judge.md
+    judge_context: "Justificativa do nível de satisfação do cliente"
+
+  solicitacao_resolvida:
+    display: "Solicitação resolvida"
+    type: categorical
+    labels:
+      sim: "A demanda principal do cliente foi atendida durante a chamada."
+      parcial: "Parte da demanda foi atendida ou houve encaminhamento com prazo definido."
+      nao: "A demanda não foi atendida."
+    gt_column: gt_solicitacao_resolvida
+    prompt: solicitacao_resolvida.md
+    output_field: resolvida
+    ni_margin: 0.03
+
+  solver_reasoning:
+    display: "Solver reasoning"
+    type: text
+    gt_column: gt_solver_reasoning
+    prompt: solver_reasoning.md
+    output_field: solver_reasoning
+    ni_margin: 0.05
+    judge_prompt: reasoning_judge.md
+    judge_context: "Explicação de como (e se) a solicitação foi resolvida"
+
+  razao_ligacao:
+    display: "Razão da ligação"
+    type: categorical
+    labels:
+      cobranca_indevida: "Contestação de cobrança, valor ou serviço não reconhecido na fatura."
+      segunda_via_fatura: "Pedido de segunda via, código de barras, PIX ou data de vencimento."
+      cancelamento: "Pedido de cancelamento de produto ou serviço."
+      suporte_tecnico: "Falha, lentidão ou indisponibilidade do serviço."
+      alteracao_plano: "Upgrade, downgrade ou mudança de plano/pacote."
+      portabilidade: "Portabilidade de número ou migração entre operadoras."
+      informacoes_gerais: "Dúvida informativa sem pedido de ação."
+      reclamacao_atendimento: "Reclamação sobre atendimento anterior, loja ou técnico."
+    gt_column: gt_razao_ligacao
+    prompt: razao_ligacao.md
+    output_field: razao_ligacao
+    ni_margin: 0.03
+
+  first_call_resolution:
+    display: "First call resolution"
+    type: categorical
+    labels:
+      sim: "Resolvido durante esta ligação, sem reincidência no mesmo assunto."
+      nao: "Encaminhado, transferido, não resolvido ou cliente reincidente."
+      indeterminado: "O resumo não permite concluir."
+    gt_column: gt_fcr
+    prompt: first_call_resolution.md
+    output_field: fcr
+    ni_margin: 0.03
+
+  empatia:
+    display: "Empatia"
+    type: ordinal
+    scale: {min: 1, max: 5}
+    gt_column: gt_empatia
+    prompt: empatia.md
+    output_field: empatia
+    ni_margin: 0.05
+
+  clareza_informacoes:
+    display: "Clareza das informações"
+    type: ordinal
+    scale: {min: 1, max: 5}
+    gt_column: gt_clareza_informacoes
+    prompt: clareza_informacoes.md
+    output_field: clareza
+    ni_margin: 0.05
+
+  odc:
+    # PREMISSA: ODC tratado como código de desfecho/tabulação de taxonomia fechada.
+    # Substitua os rótulos abaixo pela taxonomia oficial da operação.
+    display: "ODC"
+    type: categorical
+    labels:
+      resolvido_no_contato: "Solução aplicada e confirmada na própria ligação."
+      protocolo_aberto: "Abertura de protocolo/chamado com prazo para retorno."
+      encaminhado_tecnico: "Visita técnica ou área técnica acionada."
+      retencao_aplicada: "Oferta de retenção aceita pelo cliente."
+      cancelamento_efetivado: "Cancelamento concluído."
+      transferido: "Transferência para outra área/fila."
+      sem_solucao: "Encerrado sem solução nem encaminhamento."
+    gt_column: gt_odc
+    prompt: odc.md
+    output_field: odc
+    ni_margin: 0.03

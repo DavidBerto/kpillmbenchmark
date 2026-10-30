@@ -1,0 +1,158 @@
+# =============================================================================
+# Registro de modelos candidatos
+# -----------------------------------------------------------------------------
+# Preços em USD por 1M de tokens (tier standard, contexto curto).
+# ATENÇÃO: preço muda. Cada entrada traz a fonte e a data em que foi conferida.
+# Antes de orçar, confira na página oficial do provedor. Azure OpenAI costuma
+# acompanhar a tabela global da OpenAI, mas varia por região/deployment
+# (Global, Data Zone, Regional) — ajuste `pricing` ao seu contrato.
+#
+# Campos:
+#   provider      nexus | azure_openai | openai | anthropic | openai_compatible | mock
+#   model         id na API (ou nome do deployment no Azure)
+#   pricing       input / cached_input / output  (USD por 1M tokens)
+#   batch_discount  fração de desconto da Batch API (0.5 = 50%)
+#   min_cacheable_tokens  prefixo mínimo para o prompt caching valer
+#   params        parâmetros de geração; usados IGUAIS para todos os KPIs
+#   supports_temperature  false p/ modelos de raciocínio que rejeitam temperature
+#   json_mode     usa response_format=json_object quando o provedor suporta
+# =============================================================================
+
+models:
+
+  # ---------------- Nexus (gateway único OpenAI-compatível) ----------------
+  # Conexão validada em notebooks/connection_test.ipynb (célula "Conexão com as
+  # LLMs via Nexus"): 1 endpoint + 1 token (.env: base_url / bearer_token) expondo
+  # vários provedores (OpenAI, Anthropic, Google, Grok, DeepSeek, Kimi) sob a
+  # mesma API de chat completions. Lista de /models verificada em 2026-10-28
+  # (24 modelos disponíveis no momento). Os modelos abaixo são os que JÁ TINHAM
+  # preço verificado neste arquivo E existem nessa lista do Nexus.
+  gpt-4.1:
+    # baseline legado (modelo não-raciocinador, comum em plataformas em produção)
+    provider: nexus
+    model: gpt-4.1
+    tier: legado
+    pricing: {input: 2.00, cached_input: 0.50, output: 8.00}
+    batch_discount: 0.0           # Nexus: suporte a Batch API não confirmado
+    min_cacheable_tokens: 1024
+    supports_temperature: true
+    json_mode: true
+    params: {max_tokens: 800, temperature: 0.0}
+    pricing_source: "gptprompts.ai (input/output); cached = tabela OpenAI de 2025 — CONFERIR"
+    verified_on: "2026-08-01"
+
+  gpt-4o-mini:
+    # Juiz padrão (KPIs de texto: razao_csat, solver_reasoning; e claim_faithfulness).
+    # Configurável por `judge.model` / `summary_metrics.claim_judge_model` no YAML do benchmark.
+    provider: nexus
+    model: gpt-4o-mini
+    tier: economico
+    pricing: {input: 0.0, cached_input: 0.0, output: 0.0}   # TODO: PREÇO NÃO VERIFICADO
+    batch_discount: 0.0
+    min_cacheable_tokens: 1024
+    supports_temperature: true
+    json_mode: true
+    params: {max_tokens: 800, temperature: 0.0}
+    pricing_source: "NÃO VERIFICADO — preencher com a tabela oficial (OpenAI/Nexus) antes de usar em estimativas de custo reais"
+    verified_on: ""
+
+  # ---------------- Anthropic (via Nexus) ----------------
+  claude-haiku-5-5:
+    provider: nexus
+    model: claude-haiku-5-5
+    tier: economico
+    pricing: {input: 0.10, cached_input: 0.01, output: 0.50}   # faixa <=100K tokens de prompt
+    batch_discount: 0.0           # Nexus: suporte a Batch API não confirmado
+    min_cacheable_tokens: 1024
+    supports_temperature: true
+    json_mode: false
+    params: {max_tokens: 800, temperature: 0.0}
+    pricing_source: "platform.claude.com/docs/en/about-claude/pricing"
+    verified_on: "2026-10-20"
+
+  claude-haiku-4-5:
+    provider: nexus
+    model: claude-haiku-4-5
+    tier: intermediario
+    pricing: {input: 1.00, cached_input: 0.10, output: 5.00}
+    batch_discount: 0.0
+    min_cacheable_tokens: 2048
+    supports_temperature: true
+    json_mode: false
+    params: {max_tokens: 800, temperature: 0.0}
+    pricing_source: "platform.claude.com/docs/en/about-claude/pricing"
+    verified_on: "2026-10-20"
+
+  claude-sonnet-5-5:
+    provider: nexus
+    model: claude-sonnet-5-5
+    tier: premium
+    pricing: {input: 2.00, cached_input: 0.10, output: 10.00}
+    batch_discount: 0.0
+    min_cacheable_tokens: 1024
+    supports_temperature: true
+    json_mode: false
+    params: {max_tokens: 800, temperature: 0.0}
+    pricing_source: "platform.claude.com/docs/en/about-claude/pricing"
+    verified_on: "2026-10-20"
+
+  claude-opus-5-5:
+    # teto de qualidade / candidato a juiz
+    provider: nexus
+    model: claude-opus-5-5
+    tier: teto
+    pricing: {input: 4.00, cached_input: 0.20, output: 20.00}
+    batch_discount: 0.0
+    min_cacheable_tokens: 1024
+    supports_temperature: true
+    json_mode: false
+    params: {max_tokens: 1000, temperature: 0.0}
+    pricing_source: "platform.claude.com/docs/en/about-claude/pricing"
+    verified_on: "2026-10-20"
+
+  # ---------------- Indisponíveis no Nexus em 2026-10-28 (NÃO usar) ----------------
+  # Estavam configurados antes da migração para o Nexus, mas não aparecem na lista
+  # de /models do gateway. Mantidos comentados por referência de preço; só
+  # reative (removendo o '#' e trocando provider para nexus) se voltarem a
+  # aparecer na lista de modelos do Nexus.
+  # gpt-5-nano:
+  #   pricing: {input: 0.05, cached_input: 0.005, output: 0.40}
+  # gpt-5.4-nano:
+  #   pricing: {input: 0.20, cached_input: 0.02, output: 1.25}
+  # gpt-5.4-mini:
+  #   pricing: {input: 0.75, cached_input: 0.075, output: 4.50}
+  # gpt-5.4:
+  #   pricing: {input: 2.50, cached_input: 0.25, output: 15.00}
+  # gemini-2.5-flash-lite:
+  #   pricing: {input: 0.10, cached_input: 0.01, output: 0.40}
+  # gemini-3.6-flash:
+  #   pricing: {input: 0.75, cached_input: 0.075, output: 3.75}
+
+  # ---------------- Disponíveis no Nexus, SEM preço verificado (NÃO ativos) ------
+  # Vistos na lista de /models do gateway em 2026-10-28, mas sem fonte de preço
+  # confiável neste repositório ainda. Para ativar um destes: copie o bloco de
+  # um modelo acima (ex.: gpt-4o-mini), troque `model:`/`tier:`, preencha
+  # `pricing` com a tabela oficial do provedor (ou do Nexus, se houver markup) e
+  # adicione o id na lista `models:` do seu config/benchmark.yaml ou demo.yaml.
+  #   gpt-5.1, gpt-5-mini, gpt-5.3-codex, gpt-5.6-terra, gpt-5.6-luna,
+  #   gpt-6-sol, gpt-6-luna, gpt-oss-120b, gpt-realtime,
+  #   deepseek-v4-pro, deepseek-v4-flash, grok-4.3, grok-4.6, kimi-k2.6,
+  #   claude-fable-5, claude-sonnet-5, claude-opus-5
+
+  # ---------------- Self-hosted (vLLM/Ollama via OpenAI-compatível) ----------------
+  # Custo derivado da infra: (USD/hora da GPU) / (tokens/hora sustentados) * 1e6.
+  # Descomente e preencha após medir throughput no seu cluster.
+  # qwen-local:
+  #   provider: openai_compatible
+  #   model: Qwen/Qwen3-14B-Instruct
+  #   base_url: http://localhost:8000/v1
+  #   api_key_env: LOCAL_API_KEY
+  #   tier: self_hosted
+  #   pricing: {input: 0.04, cached_input: 0.04, output: 0.12}
+  #   batch_discount: 0.0
+  #   min_cacheable_tokens: 0
+  #   supports_temperature: true
+  #   json_mode: true
+  #   params: {max_tokens: 800, temperature: 0.0}
+  #   pricing_source: "estimativa interna de infra"
+  #   verified_on: ""

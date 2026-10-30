@@ -1,0 +1,1084 @@
+call_id,data_chamada,transcricao,resumo,resumo_referencia,gt_qualidade_resumo,gt_csat,gt_razao_csat,gt_solicitacao_resolvida,gt_solver_reasoning,gt_razao_ligacao,gt_fcr,gt_empatia,gt_clareza_informacoes,gt_odc,defeito_resumo,prod_solicitacao_resolvida,prod_first_call_resolution,prod_razao_ligacao,prod_odc,prod_csat,prod_empatia,prod_clareza_informacoes,prod_qualidade_resumo
+CALL-000001,2026-06-14,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É João. Só queria saber até que horas a loja do shopping fica aberta e se lá faz troca de chip.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: A loja abre das 10h às 22h e faz troca de chip, sim.
+ATENDENTE: Leve um documento com foto.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente perguntou o horário da loja do shopping e se ela faz troca de chip. Atendente informou funcionamento das 10h às 22h e que a loja troca chip. Recomendou levar documento com foto. Atendimento cordial e objetivo e orientou sobre o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente. A atendente garantiu bônus de R$ 102,50 na próxima fatura.",Cliente pediu informações sobre o horário da loja do shopping e troca de chip. A atendente informou o horário de funcionamento (10h às 22h) e confirmou a troca de chip. Orientou levar documento com foto. A atendente foi cordial e explicou o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.,2,5,Cliente satisfeito porque a demanda foi resolvida na ligação.,sim,"Atendente informou horário da loja (10h às 22h) e confirmou que é feita troca de chip, esclarecendo a dúvida.",informacoes_gerais,sim,3,4,resolvido_no_contato,alucinacao_numerica,sim,sim,alteracao_plano,resolvido_no_contato,5,3,4,2
+CALL-000002,2026-03-17,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Isabela. Eu quero cancelar o meu plano Pós 30GB, está muito caro.
+ATENDENTE: Isabela, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Ofereci desconto mas o senhor recusou, então efetivei o cancelamento.
+ATENDENTE: Pronto.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou pedindo para cancelar o Pós 30GB por considerar o valor alto. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e explicou o procedimento, mas não deu prazo. Cliente agradeceu e elogiou a atendente.","Cliente solicitou o cancelamento do plano Pós 30GB alegando preço alto. O cliente recusou a oferta de retenção e a atendente efetivou o cancelamento. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento, sem informar o prazo. Cliente agradeceu e elogiou a atendente.",3,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente ofereceu retenção, recusada; efetivou o cancelamento conforme pedido do cliente.",cancelamento,sim,5,3,cancelamento_efetivado,omissao_desfecho,sim,sim,cancelamento,cancelamento_efetivado,5,5,4,3
+CALL-000003,2026-07-13,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Sérgio. Eu preciso da segunda via da fatura que vence dia 13, perdi o boleto.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Vou te enviar agora por SMS e e-mail, com código de barras e PIX.
+ATENDENTE: Já está no seu celular.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente pediu segunda via da fatura que vence no dia 13. Atendente se desculpou pelo transtorno e mostrou empatia e as orientações foram vagas, sem prazo definido. Cliente agradeceu.","Cliente solicitou a segunda via da fatura com vencimento no dia 13. A atendente enviou a segunda via por SMS e e-mail, com código de barras e PIX. A atendente demonstrou empatia e pediu desculpas pelo transtorno e deu informações vagas, sem prazo. Cliente agradeceu.",3,4,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente enviou a segunda via por SMS e e-mail com código de barras e PIX, resolvendo a demanda na ligação.",segunda_via_fatura,sim,4,2,resolvido_no_contato,omissao_desfecho,nao,nao,segunda_via_fatura,resolvido_no_contato,4,5,3,3
+CALL-000004,2026-02-21,"ATENDENTE: Central de atendimento. Fala.
+CLIENTE: É Kátia. Apareceu na minha fatura uma cobrança de R$ 52,90 de um tal de Games Club que eu nunca contratei.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Tá, já entendi, aguarda aí.
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Games Club e lancei o estorno de R$ 52,90 na próxima fatura.
+ATENDENTE: É isso.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente ligou para contestar a cobrança de R$ 52,90 do serviço Games Club, não reconhecido por ele. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Atendente tratou o cliente de forma ríspida e explicou o procedimento, mas não deu prazo. Cliente agradeceu.","Cliente contestou cobrança de R$ 52,90 referente ao serviço Games Club, que afirma não ter contratado. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente cancelou o serviço e aplicou estorno de R$ 52,90 na próxima fatura. A atendente foi ríspida e explicou o procedimento, sem informar o prazo. Cliente agradeceu.",3,4,"Cliente satisfeito porque a demanda foi resolvida na ligação, mas o cliente já havia ligado outras vezes pelo mesmo problema e a atendente foi pouco cordial.",sim,"Atendente identificou ativação indevida do Games Club, cancelou o serviço e lançou estorno de R$ 52,90 na próxima fatura, resolvendo na ligação.",cobranca_indevida,nao,1,3,resolvido_no_contato,omissao_desfecho,sim,nao,cobranca_indevida,resolvido_no_contato,4,1,3,4
+CALL-000005,2026-01-08,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Marina. Eu preciso da segunda via da fatura que vence dia 8, perdi o boleto.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Vou te enviar agora por SMS e e-mail, com código de barras e PIX.
+ATENDENTE: Já está no seu celular.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente pediu segunda via da fatura que vence no dia 8. Segunda via enviada por SMS e e-mail com opção de PIX. Atendimento frio, apenas protocolar e explicou o procedimento, mas não deu prazo. Cliente agradeceu.","Cliente solicitou a segunda via da fatura com vencimento no dia 8. A atendente enviou a segunda via por SMS e e-mail, com código de barras e PIX. A atendente foi fria e protocolar e explicou o procedimento, sem informar o prazo. Cliente agradeceu.",5,4,"Cliente satisfeito porque a demanda foi resolvida na ligação, mas a atendente foi pouco cordial.",sim,"Atendente enviou a segunda via por SMS e e-mail com código de barras e PIX, resolvendo a demanda na ligação.",segunda_via_fatura,sim,2,3,resolvido_no_contato,nenhum,parcial,sim,segunda_via_fatura,resolvido_no_contato,5,2,2,4
+CALL-000006,2026-02-16,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Kátia. Eu quero cancelar o meu plano Pós 30GB, está muito caro.
+ATENDENTE: Kátia, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Ofereci desconto mas o senhor recusou, então efetivei o cancelamento.
+ATENDENTE: O protocolo é 32524520990.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou pedindo para cancelar o Pós 30GB por considerar o valor alto. Retenção recusada; cancelamento concluído pela atendente. Protocolo informado: 01271238506. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e orientou sobre o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.","Cliente solicitou o cancelamento do plano Pós 30GB alegando preço alto. O cliente recusou a oferta de retenção e a atendente efetivou o cancelamento. Protocolo 32524520990. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.",2,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente ofereceu retenção, recusada; efetivou o cancelamento conforme pedido do cliente.",cancelamento,sim,5,4,cancelamento_efetivado,alucinacao_numerica,parcial,sim,informacoes_gerais,encaminhado_tecnico,5,5,3,2
+CALL-000007,2026-03-11,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É João. Apareceu na minha fatura uma cobrança de R$ 73,99 de um tal de Banca Digital que eu nunca contratei.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Banca Digital e lancei o estorno de R$ 73,99 na próxima fatura.
+ATENDENTE: O estorno/análise ocorre em até 3 dias úteis. O protocolo é 30432286598.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 73,99 do serviço Banca Digital, não reconhecido por ele. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Serviço cancelado e estorno de R$ 73,99 lançado para a próxima fatura. Protocolo 30432286598 com prazo de 3 dias úteis. Atendimento cordial e objetivo e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente agradeceu.","Cliente contestou cobrança de R$ 73,99 referente ao serviço Banca Digital, que afirma não ter contratado. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente cancelou o serviço e aplicou estorno de R$ 73,99 na próxima fatura. Prazo de 3 dias úteis, protocolo 30432286598. A atendente foi cordial e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu.",5,4,"Cliente satisfeito porque a demanda foi resolvida na ligação, mas o cliente já havia ligado outras vezes pelo mesmo problema.",sim,"Atendente identificou ativação indevida do Banca Digital, cancelou o serviço e lançou estorno de R$ 73,99 na próxima fatura, resolvendo na ligação.",cobranca_indevida,nao,3,5,resolvido_no_contato,nenhum,sim,nao,suporte_tecnico,retencao_aplicada,4,4,5,5
+CALL-000008,2026-04-20,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Henrique. Eu quero cancelar o meu plano Fibra 300 Mega, está muito caro.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Ofereci desconto mas o senhor recusou, então efetivei o cancelamento.
+ATENDENTE: Pronto.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente ligou pedindo para cancelar o Fibra 300 Mega por considerar o valor alto. Retenção recusada; cancelamento concluído pela atendente. Atendente se desculpou pelo transtorno e mostrou empatia e as informações passadas foram contraditórias. Cliente agradeceu.,Cliente solicitou o cancelamento do plano Fibra 300 Mega alegando preço alto. O cliente recusou a oferta de retenção e a atendente efetivou o cancelamento. A atendente demonstrou empatia e pediu desculpas pelo transtorno e passou informações contraditórias. Cliente agradeceu.,5,4,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente ofereceu retenção, recusada; efetivou o cancelamento conforme pedido do cliente.",cancelamento,sim,4,1,cancelamento_efetivado,nenhum,sim,sim,cancelamento,cancelamento_efetivado,4,4,1,5
+CALL-000009,2026-07-13,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Henrique. Eu preciso da segunda via da fatura que vence dia 13, perdi o boleto.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Vou te enviar agora por SMS e e-mail, com código de barras e PIX.
+ATENDENTE: Já está no seu celular.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente pediu segunda via da fatura que vence no dia 13. Segunda via enviada por SMS e e-mail com opção de PIX. Cliente agradeceu e elogiou a atendente.,"Cliente solicitou a segunda via da fatura com vencimento no dia 13. A atendente enviou a segunda via por SMS e e-mail, com código de barras e PIX. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento, sem informar o prazo. Cliente agradeceu e elogiou a atendente.",4,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente enviou a segunda via por SMS e e-mail com código de barras e PIX, resolvendo a demanda na ligação.",segunda_via_fatura,sim,4,3,resolvido_no_contato,omissao_menor:postura,parcial,nao,cobranca_indevida,encaminhado_tecnico,5,3,3,4
+CALL-000010,2026-09-13,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Lucas. Quero mudar do Controle 15GB para o Controle 25GB.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Feito, migrei para o Controle 25GB, a nova mensalidade é R$ 98,90.
+ATENDENTE: Depois o sistema atualiza.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente solicitou migrar do Controle 15GB para o Controle 25GB. Atendente se desculpou pelo transtorno e mostrou empatia e as informações passadas foram contraditórias. Cliente agradeceu e elogiou a atendente.,"Cliente pediu a troca do plano Controle 15GB para o Controle 25GB. A atendente realizou a migração para o Controle 25GB, com mensalidade de R$ 98,90. A atendente demonstrou empatia e pediu desculpas pelo transtorno e passou informações contraditórias. Cliente agradeceu e elogiou a atendente.",3,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente efetuou a migração para o Controle 25GB na ligação e informou a nova mensalidade de R$ 98,90.",alteracao_plano,sim,4,1,resolvido_no_contato,omissao_desfecho,sim,sim,alteracao_plano,resolvido_no_contato,5,4,1,4
+CALL-000011,2026-09-05,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Marina. Apareceu na minha fatura uma cobrança de R$ 40,00 de um tal de Seguro Celular que eu nunca contratei.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Seguro Celular e lancei o estorno de R$ 40,00 na próxima fatura.
+ATENDENTE: O estorno/análise ocorre em até 7 dias úteis. O protocolo é 42463971009.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 40,00 do serviço Seguro Celular, não reconhecido por ele. Serviço cancelado e estorno de R$ 40,00 lançado para a próxima fatura. Protocolo 42463971009 com prazo de 7 dias úteis. Cliente agradeceu e elogiou a atendente.","Cliente contestou cobrança de R$ 40,00 referente ao serviço Seguro Celular, que afirma não ter contratado. A atendente cancelou o serviço e aplicou estorno de R$ 40,00 na próxima fatura. Prazo de 7 dias úteis, protocolo 42463971009. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.",4,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente identificou ativação indevida do Seguro Celular, cancelou o serviço e lançou estorno de R$ 40,00 na próxima fatura, resolvendo na ligação.",cobranca_indevida,sim,4,4,resolvido_no_contato,omissao_menor:postura,sim,sim,cobranca_indevida,resolvido_no_contato,5,3,4,4
+CALL-000012,2026-01-24,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Diego. Apareceu na minha fatura uma cobrança de R$ 34,50 de um tal de Seguro Celular que eu nunca contratei.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Seguro Celular e lancei o estorno de R$ 34,50 na próxima fatura.
+ATENDENTE: O estorno/análise ocorre em até 7 dias úteis. O protocolo é 15783925163.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 34,50 do serviço Seguro Celular, não reconhecido por ele. Serviço cancelado e estorno de R$ 34,50 lançado para a próxima fatura. Atendente se desculpou pelo transtorno e mostrou empatia e orientou sobre o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.","Cliente contestou cobrança de R$ 34,50 referente ao serviço Seguro Celular, que afirma não ter contratado. A atendente cancelou o serviço e aplicou estorno de R$ 34,50 na próxima fatura. Prazo de 7 dias úteis, protocolo 15783925163. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.",4,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente identificou ativação indevida do Seguro Celular, cancelou o serviço e lançou estorno de R$ 34,50 na próxima fatura, resolvendo na ligação.",cobranca_indevida,sim,4,4,resolvido_no_contato,omissao_menor:proximo,sim,indeterminado,cobranca_indevida,encaminhado_tecnico,5,4,4,4
+CALL-000013,2026-05-23,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Ana. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Os testes indicam problema no cabo externo.
+ATENDENTE: Agendei visita técnica para o dia 23/05.
+ATENDENTE: Prazo em até 3 dias úteis. O protocolo é 52495061920.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Testes apontaram problema no cabo externo; visita técnica marcada para 23/05. Prazo de 3 dias úteis; protocolo 52495061920. Atendente se desculpou pelo transtorno e mostrou empatia e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente agradeceu.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente identificou falha no cabeamento externo e agendou visita técnica para 23/05. Protocolo 52495061920, prazo de 3 dias úteis. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu.",5,4,"Cliente satisfeito porque a atendente foi empática, mas a demanda ficou encaminhada, sem solução imediata.",parcial,Atendente diagnosticou falha no cabo externo e agendou visita técnica para 23/05; resolução depende da visita.,suporte_tecnico,nao,4,5,encaminhado_tecnico,nenhum,parcial,nao,cancelamento,encaminhado_tecnico,4,4,5,5
+CALL-000014,2026-06-26,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É João. Apareceu na minha fatura uma cobrança de R$ 114,50 de um tal de Banca Digital que eu nunca contratei.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Banca Digital e lancei o estorno de R$ 114,50 na próxima fatura.
+ATENDENTE: O estorno/análise ocorre em até 5 dias úteis. O protocolo é 50148796487.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 147,50 do serviço Banca Digital, não reconhecido por ele. A atendente informou que a cobrança é devida e não haverá estorno. Atendimento cordial e objetivo e orientou sobre o procedimento e o próximo passo. Cliente agradeceu.","Cliente contestou cobrança de R$ 114,50 referente ao serviço Banca Digital, que afirma não ter contratado. A atendente cancelou o serviço e aplicou estorno de R$ 114,50 na próxima fatura. Prazo de 5 dias úteis, protocolo 50148796487. A atendente foi cordial e explicou o procedimento e o próximo passo. Cliente agradeceu.",1,4,Cliente satisfeito porque a demanda foi resolvida na ligação.,sim,"Atendente identificou ativação indevida do Banca Digital, cancelou o serviço e lançou estorno de R$ 114,50 na próxima fatura, resolvendo na ligação.",cobranca_indevida,sim,3,4,resolvido_no_contato,desfecho_errado+alucinacao,sim,indeterminado,cobranca_indevida,protocolo_aberto,4,2,3,1
+CALL-000015,2026-02-06,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Elaine. Quero trazer meu número de outra operadora para vocês.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Isso é com o setor de vendas, vou transferir.
+ATENDENTE: A portabilidade ocorre em breve.
+CLIENTE: Isso é um absurdo, vou registrar reclamação no Procon.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente quer portar seu número de outra operadora. Atendimento cordial e objetivo e as orientações foram vagas, sem prazo definido. Cliente ficou muito irritado e ameaçou reclamar no Procon.","Cliente solicitou portabilidade do número vindo de outra operadora. A atendente transferiu o cliente para o setor de vendas. A atendente foi cordial e deu informações vagas, sem prazo. Cliente ficou muito irritado e ameaçou reclamar no Procon.",3,1,Cliente insatisfeito porque a demanda não foi resolvida.,nao,Atendente não tratou a portabilidade e transferiu o cliente para o setor de vendas.,portabilidade,nao,3,2,transferido,omissao_desfecho,nao,nao,suporte_tecnico,transferido,1,3,1,3
+CALL-000016,2026-08-11,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Fábio. Quero reclamar do técnico que veio ontem, chegou atrasado e foi grosseiro.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Registrei a sua reclamação para a ouvidoria de campo.
+ATENDENTE: Retorno em breve.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente registrou queixa sobre o técnico, que atrasou e foi grosseiro na visita de ontem. Reclamação registrada na ouvidoria de campo. Atendente se desculpou pelo transtorno e mostrou empatia e as orientações foram vagas, sem prazo definido. Cliente demonstrou insatisfação com o atendimento. A atendente garantiu bônus de R$ 86,00 na próxima fatura.","Cliente reclamou de atraso e grosseria do técnico na visita do dia anterior. A atendente registrou a reclamação para a ouvidoria de campo. A atendente demonstrou empatia e pediu desculpas pelo transtorno e deu informações vagas, sem prazo. Cliente demonstrou insatisfação com o atendimento.",2,2,"Cliente insatisfeito porque a demanda ficou encaminhada, sem solução imediata, mas a atendente foi empática.",parcial,Atendente registrou a reclamação na ouvidoria de campo para apuração; sem resposta imediata.,reclamacao_atendimento,nao,4,2,protocolo_aberto,alucinacao_numerica,sim,sim,portabilidade,protocolo_aberto,2,4,2,1
+CALL-000017,2026-10-24,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Ana. Eu quero cancelar o meu plano Fibra 300 Mega, está muito caro.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Ofereci desconto mas o senhor recusou, então efetivei o cancelamento.
+ATENDENTE: Pronto.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou pedindo para cancelar o Fibra 300 Mega por considerar o valor alto. Atendente se desculpou pelo transtorno e mostrou empatia e explicou o procedimento, mas não deu prazo. Cliente agradeceu e elogiou a atendente.","Cliente solicitou o cancelamento do plano Fibra 300 Mega alegando preço alto. O cliente recusou a oferta de retenção e a atendente efetivou o cancelamento. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento, sem informar o prazo. Cliente agradeceu e elogiou a atendente.",3,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente ofereceu retenção, recusada; efetivou o cancelamento conforme pedido do cliente.",cancelamento,sim,4,3,cancelamento_efetivado,omissao_desfecho,nao,sim,segunda_via_fatura,cancelamento_efetivado,5,5,3,3
+CALL-000018,2026-03-23,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Fábio. Só queria saber até que horas a loja do shopping fica aberta e se lá faz troca de chip.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: A loja abre das 10h às 22h e faz troca de chip, sim.
+ATENDENTE: É isso.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente perguntou o horário da loja do shopping e se ela faz troca de chip. Atendente informou funcionamento das 10h às 22h e que a loja troca chip. Cliente agradeceu.,Cliente pediu informações sobre o horário da loja do shopping e troca de chip. A atendente informou o horário de funcionamento (10h às 22h) e confirmou a troca de chip. A atendente foi cordial e passou informações contraditórias. Cliente agradeceu.,4,4,Cliente satisfeito porque a demanda foi resolvida na ligação.,sim,"Atendente informou horário da loja (10h às 22h) e confirmou que é feita troca de chip, esclarecendo a dúvida.",informacoes_gerais,sim,3,1,resolvido_no_contato,omissao_menor:postura,sim,indeterminado,informacoes_gerais,resolvido_no_contato,4,2,2,3
+CALL-000019,2026-07-08,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É João. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Fiz um reset remoto no seu modem e reconfigurei o sinal.
+ATENDENTE: Pode testar agora?
+ATENDENTE: Cliente confirmou que voltou.
+ATENDENTE: Aguarde.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Após reset remoto do modem, a conexão foi normalizada e confirmada pelo cliente. Cliente agradeceu.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente fez reset remoto do modem e o cliente confirmou a normalização. A atendente foi cordial e explicou o procedimento, sem informar o prazo. Cliente agradeceu.",3,4,Cliente satisfeito porque a demanda foi resolvida na ligação.,sim,Atendente realizou reset remoto do modem e reconfiguração; cliente testou e confirmou a normalização durante a ligação.,suporte_tecnico,sim,3,3,resolvido_no_contato,omissao_menor:postura,sim,sim,suporte_tecnico,resolvido_no_contato,5,3,3,3
+CALL-000020,2026-08-22,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Carla. Quero trazer meu número de outra operadora para vocês.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Registrei o pedido de portabilidade.
+ATENDENTE: A portabilidade ocorre em breve. Na verdade pode ser que já esteja resolvido, ou não, depende do sistema.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente quer portar seu número de outra operadora. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Pedido de portabilidade registrado pela atendente. Atendente se desculpou pelo transtorno e mostrou empatia e as informações passadas foram contraditórias. Cliente demonstrou insatisfação com o atendimento.,Cliente solicitou portabilidade do número vindo de outra operadora. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente registrou o pedido de portabilidade. A atendente demonstrou empatia e pediu desculpas pelo transtorno e passou informações contraditórias. Cliente demonstrou insatisfação com o atendimento.,5,2,"Cliente insatisfeito porque a demanda ficou encaminhada, sem solução imediata e o cliente já havia ligado outras vezes pelo mesmo problema, mas a atendente foi empática.",parcial,"Atendente registrou a solicitação de portabilidade, que depende da janela regulatória para ser concluída.",portabilidade,nao,4,1,protocolo_aberto,nenhum,parcial,sim,portabilidade,protocolo_aberto,1,4,1,5
+CALL-000021,2026-06-13,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É João. Apareceu na minha fatura uma cobrança de R$ 18,00 de um tal de Banca Digital que eu nunca contratei.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Banca Digital e lancei o estorno de R$ 18,00 na próxima fatura.
+ATENDENTE: O estorno/análise ocorre em até 10 dias úteis. O protocolo é 89212847840.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente ligou para contestar a cobrança de R$ 102,90 do serviço Banca Digital, não reconhecido por ele. A atendente informou que a cobrança é devida e não haverá estorno. Atendimento frio, apenas protocolar e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente agradeceu e elogiou a atendente.","Cliente contestou cobrança de R$ 18,00 referente ao serviço Banca Digital, que afirma não ter contratado. A atendente cancelou o serviço e aplicou estorno de R$ 18,00 na próxima fatura. Prazo de 10 dias úteis, protocolo 89212847840. A atendente foi fria e protocolar e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu e elogiou a atendente.",1,5,"Cliente satisfeito porque a demanda foi resolvida na ligação, mas a atendente foi pouco cordial.",sim,"Atendente identificou ativação indevida do Banca Digital, cancelou o serviço e lançou estorno de R$ 18,00 na próxima fatura, resolvendo na ligação.",cobranca_indevida,sim,2,5,resolvido_no_contato,desfecho_errado+alucinacao,sim,sim,cobranca_indevida,resolvido_no_contato,5,3,5,1
+CALL-000022,2026-02-12,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Isabela. Quero mudar do Controle 15GB para o Controle 25GB.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Feito, migrei para o Controle 25GB, a nova mensalidade é R$ 134,00.
+ATENDENTE: Vale a partir do próximo ciclo.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente solicitou migrar do Controle 15GB para o Controle 25GB. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Migração para o Controle 25GB concluída; nova mensalidade de R$ 134,00. Mudança válida a partir do próximo ciclo. Atendimento cordial e objetivo e orientou sobre o procedimento e o próximo passo. Cliente agradeceu.","Cliente pediu a troca do plano Controle 15GB para o Controle 25GB. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente realizou a migração para o Controle 25GB, com mensalidade de R$ 134,00. A alteração vale a partir do próximo ciclo de faturamento. A atendente foi cordial e explicou o procedimento e o próximo passo. Cliente agradeceu.",5,4,"Cliente satisfeito porque a demanda foi resolvida na ligação, mas o cliente já havia ligado outras vezes pelo mesmo problema.",sim,"Atendente efetuou a migração para o Controle 25GB na ligação e informou a nova mensalidade de R$ 134,00.",alteracao_plano,nao,3,4,resolvido_no_contato,nenhum,sim,nao,alteracao_plano,resolvido_no_contato,5,3,3,5
+CALL-000023,2026-11-06,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Nelson. Quero reclamar do técnico que veio ontem, chegou atrasado e foi grosseiro.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Não tenho como registrar reclamação de técnico por aqui.
+ATENDENTE: Pronto.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente registrou queixa sobre o técnico, que atrasou e foi grosseiro na visita de ontem. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Atendente informou que não consegue registrar esse tipo de reclamação. Atendente se desculpou pelo transtorno e mostrou empatia e explicou o procedimento, mas não deu prazo. Cliente demonstrou insatisfação com o atendimento.","Cliente reclamou de atraso e grosseria do técnico na visita do dia anterior. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente disse não ser possível registrar a reclamação por esse canal. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento, sem informar o prazo. Cliente demonstrou insatisfação com o atendimento.",5,2,"Cliente insatisfeito porque a demanda não foi resolvida e o cliente já havia ligado outras vezes pelo mesmo problema, mas a atendente foi empática.",nao,Atendente informou não ser possível registrar a reclamação pelo canal e não ofereceu alternativa.,reclamacao_atendimento,nao,4,3,sem_solucao,nenhum,nao,indeterminado,reclamacao_atendimento,sem_solucao,3,5,3,5
+CALL-000024,2026-08-12,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Diego. Só queria saber até que horas a loja do shopping fica aberta e se lá faz troca de chip.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: A loja abre das 10h às 22h e faz troca de chip, sim.
+ATENDENTE: É isso.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente perguntou o horário da loja do shopping e se ela faz troca de chip. Atendente informou funcionamento das 10h às 22h e que a loja troca chip. Cliente agradeceu.,"Cliente pediu informações sobre o horário da loja do shopping e troca de chip. A atendente informou o horário de funcionamento (10h às 22h) e confirmou a troca de chip. A atendente demonstrou empatia e pediu desculpas pelo transtorno e deu informações vagas, sem prazo. Cliente agradeceu.",4,4,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente informou horário da loja (10h às 22h) e confirmou que é feita troca de chip, esclarecendo a dúvida.",informacoes_gerais,sim,4,2,resolvido_no_contato,omissao_menor:postura,sim,sim,informacoes_gerais,resolvido_no_contato,4,5,1,5
+CALL-000025,2026-10-09,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É João. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: João, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Vou abrir um chamado para a engenharia analisar a sua região.
+ATENDENTE: Prazo em breve.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. A conexão foi normalizada durante a ligação. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e as orientações foram vagas, sem prazo definido. Cliente aceitou aguardar. A atendente garantiu bônus de R$ 9,99 na próxima fatura.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente abriu chamado para análise da engenharia na região. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e deu informações vagas, sem prazo. Cliente aceitou aguardar.",1,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata, mas a atendente foi empática.",parcial,Atendente abriu chamado para análise de rede na região; sem solução imediata.,suporte_tecnico,nao,5,2,protocolo_aberto,desfecho_errado+alucinacao,parcial,nao,suporte_tecnico,protocolo_aberto,3,5,3,2
+CALL-000026,2026-11-05,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Paulo. Eu quero cancelar o meu plano Controle 15GB, está muito caro.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Antes de cancelar, consigo te oferecer 30% de desconto por 6 meses no Controle 15GB.
+ATENDENTE: Cliente aceitou a oferta.
+ATENDENTE: O protocolo é 71490440537.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou pedindo para cancelar o Controle 15GB por considerar o valor alto. Atendente se desculpou pelo transtorno e mostrou empatia e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente agradeceu e elogiou a atendente.","Cliente solicitou o cancelamento do plano Controle 15GB alegando preço alto. A atendente ofereceu 30% de desconto por 6 meses e o cliente aceitou permanecer. Protocolo 71490440537. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu e elogiou a atendente.",3,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente aplicou oferta de retenção de 30% de desconto por 6 meses, aceita pelo cliente, que manteve o plano.",cancelamento,sim,4,5,retencao_aplicada,omissao_desfecho,parcial,indeterminado,cancelamento,retencao_aplicada,4,4,5,3
+CALL-000027,2026-04-27,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Nelson. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Nelson, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Os testes indicam problema no cabo externo.
+ATENDENTE: Agendei visita técnica para o dia 27/04.
+ATENDENTE: Prazo em até 7 dias úteis. O protocolo é 49628037841.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e orientou sobre o procedimento e o próximo passo. Cliente agradeceu.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente identificou falha no cabeamento externo e agendou visita técnica para 27/04. Protocolo 49628037841, prazo de 7 dias úteis. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento e o próximo passo. Cliente agradeceu.",3,4,"Cliente satisfeito porque a atendente foi empática, mas a demanda ficou encaminhada, sem solução imediata.",parcial,Atendente diagnosticou falha no cabo externo e agendou visita técnica para 27/04; resolução depende da visita.,suporte_tecnico,nao,5,4,encaminhado_tecnico,omissao_desfecho,parcial,nao,suporte_tecnico,encaminhado_tecnico,3,5,4,4
+CALL-000028,2026-01-07,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Vinícius. Apareceu na minha fatura uma cobrança de R$ 173,90 de um tal de Seguro Celular que eu nunca contratei.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Vou precisar abrir uma contestação para a área financeira analisar.
+ATENDENTE: O estorno/análise ocorre em até 10 dias úteis. O protocolo é 04897752330.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 173,90 do serviço Seguro Celular, não reconhecido por ele. Foi registrada contestação para análise do financeiro. Protocolo 04897752330 com prazo de 10 dias úteis. Atendente se desculpou pelo transtorno e mostrou empatia e orientou sobre o procedimento e o próximo passo. Cliente agradeceu.","Cliente contestou cobrança de R$ 173,90 referente ao serviço Seguro Celular, que afirma não ter contratado. A atendente abriu contestação para análise da área financeira. Prazo de 10 dias úteis, protocolo 04897752330. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento e o próximo passo. Cliente agradeceu.",5,4,"Cliente satisfeito porque a atendente foi empática, mas a demanda ficou encaminhada, sem solução imediata.",parcial,Atendente não pôde estornar na hora; abriu contestação para análise do financeiro com prazo de 10 dias úteis.,cobranca_indevida,nao,4,4,protocolo_aberto,nenhum,nao,nao,cobranca_indevida,protocolo_aberto,4,4,3,4
+CALL-000029,2026-02-20,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Paulo. Quero mudar do Controle 15GB para o Controle 25GB.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Feito, migrei para o Controle 25GB, a nova mensalidade é R$ 106,90.
+ATENDENTE: Vale a partir do próximo ciclo.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente solicitou migrar do Controle 15GB para o Controle 25GB. A migração não foi possível por falta de cobertura. Atendimento frio, apenas protocolar e explicou o procedimento, mas não deu prazo. Cliente agradeceu. A atendente garantiu bônus de R$ 51,99 na próxima fatura.","Cliente pediu a troca do plano Controle 15GB para o Controle 25GB. A atendente realizou a migração para o Controle 25GB, com mensalidade de R$ 106,90. A atendente foi fria e protocolar e explicou o procedimento, sem informar o prazo. Cliente agradeceu.",1,4,"Cliente satisfeito porque a demanda foi resolvida na ligação, mas a atendente foi pouco cordial.",sim,"Atendente efetuou a migração para o Controle 25GB na ligação e informou a nova mensalidade de R$ 106,90.",alteracao_plano,sim,2,3,resolvido_no_contato,desfecho_errado+alucinacao,sim,sim,alteracao_plano,resolvido_no_contato,5,2,3,1
+CALL-000030,2026-05-12,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Elaine. Só queria saber até que horas a loja do shopping fica aberta e se lá faz troca de chip.
+ATENDENTE: Elaine, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: A loja abre das 10h às 22h e faz troca de chip, sim.
+ATENDENTE: Leve um documento com foto.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente perguntou o horário da loja do shopping e se ela faz troca de chip. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente agradeceu e elogiou a atendente.","Cliente pediu informações sobre o horário da loja do shopping e troca de chip. A atendente informou o horário de funcionamento (10h às 22h) e confirmou a troca de chip. Orientou levar documento com foto. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu e elogiou a atendente.",3,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente informou horário da loja (10h às 22h) e confirmou que é feita troca de chip, esclarecendo a dúvida.",informacoes_gerais,sim,5,5,resolvido_no_contato,omissao_desfecho,sim,sim,informacoes_gerais,resolvido_no_contato,4,5,4,4
+CALL-000031,2026-03-05,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Henrique. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Os testes indicam problema no cabo externo.
+ATENDENTE: Agendei visita técnica para o dia 5/03.
+ATENDENTE: Prazo em breve. Na verdade pode ser que já esteja resolvido, ou não, depende do sistema.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Atendimento frio, apenas protocolar e as informações passadas foram contraditórias. Cliente demonstrou insatisfação com o atendimento.",Cliente relatou quedas frequentes da internet desde o dia anterior. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente identificou falha no cabeamento externo e agendou visita técnica para 5/03. A atendente foi fria e protocolar e passou informações contraditórias. Cliente demonstrou insatisfação com o atendimento.,3,2,"Cliente insatisfeito porque a demanda ficou encaminhada, sem solução imediata e o cliente já havia ligado outras vezes pelo mesmo problema e a atendente foi pouco cordial.",parcial,Atendente diagnosticou falha no cabo externo e agendou visita técnica para 5/03; resolução depende da visita.,suporte_tecnico,nao,2,1,encaminhado_tecnico,omissao_desfecho,parcial,nao,suporte_tecnico,encaminhado_tecnico,3,1,1,4
+CALL-000032,2026-03-27,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Renata. Eu preciso da segunda via da fatura que vence dia 27, perdi o boleto.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Vou te enviar agora por SMS e e-mail, com código de barras e PIX.
+ATENDENTE: Enviei agora; o valor é R$ 172,99 e o PIX compensa na hora.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente pediu segunda via da fatura que vence no dia 27. Segunda via enviada por SMS e e-mail com opção de PIX. Atendente se desculpou pelo transtorno e mostrou empatia e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente agradeceu e elogiou a atendente.","Cliente solicitou a segunda via da fatura com vencimento no dia 27. A atendente enviou a segunda via por SMS e e-mail, com código de barras e PIX. Valor da fatura informado: R$ 172,99. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu e elogiou a atendente.",4,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente enviou a segunda via por SMS e e-mail com código de barras e PIX, resolvendo a demanda na ligação.",segunda_via_fatura,sim,4,5,resolvido_no_contato,omissao_menor:proximo,sim,sim,segunda_via_fatura,resolvido_no_contato,4,4,5,3
+CALL-000033,2026-06-05,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Marina. Quero mudar do Fibra 300 Mega para o Fibra 600 Mega.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Infelizmente o Fibra 600 Mega não está disponível no seu endereço.
+ATENDENTE: Vale a partir do próximo ciclo.
+CLIENTE: Isso é um absurdo, vou registrar reclamação no Procon.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente solicitou migrar do Fibra 300 Mega para o Fibra 600 Mega. A atendente concluiu a migração para o Fibra 600 Mega. Atendimento frio, apenas protocolar e explicou o procedimento, mas não deu prazo. Cliente ficou muito irritado e ameaçou reclamar no Procon. A atendente garantiu bônus de R$ 97,90 na próxima fatura.","Cliente pediu a troca do plano Fibra 300 Mega para o Fibra 600 Mega. A atendente informou que o Fibra 600 Mega não está disponível no endereço do cliente. A atendente foi fria e protocolar e explicou o procedimento, sem informar o prazo. Cliente ficou muito irritado e ameaçou reclamar no Procon.",1,1,Cliente insatisfeito porque a demanda não foi resolvida e a atendente foi pouco cordial.,nao,Atendente verificou que o Fibra 600 Mega não está disponível no endereço; troca não realizada.,alteracao_plano,nao,2,3,sem_solucao,desfecho_errado+alucinacao,nao,nao,cancelamento,sem_solucao,1,2,3,1
+CALL-000034,2026-09-08,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Ana. Eu quero cancelar o meu plano Fibra 300 Mega, está muito caro.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Ana, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Antes de cancelar, consigo te oferecer 30% de desconto por 6 meses no Fibra 300 Mega.
+ATENDENTE: Cliente aceitou a oferta.
+ATENDENTE: Pronto.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou pedindo para cancelar o Fibra 300 Mega por considerar o valor alto. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Cliente aceitou oferta de retenção com 30% de desconto por 6 meses. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e as orientações foram vagas, sem prazo definido. Cliente agradeceu.","Cliente solicitou o cancelamento do plano Fibra 300 Mega alegando preço alto. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente ofereceu 30% de desconto por 6 meses e o cliente aceitou permanecer. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e deu informações vagas, sem prazo. Cliente agradeceu.",5,4,"Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática, mas o cliente já havia ligado outras vezes pelo mesmo problema.",sim,"Atendente aplicou oferta de retenção de 30% de desconto por 6 meses, aceita pelo cliente, que manteve o plano.",cancelamento,nao,5,2,retencao_aplicada,nenhum,sim,nao,cancelamento,retencao_aplicada,5,5,2,5
+CALL-000035,2026-09-19,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Ana. Quero mudar do Fibra 300 Mega para o Fibra 600 Mega.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Ana, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Infelizmente o Fibra 600 Mega não está disponível no seu endereço.
+ATENDENTE: Vale a partir do próximo ciclo.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente solicitou migrar do Fibra 300 Mega para o Fibra 600 Mega. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. O Fibra 600 Mega não tem disponibilidade no endereço do cliente. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e explicou o procedimento, mas não deu prazo. Cliente demonstrou insatisfação com o atendimento.","Cliente pediu a troca do plano Fibra 300 Mega para o Fibra 600 Mega. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente informou que o Fibra 600 Mega não está disponível no endereço do cliente. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento, sem informar o prazo. Cliente demonstrou insatisfação com o atendimento.",5,2,"Cliente insatisfeito porque a demanda não foi resolvida e o cliente já havia ligado outras vezes pelo mesmo problema, mas a atendente foi empática.",nao,Atendente verificou que o Fibra 600 Mega não está disponível no endereço; troca não realizada.,alteracao_plano,nao,5,3,sem_solucao,nenhum,parcial,sim,alteracao_plano,sem_solucao,2,4,3,5
+CALL-000036,2026-08-12,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Vinícius. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Vou abrir um chamado para a engenharia analisar a sua região.
+ATENDENTE: Prazo em até 7 dias úteis. O protocolo é 25674162084.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Chamado aberto para a engenharia verificar a região do cliente. Prazo de 12 dias úteis; protocolo 63438889167. Atendimento cordial e objetivo e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente agradeceu.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente abriu chamado para análise da engenharia na região. Protocolo 25674162084, prazo de 7 dias úteis. A atendente foi cordial e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu.",1,4,"Cliente satisfeito porque o atendimento foi conduzido sem atritos, mas a demanda ficou encaminhada, sem solução imediata.",parcial,Atendente abriu chamado para análise de rede na região; sem solução imediata.,suporte_tecnico,nao,3,5,protocolo_aberto,alucinacao_numerica,parcial,sim,suporte_tecnico,protocolo_aberto,4,3,5,1
+CALL-000037,2026-05-12,"ATENDENTE: Central de atendimento. Fala.
+CLIENTE: É Nelson. Apareceu na minha fatura uma cobrança de R$ 36,90 de um tal de Seguro Celular que eu nunca contratei.
+ATENDENTE: Tá, já entendi, aguarda aí.
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Seguro Celular e lancei o estorno de R$ 36,90 na próxima fatura.
+ATENDENTE: O estorno/análise ocorre em breve.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente ligou para contestar a cobrança de R$ 36,90 do serviço Seguro Celular, não reconhecido por ele. Serviço cancelado e estorno de R$ 36,90 lançado para a próxima fatura. Cliente aceitou aguardar.","Cliente contestou cobrança de R$ 36,90 referente ao serviço Seguro Celular, que afirma não ter contratado. A atendente cancelou o serviço e aplicou estorno de R$ 36,90 na próxima fatura. A atendente foi ríspida e deu informações vagas, sem prazo. Cliente aceitou aguardar.",4,3,"Satisfação neutra: a atendente foi pouco cordial, mas a demanda foi resolvida na ligação.",sim,"Atendente identificou ativação indevida do Seguro Celular, cancelou o serviço e lançou estorno de R$ 36,90 na próxima fatura, resolvendo na ligação.",cobranca_indevida,sim,1,2,resolvido_no_contato,omissao_menor:postura,sim,indeterminado,cobranca_indevida,resolvido_no_contato,3,1,1,3
+CALL-000038,2026-04-19,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Paulo. Quero trazer meu número de outra operadora para vocês.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Isso é com o setor de vendas, vou transferir.
+ATENDENTE: A portabilidade ocorre em até 10 dias úteis. O protocolo é 42369543784.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente quer portar seu número de outra operadora. Atendente se desculpou pelo transtorno e mostrou empatia e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente demonstrou insatisfação com o atendimento.","Cliente solicitou portabilidade do número vindo de outra operadora. A atendente transferiu o cliente para o setor de vendas. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente demonstrou insatisfação com o atendimento.",3,2,"Cliente insatisfeito porque a demanda não foi resolvida, mas a atendente foi empática.",nao,Atendente não tratou a portabilidade e transferiu o cliente para o setor de vendas.,portabilidade,nao,4,5,transferido,omissao_desfecho,sim,nao,informacoes_gerais,transferido,3,4,5,3
+CALL-000039,2026-07-08,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Henrique. Quero reclamar do técnico que veio ontem, chegou atrasado e foi grosseiro.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Não tenho como registrar reclamação de técnico por aqui.
+ATENDENTE: Pronto.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente registrou queixa sobre o técnico, que atrasou e foi grosseiro na visita de ontem. Atendente informou que não consegue registrar esse tipo de reclamação. Cliente demonstrou insatisfação com o atendimento.","Cliente reclamou de atraso e grosseria do técnico na visita do dia anterior. A atendente disse não ser possível registrar a reclamação por esse canal. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento, sem informar o prazo. Cliente demonstrou insatisfação com o atendimento.",4,2,"Cliente insatisfeito porque a demanda não foi resolvida, mas a atendente foi empática.",nao,Atendente informou não ser possível registrar a reclamação pelo canal e não ofereceu alternativa.,reclamacao_atendimento,nao,4,3,sem_solucao,omissao_menor:postura,nao,nao,reclamacao_atendimento,resolvido_no_contato,1,4,2,5
+CALL-000040,2026-06-25,"ATENDENTE: Central de atendimento. Fala.
+CLIENTE: É Olívia. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Tá, já entendi, aguarda aí.
+CLIENTE: Tá bom.
+ATENDENTE: Fiz um reset remoto no seu modem e reconfigurei o sinal.
+ATENDENTE: Pode testar agora?
+ATENDENTE: Cliente confirmou que voltou.
+ATENDENTE: Prazo em até 5 dias úteis. O protocolo é 60479880657.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Mais alguma coisa? Tchau.",Cliente reclamou de instabilidade e quedas da conexão desde ontem. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Atendente tratou o cliente de forma ríspida e orientou sobre o procedimento e o próximo passo. Cliente aceitou aguardar.,Cliente relatou quedas frequentes da internet desde o dia anterior. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente fez reset remoto do modem e o cliente confirmou a normalização. A atendente foi ríspida e explicou o procedimento e o próximo passo. Cliente aceitou aguardar.,3,3,"Satisfação neutra: o cliente já havia ligado outras vezes pelo mesmo problema e a atendente foi pouco cordial, mas a demanda foi resolvida na ligação.",sim,Atendente realizou reset remoto do modem e reconfiguração; cliente testou e confirmou a normalização durante a ligação.,suporte_tecnico,nao,1,4,resolvido_no_contato,omissao_desfecho,sim,nao,informacoes_gerais,resolvido_no_contato,3,1,5,3
+CALL-000041,2026-03-11,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Renata. Eu preciso da segunda via da fatura que vence dia 11, perdi o boleto.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Vou te enviar agora por SMS e e-mail, com código de barras e PIX.
+ATENDENTE: Já está no seu celular.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente pediu segunda via da fatura que vence no dia 11. Segunda via enviada por SMS e e-mail com opção de PIX. Cliente agradeceu.,"Cliente solicitou a segunda via da fatura com vencimento no dia 11. A atendente enviou a segunda via por SMS e e-mail, com código de barras e PIX. A atendente demonstrou empatia e pediu desculpas pelo transtorno e deu informações vagas, sem prazo. Cliente agradeceu.",4,4,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente enviou a segunda via por SMS e e-mail com código de barras e PIX, resolvendo a demanda na ligação.",segunda_via_fatura,sim,4,2,resolvido_no_contato,omissao_menor:postura,parcial,sim,segunda_via_fatura,resolvido_no_contato,4,3,2,4
+CALL-000042,2026-09-15,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Isabela. Eu quero cancelar o meu plano Fibra 300 Mega, está muito caro.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Antes de cancelar, consigo te oferecer 30% de desconto por 6 meses no Fibra 300 Mega.
+ATENDENTE: Cliente aceitou a oferta.
+ATENDENTE: Pronto.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou pedindo para cancelar o Fibra 300 Mega por considerar o valor alto. Atendente se desculpou pelo transtorno e mostrou empatia e as orientações foram vagas, sem prazo definido. Cliente agradeceu e elogiou a atendente.","Cliente solicitou o cancelamento do plano Fibra 300 Mega alegando preço alto. A atendente ofereceu 30% de desconto por 6 meses e o cliente aceitou permanecer. A atendente demonstrou empatia e pediu desculpas pelo transtorno e deu informações vagas, sem prazo. Cliente agradeceu e elogiou a atendente.",3,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente aplicou oferta de retenção de 30% de desconto por 6 meses, aceita pelo cliente, que manteve o plano.",cancelamento,sim,4,2,retencao_aplicada,omissao_desfecho,sim,sim,cancelamento,retencao_aplicada,5,3,1,2
+CALL-000043,2026-03-10,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Carla. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Vou abrir um chamado para a engenharia analisar a sua região.
+ATENDENTE: Aguarde.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Chamado aberto para a engenharia verificar a região do cliente. Atendente se desculpou pelo transtorno e mostrou empatia e explicou o procedimento, mas não deu prazo. Cliente demonstrou insatisfação com o atendimento.","Cliente relatou quedas frequentes da internet desde o dia anterior. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente abriu chamado para análise da engenharia na região. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento, sem informar o prazo. Cliente demonstrou insatisfação com o atendimento.",5,2,"Cliente insatisfeito porque a demanda ficou encaminhada, sem solução imediata e o cliente já havia ligado outras vezes pelo mesmo problema, mas a atendente foi empática.",parcial,Atendente abriu chamado para análise de rede na região; sem solução imediata.,suporte_tecnico,nao,4,3,protocolo_aberto,nenhum,sim,nao,suporte_tecnico,protocolo_aberto,2,5,2,5
+CALL-000044,2026-07-07,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Nelson. Quero reclamar do técnico que veio ontem, chegou atrasado e foi grosseiro.
+ATENDENTE: Nelson, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Não tenho como registrar reclamação de técnico por aqui.
+ATENDENTE: Retorno em até 3 dias úteis. O protocolo é 69975064789.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente registrou queixa sobre o técnico, que atrasou e foi grosseiro na visita de ontem. Atendente informou que não consegue registrar esse tipo de reclamação. Cliente aceitou aguardar.","Cliente reclamou de atraso e grosseria do técnico na visita do dia anterior. A atendente disse não ser possível registrar a reclamação por esse canal. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento e o próximo passo. Cliente aceitou aguardar.",4,3,"Satisfação neutra: a demanda não foi resolvida, mas a atendente foi empática.",nao,Atendente informou não ser possível registrar a reclamação pelo canal e não ofereceu alternativa.,reclamacao_atendimento,nao,5,4,sem_solucao,omissao_menor:postura,nao,nao,reclamacao_atendimento,transferido,2,4,4,3
+CALL-000045,2026-01-11,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Fábio. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Fábio, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Fiz um reset remoto no seu modem e reconfigurei o sinal.
+ATENDENTE: Pode testar agora?
+ATENDENTE: Cliente confirmou que voltou.
+ATENDENTE: Aguarde.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Após reset remoto do modem, a conexão foi normalizada e confirmada pelo cliente. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e explicou o procedimento, mas não deu prazo. Cliente agradeceu e elogiou a atendente. A atendente garantiu bônus de R$ 31,99 na próxima fatura.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente fez reset remoto do modem e o cliente confirmou a normalização. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento, sem informar o prazo. Cliente agradeceu e elogiou a atendente.",2,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,Atendente realizou reset remoto do modem e reconfiguração; cliente testou e confirmou a normalização durante a ligação.,suporte_tecnico,sim,5,3,resolvido_no_contato,alucinacao_numerica,sim,sim,suporte_tecnico,resolvido_no_contato,5,4,3,1
+CALL-000046,2026-02-17,"ATENDENTE: Central de atendimento. Fala.
+CLIENTE: É Renata. Apareceu na minha fatura uma cobrança de R$ 38,99 de um tal de Banca Digital que eu nunca contratei.
+ATENDENTE: Tá, já entendi, aguarda aí.
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Banca Digital e lancei o estorno de R$ 38,99 na próxima fatura.
+ATENDENTE: O estorno/análise ocorre em até 3 dias úteis. O protocolo é 83770295245.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente ligou para contestar a cobrança de R$ 117,99 do serviço Banca Digital, não reconhecido por ele. A atendente informou que a cobrança é devida e não haverá estorno. Atendente tratou o cliente de forma ríspida e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente agradeceu.","Cliente contestou cobrança de R$ 38,99 referente ao serviço Banca Digital, que afirma não ter contratado. A atendente cancelou o serviço e aplicou estorno de R$ 38,99 na próxima fatura. Prazo de 3 dias úteis, protocolo 83770295245. A atendente foi ríspida e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu.",2,4,"Cliente satisfeito porque a demanda foi resolvida na ligação, mas a atendente foi pouco cordial.",sim,"Atendente identificou ativação indevida do Banca Digital, cancelou o serviço e lançou estorno de R$ 38,99 na próxima fatura, resolvendo na ligação.",cobranca_indevida,sim,1,5,resolvido_no_contato,desfecho_errado+alucinacao,sim,sim,cobranca_indevida,resolvido_no_contato,3,1,5,2
+CALL-000047,2026-01-15,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Diego. Eu preciso da segunda via da fatura que vence dia 15, perdi o boleto.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Vou te enviar agora por SMS e e-mail, com código de barras e PIX.
+ATENDENTE: Já está no seu celular.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente pediu segunda via da fatura que vence no dia 15. Atendimento frio, apenas protocolar e as informações passadas foram contraditórias. Cliente aceitou aguardar.","Cliente solicitou a segunda via da fatura com vencimento no dia 15. A atendente enviou a segunda via por SMS e e-mail, com código de barras e PIX. A atendente foi fria e protocolar e passou informações contraditórias. Cliente aceitou aguardar.",3,3,"Satisfação neutra: a atendente foi pouco cordial, mas a demanda foi resolvida na ligação.",sim,"Atendente enviou a segunda via por SMS e e-mail com código de barras e PIX, resolvendo a demanda na ligação.",segunda_via_fatura,sim,2,1,resolvido_no_contato,omissao_desfecho,parcial,sim,segunda_via_fatura,resolvido_no_contato,3,2,1,3
+CALL-000048,2026-03-18,"ATENDENTE: Central de atendimento. Fala.
+CLIENTE: É João. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Tá, já entendi, aguarda aí.
+CLIENTE: Tá bom.
+ATENDENTE: Os testes indicam problema no cabo externo.
+ATENDENTE: Agendei visita técnica para o dia 18/03.
+ATENDENTE: Prazo em até 5 dias úteis. O protocolo é 98735213467.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Mais alguma coisa? Tchau.",Cliente reclamou de instabilidade e quedas da conexão desde ontem. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Atendente tratou o cliente de forma ríspida e orientou sobre o procedimento e o próximo passo. Cliente aceitou aguardar.,"Cliente relatou quedas frequentes da internet desde o dia anterior. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente identificou falha no cabeamento externo e agendou visita técnica para 18/03. Protocolo 98735213467, prazo de 5 dias úteis. A atendente foi ríspida e explicou o procedimento e o próximo passo. Cliente aceitou aguardar.",3,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata e o cliente já havia ligado outras vezes pelo mesmo problema e a atendente foi pouco cordial.",parcial,Atendente diagnosticou falha no cabo externo e agendou visita técnica para 18/03; resolução depende da visita.,suporte_tecnico,nao,1,4,encaminhado_tecnico,omissao_desfecho,sim,nao,suporte_tecnico,encaminhado_tecnico,3,2,3,2
+CALL-000049,2026-02-25,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Marina. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Os testes indicam problema no cabo externo.
+ATENDENTE: Agendei visita técnica para o dia 25/02.
+ATENDENTE: Aguarde.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. O problema foi resolvido remotamente durante a ligação. Atendimento cordial e objetivo e explicou o procedimento, mas não deu prazo. Cliente aceitou aguardar. A atendente garantiu bônus de R$ 29,50 na próxima fatura.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente identificou falha no cabeamento externo e agendou visita técnica para 25/02. A atendente foi cordial e explicou o procedimento, sem informar o prazo. Cliente aceitou aguardar.",1,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata.",parcial,Atendente diagnosticou falha no cabo externo e agendou visita técnica para 25/02; resolução depende da visita.,suporte_tecnico,nao,3,3,encaminhado_tecnico,desfecho_errado+alucinacao,parcial,nao,suporte_tecnico,sem_solucao,3,3,4,1
+CALL-000050,2026-02-26,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Isabela. Só queria saber até que horas a loja do shopping fica aberta e se lá faz troca de chip.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: A loja abre das 10h às 22h e faz troca de chip, sim.
+ATENDENTE: É isso.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente perguntou o horário da loja do shopping e se ela faz troca de chip. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Atendente informou funcionamento das 10h às 22h e que a loja troca chip. Atendente se desculpou pelo transtorno e mostrou empatia e explicou o procedimento, mas não deu prazo. Cliente agradeceu. A atendente garantiu bônus de R$ 66,90 na próxima fatura.","Cliente pediu informações sobre o horário da loja do shopping e troca de chip. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente informou o horário de funcionamento (10h às 22h) e confirmou a troca de chip. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento, sem informar o prazo. Cliente agradeceu.",2,4,"Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática, mas o cliente já havia ligado outras vezes pelo mesmo problema.",sim,"Atendente informou horário da loja (10h às 22h) e confirmou que é feita troca de chip, esclarecendo a dúvida.",informacoes_gerais,nao,4,3,resolvido_no_contato,alucinacao_numerica,sim,nao,reclamacao_atendimento,transferido,3,5,3,1
+CALL-000051,2026-04-15,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Ana. Quero reclamar do técnico que veio ontem, chegou atrasado e foi grosseiro.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Registrei a sua reclamação para a ouvidoria de campo.
+ATENDENTE: Retorno em até 5 dias úteis. O protocolo é 14587447591.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente registrou queixa sobre o técnico, que atrasou e foi grosseiro na visita de ontem. Reclamação registrada na ouvidoria de campo. Retorno previsto em 5 dias úteis; protocolo 14587447591. Atendimento frio, apenas protocolar e orientou sobre o procedimento e o próximo passo. Cliente aceitou aguardar.","Cliente reclamou de atraso e grosseria do técnico na visita do dia anterior. A atendente registrou a reclamação para a ouvidoria de campo. Protocolo 14587447591, retorno em até 5 dias úteis. A atendente foi fria e protocolar e explicou o procedimento e o próximo passo. Cliente aceitou aguardar.",5,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata e a atendente foi pouco cordial.",parcial,Atendente registrou a reclamação na ouvidoria de campo para apuração; sem resposta imediata.,reclamacao_atendimento,nao,2,4,protocolo_aberto,nenhum,parcial,nao,reclamacao_atendimento,protocolo_aberto,4,2,4,5
+CALL-000052,2026-04-23,"ATENDENTE: Central de atendimento. Fala.
+CLIENTE: É Tatiane. Apareceu na minha fatura uma cobrança de R$ 178,00 de um tal de Proteção Premium que eu nunca contratei.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Tá, já entendi, aguarda aí.
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Proteção Premium e lancei o estorno de R$ 178,00 na próxima fatura.
+ATENDENTE: É isso.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente ligou para contestar a cobrança de R$ 178,00 do serviço Proteção Premium, não reconhecido por ele. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Serviço cancelado e estorno de R$ 178,00 lançado para a próxima fatura. Atendente tratou o cliente de forma ríspida e explicou o procedimento, mas não deu prazo. Cliente aceitou aguardar.","Cliente contestou cobrança de R$ 178,00 referente ao serviço Proteção Premium, que afirma não ter contratado. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente cancelou o serviço e aplicou estorno de R$ 178,00 na próxima fatura. A atendente foi ríspida e explicou o procedimento, sem informar o prazo. Cliente aceitou aguardar.",5,3,"Satisfação neutra: o cliente já havia ligado outras vezes pelo mesmo problema e a atendente foi pouco cordial, mas a demanda foi resolvida na ligação.",sim,"Atendente identificou ativação indevida do Proteção Premium, cancelou o serviço e lançou estorno de R$ 178,00 na próxima fatura, resolvendo na ligação.",cobranca_indevida,nao,1,3,resolvido_no_contato,nenhum,sim,indeterminado,alteracao_plano,resolvido_no_contato,3,1,3,5
+CALL-000053,2026-02-21,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Nelson. Apareceu na minha fatura uma cobrança de R$ 50,99 de um tal de Música Plus que eu nunca contratei.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Música Plus e lancei o estorno de R$ 50,99 na próxima fatura.
+ATENDENTE: O estorno/análise ocorre em breve. Na verdade pode ser que já esteja resolvido, ou não, depende do sistema.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 50,99 do serviço Música Plus, não reconhecido por ele. Serviço cancelado e estorno de R$ 50,99 lançado para a próxima fatura. Cliente agradeceu.","Cliente contestou cobrança de R$ 50,99 referente ao serviço Música Plus, que afirma não ter contratado. A atendente cancelou o serviço e aplicou estorno de R$ 50,99 na próxima fatura. A atendente foi cordial e passou informações contraditórias. Cliente agradeceu.",5,4,Cliente satisfeito porque a demanda foi resolvida na ligação.,sim,"Atendente identificou ativação indevida do Música Plus, cancelou o serviço e lançou estorno de R$ 50,99 na próxima fatura, resolvendo na ligação.",cobranca_indevida,sim,3,1,resolvido_no_contato,omissao_menor:postura,sim,sim,cobranca_indevida,resolvido_no_contato,5,3,1,5
+CALL-000054,2026-10-12,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Kátia. Eu preciso da segunda via da fatura que vence dia 12, perdi o boleto.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Vou te enviar agora por SMS e e-mail, com código de barras e PIX.
+ATENDENTE: Enviei agora; o valor é R$ 66,90 e o PIX compensa na hora.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente pediu segunda via da fatura que vence no dia 12. Segunda via enviada por SMS e e-mail com opção de PIX. Atendimento cordial e objetivo e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente agradeceu e elogiou a atendente.","Cliente solicitou a segunda via da fatura com vencimento no dia 12. A atendente enviou a segunda via por SMS e e-mail, com código de barras e PIX. Valor da fatura informado: R$ 66,90. A atendente foi cordial e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu e elogiou a atendente.",4,5,Cliente satisfeito porque a demanda foi resolvida na ligação.,sim,"Atendente enviou a segunda via por SMS e e-mail com código de barras e PIX, resolvendo a demanda na ligação.",segunda_via_fatura,sim,3,5,resolvido_no_contato,omissao_menor:proximo,sim,sim,segunda_via_fatura,resolvido_no_contato,5,3,5,4
+CALL-000055,2026-06-16,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Olívia. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Olívia, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Os testes indicam problema no cabo externo.
+ATENDENTE: Agendei visita técnica para o dia 16/06.
+ATENDENTE: Aguarde.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e explicou o procedimento, mas não deu prazo. Cliente aceitou aguardar.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente identificou falha no cabeamento externo e agendou visita técnica para 16/06. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento, sem informar o prazo. Cliente aceitou aguardar.",3,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata, mas a atendente foi empática.",parcial,Atendente diagnosticou falha no cabo externo e agendou visita técnica para 16/06; resolução depende da visita.,suporte_tecnico,nao,5,3,encaminhado_tecnico,omissao_desfecho,parcial,sim,cobranca_indevida,encaminhado_tecnico,3,5,3,3
+CALL-000056,2026-09-17,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Sérgio. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Os testes indicam problema no cabo externo.
+ATENDENTE: Agendei visita técnica para o dia 17/09.
+ATENDENTE: Prazo em até 5 dias úteis. O protocolo é 02690038572.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente reclamou de instabilidade e quedas da conexão desde ontem. Testes apontaram problema no cabo externo; visita técnica marcada para 17/09. Prazo de 10 dias úteis; protocolo 29612602591. Atendente se desculpou pelo transtorno e mostrou empatia e orientou sobre o procedimento e o próximo passo. Cliente agradeceu.,"Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente identificou falha no cabeamento externo e agendou visita técnica para 17/09. Protocolo 02690038572, prazo de 5 dias úteis. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento e o próximo passo. Cliente agradeceu.",2,4,"Cliente satisfeito porque a atendente foi empática, mas a demanda ficou encaminhada, sem solução imediata.",parcial,Atendente diagnosticou falha no cabo externo e agendou visita técnica para 17/09; resolução depende da visita.,suporte_tecnico,nao,4,4,encaminhado_tecnico,alucinacao_numerica,parcial,indeterminado,alteracao_plano,encaminhado_tecnico,4,3,4,2
+CALL-000057,2026-08-13,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Bruno. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Vou abrir um chamado para a engenharia analisar a sua região.
+ATENDENTE: Prazo em até 3 dias úteis. O protocolo é 12594721973.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente reclamou de instabilidade e quedas da conexão desde ontem. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Chamado aberto para a engenharia verificar a região do cliente. Prazo de 3 dias úteis; protocolo 12594721973. Cliente agradeceu.,"Cliente relatou quedas frequentes da internet desde o dia anterior. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente abriu chamado para análise da engenharia na região. Protocolo 12594721973, prazo de 3 dias úteis. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento e o próximo passo. Cliente agradeceu.",4,4,"Cliente satisfeito porque a atendente foi empática, mas a demanda ficou encaminhada, sem solução imediata e o cliente já havia ligado outras vezes pelo mesmo problema.",parcial,Atendente abriu chamado para análise de rede na região; sem solução imediata.,suporte_tecnico,nao,4,4,protocolo_aberto,omissao_menor:postura,parcial,nao,suporte_tecnico,protocolo_aberto,4,5,4,4
+CALL-000058,2026-07-12,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Renata. Apareceu na minha fatura uma cobrança de R$ 73,90 de um tal de Música Plus que eu nunca contratei.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Música Plus e lancei o estorno de R$ 73,90 na próxima fatura.
+ATENDENTE: O estorno/análise ocorre em até 10 dias úteis. O protocolo é 93035576874.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 73,90 do serviço Música Plus, não reconhecido por ele. Serviço cancelado e estorno de R$ 73,90 lançado para a próxima fatura. Protocolo 93035576874 com prazo de 10 dias úteis. Cliente agradeceu e elogiou a atendente.","Cliente contestou cobrança de R$ 73,90 referente ao serviço Música Plus, que afirma não ter contratado. A atendente cancelou o serviço e aplicou estorno de R$ 73,90 na próxima fatura. Prazo de 10 dias úteis, protocolo 93035576874. A atendente foi cordial e explicou o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.",4,5,Cliente satisfeito porque a demanda foi resolvida na ligação.,sim,"Atendente identificou ativação indevida do Música Plus, cancelou o serviço e lançou estorno de R$ 73,90 na próxima fatura, resolvendo na ligação.",cobranca_indevida,sim,3,4,resolvido_no_contato,omissao_menor:postura,nao,sim,cobranca_indevida,encaminhado_tecnico,5,3,4,4
+CALL-000059,2026-02-25,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Sérgio. Apareceu na minha fatura uma cobrança de R$ 54,50 de um tal de Banca Digital que eu nunca contratei.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Vou precisar abrir uma contestação para a área financeira analisar.
+ATENDENTE: O estorno/análise ocorre em breve.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 54,50 do serviço Banca Digital, não reconhecido por ele. Foi registrada contestação para análise do financeiro. Cliente aceitou aguardar.","Cliente contestou cobrança de R$ 54,50 referente ao serviço Banca Digital, que afirma não ter contratado. A atendente abriu contestação para análise da área financeira. A atendente demonstrou empatia e pediu desculpas pelo transtorno e deu informações vagas, sem prazo. Cliente aceitou aguardar.",4,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata, mas a atendente foi empática.",parcial,Atendente não pôde estornar na hora; abriu contestação para análise do financeiro.,cobranca_indevida,nao,4,2,protocolo_aberto,omissao_menor:postura,parcial,nao,portabilidade,protocolo_aberto,2,4,2,5
+CALL-000060,2026-07-19,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Marina. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Fiz um reset remoto no seu modem e reconfigurei o sinal.
+ATENDENTE: Pode testar agora?
+ATENDENTE: Cliente confirmou que voltou.
+ATENDENTE: Prazo em até 5 dias úteis. O protocolo é 00067448170.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Atendimento frio, apenas protocolar e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente agradeceu.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente fez reset remoto do modem e o cliente confirmou a normalização. A atendente foi fria e protocolar e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu.",3,4,"Cliente satisfeito porque a demanda foi resolvida na ligação, mas a atendente foi pouco cordial.",sim,Atendente realizou reset remoto do modem e reconfiguração; cliente testou e confirmou a normalização durante a ligação.,suporte_tecnico,sim,2,5,resolvido_no_contato,omissao_desfecho,nao,nao,alteracao_plano,resolvido_no_contato,4,1,5,3
+CALL-000061,2026-09-16,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Marina. Apareceu na minha fatura uma cobrança de R$ 86,99 de um tal de Proteção Premium que eu nunca contratei.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Proteção Premium e lancei o estorno de R$ 86,99 na próxima fatura.
+ATENDENTE: O estorno/análise ocorre em breve.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 86,99 do serviço Proteção Premium, não reconhecido por ele. Serviço cancelado e estorno de R$ 86,99 lançado para a próxima fatura. Cliente agradeceu.","Cliente contestou cobrança de R$ 86,99 referente ao serviço Proteção Premium, que afirma não ter contratado. A atendente cancelou o serviço e aplicou estorno de R$ 86,99 na próxima fatura. A atendente demonstrou empatia e pediu desculpas pelo transtorno e deu informações vagas, sem prazo. Cliente agradeceu.",4,4,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente identificou ativação indevida do Proteção Premium, cancelou o serviço e lançou estorno de R$ 86,99 na próxima fatura, resolvendo na ligação.",cobranca_indevida,sim,4,2,resolvido_no_contato,omissao_menor:postura,sim,sim,cobranca_indevida,protocolo_aberto,4,4,2,3
+CALL-000062,2026-04-06,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Bruno. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Vou abrir um chamado para a engenharia analisar a sua região.
+ATENDENTE: Prazo em até 7 dias úteis. O protocolo é 74595887508.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Chamado aberto para a engenharia verificar a região do cliente. Prazo de 7 dias úteis; protocolo 74595887508. Atendimento frio, apenas protocolar e orientou sobre o procedimento e o próximo passo. Cliente aceitou aguardar.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente abriu chamado para análise da engenharia na região. Protocolo 74595887508, prazo de 7 dias úteis. A atendente foi fria e protocolar e explicou o procedimento e o próximo passo. Cliente aceitou aguardar.",5,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata e a atendente foi pouco cordial.",parcial,Atendente abriu chamado para análise de rede na região; sem solução imediata.,suporte_tecnico,nao,2,4,protocolo_aberto,nenhum,parcial,nao,suporte_tecnico,protocolo_aberto,3,1,3,5
+CALL-000063,2026-01-22,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Lucas. Eu preciso da segunda via da fatura que vence dia 22, perdi o boleto.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Vou te enviar agora por SMS e e-mail, com código de barras e PIX.
+ATENDENTE: Enviei agora; o valor é R$ 87,99 e o PIX compensa na hora.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente pediu segunda via da fatura que vence no dia 22. Atendimento cordial e objetivo e orientou sobre o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.,"Cliente solicitou a segunda via da fatura com vencimento no dia 22. A atendente enviou a segunda via por SMS e e-mail, com código de barras e PIX. Valor da fatura informado: R$ 87,99. A atendente foi cordial e explicou o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.",3,5,Cliente satisfeito porque a demanda foi resolvida na ligação.,sim,"Atendente enviou a segunda via por SMS e e-mail com código de barras e PIX, resolvendo a demanda na ligação.",segunda_via_fatura,sim,3,4,resolvido_no_contato,omissao_desfecho,sim,sim,segunda_via_fatura,resolvido_no_contato,5,3,3,3
+CALL-000064,2026-05-19,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Tatiane. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Fiz um reset remoto no seu modem e reconfigurei o sinal.
+ATENDENTE: Pode testar agora?
+ATENDENTE: Cliente confirmou que voltou.
+ATENDENTE: Prazo em até 5 dias úteis. O protocolo é 75874470700.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Após reset remoto do modem, a conexão foi normalizada e confirmada pelo cliente. Cliente agradeceu.",Cliente relatou quedas frequentes da internet desde o dia anterior. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente fez reset remoto do modem e o cliente confirmou a normalização. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento e o próximo passo. Cliente agradeceu.,4,4,"Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática, mas o cliente já havia ligado outras vezes pelo mesmo problema.",sim,Atendente realizou reset remoto do modem e reconfiguração; cliente testou e confirmou a normalização durante a ligação.,suporte_tecnico,nao,4,4,resolvido_no_contato,omissao_menor:postura,nao,nao,cancelamento,resolvido_no_contato,4,3,5,5
+CALL-000065,2026-04-09,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Kátia. Eu quero cancelar o meu plano Controle 15GB, está muito caro.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Ofereci desconto mas o senhor recusou, então efetivei o cancelamento.
+ATENDENTE: Pronto.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente ligou pedindo para cancelar o Controle 15GB por considerar o valor alto. Atendimento frio, apenas protocolar e as informações passadas foram contraditórias. Cliente agradeceu.",Cliente solicitou o cancelamento do plano Controle 15GB alegando preço alto. O cliente recusou a oferta de retenção e a atendente efetivou o cancelamento. A atendente foi fria e protocolar e passou informações contraditórias. Cliente agradeceu.,3,4,"Cliente satisfeito porque a demanda foi resolvida na ligação, mas a atendente foi pouco cordial.",sim,"Atendente ofereceu retenção, recusada; efetivou o cancelamento conforme pedido do cliente.",cancelamento,sim,2,1,cancelamento_efetivado,omissao_desfecho,nao,sim,cancelamento,cancelamento_efetivado,4,2,1,4
+CALL-000066,2026-11-20,"ATENDENTE: Central de atendimento. Fala.
+CLIENTE: É Paulo. Quero reclamar do técnico que veio ontem, chegou atrasado e foi grosseiro.
+ATENDENTE: Tá, já entendi, aguarda aí.
+CLIENTE: Tá bom.
+ATENDENTE: Registrei a sua reclamação para a ouvidoria de campo.
+ATENDENTE: Retorno em até 3 dias úteis. O protocolo é 55210401413.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente registrou queixa sobre o técnico, que atrasou e foi grosseiro na visita de ontem. O técnico foi advertido e o caso encerrado na ligação. Atendente tratou o cliente de forma ríspida e orientou sobre o procedimento e o próximo passo. Cliente demonstrou insatisfação com o atendimento. A atendente garantiu bônus de R$ 64,99 na próxima fatura.","Cliente reclamou de atraso e grosseria do técnico na visita do dia anterior. A atendente registrou a reclamação para a ouvidoria de campo. Protocolo 55210401413, retorno em até 3 dias úteis. A atendente foi ríspida e explicou o procedimento e o próximo passo. Cliente demonstrou insatisfação com o atendimento.",1,2,"Cliente insatisfeito porque a demanda ficou encaminhada, sem solução imediata e a atendente foi pouco cordial.",parcial,Atendente registrou a reclamação na ouvidoria de campo para apuração; sem resposta imediata.,reclamacao_atendimento,nao,1,4,protocolo_aberto,desfecho_errado+alucinacao,sim,indeterminado,reclamacao_atendimento,protocolo_aberto,2,2,4,1
+CALL-000067,2026-10-08,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Ana. Quero reclamar do técnico que veio ontem, chegou atrasado e foi grosseiro.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Registrei a sua reclamação para a ouvidoria de campo.
+ATENDENTE: Pronto.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente registrou queixa sobre o técnico, que atrasou e foi grosseiro na visita de ontem. O técnico foi advertido e o caso encerrado na ligação. Atendimento frio, apenas protocolar e explicou o procedimento, mas não deu prazo. Cliente aceitou aguardar. A atendente garantiu bônus de R$ 130,50 na próxima fatura.","Cliente reclamou de atraso e grosseria do técnico na visita do dia anterior. A atendente registrou a reclamação para a ouvidoria de campo. A atendente foi fria e protocolar e explicou o procedimento, sem informar o prazo. Cliente aceitou aguardar.",1,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata e a atendente foi pouco cordial.",parcial,Atendente registrou a reclamação na ouvidoria de campo para apuração; sem resposta imediata.,reclamacao_atendimento,nao,2,3,protocolo_aberto,desfecho_errado+alucinacao,parcial,nao,cobranca_indevida,cancelamento_efetivado,3,2,3,2
+CALL-000068,2026-10-25,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Vinícius. Só queria saber até que horas a loja do shopping fica aberta e se lá faz troca de chip.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: A loja abre das 10h às 22h e faz troca de chip, sim.
+ATENDENTE: Leve um documento com foto.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente perguntou o horário da loja do shopping e se ela faz troca de chip. Atendente informou funcionamento das 10h às 22h e que a loja troca chip. Recomendou levar documento com foto. Atendimento frio, apenas protocolar e orientou sobre o procedimento e o próximo passo. Cliente agradeceu. A atendente garantiu bônus de R$ 131,50 na próxima fatura.",Cliente pediu informações sobre o horário da loja do shopping e troca de chip. A atendente informou o horário de funcionamento (10h às 22h) e confirmou a troca de chip. Orientou levar documento com foto. A atendente foi fria e protocolar e explicou o procedimento e o próximo passo. Cliente agradeceu.,3,4,"Cliente satisfeito porque a demanda foi resolvida na ligação, mas a atendente foi pouco cordial.",sim,"Atendente informou horário da loja (10h às 22h) e confirmou que é feita troca de chip, esclarecendo a dúvida.",informacoes_gerais,sim,2,4,resolvido_no_contato,alucinacao_numerica,parcial,nao,informacoes_gerais,resolvido_no_contato,4,3,5,2
+CALL-000069,2026-07-21,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Bruno. Quero trazer meu número de outra operadora para vocês.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Bruno, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Isso é com o setor de vendas, vou transferir.
+ATENDENTE: A portabilidade ocorre em até 7 dias úteis. O protocolo é 89515082813.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente quer portar seu número de outra operadora. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Ligação transferida para vendas. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e orientou sobre o procedimento e o próximo passo. Cliente demonstrou insatisfação com o atendimento.","Cliente solicitou portabilidade do número vindo de outra operadora. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente transferiu o cliente para o setor de vendas. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento e o próximo passo. Cliente demonstrou insatisfação com o atendimento.",5,2,"Cliente insatisfeito porque a demanda não foi resolvida e o cliente já havia ligado outras vezes pelo mesmo problema, mas a atendente foi empática.",nao,Atendente não tratou a portabilidade e transferiu o cliente para o setor de vendas.,portabilidade,nao,5,4,transferido,nenhum,nao,sim,cancelamento,transferido,2,4,3,5
+CALL-000070,2026-09-06,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Henrique. Quero reclamar do técnico que veio ontem, chegou atrasado e foi grosseiro.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Registrei a sua reclamação para a ouvidoria de campo.
+ATENDENTE: Retorno em até 3 dias úteis. O protocolo é 00641770286.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente registrou queixa sobre o técnico, que atrasou e foi grosseiro na visita de ontem. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. O técnico foi advertido e o caso encerrado na ligação. Atendente se desculpou pelo transtorno e mostrou empatia e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente aceitou aguardar. A atendente garantiu bônus de R$ 148,00 na próxima fatura.","Cliente reclamou de atraso e grosseria do técnico na visita do dia anterior. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente registrou a reclamação para a ouvidoria de campo. Protocolo 00641770286, retorno em até 3 dias úteis. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente aceitou aguardar.",1,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata e o cliente já havia ligado outras vezes pelo mesmo problema, mas a atendente foi empática.",parcial,Atendente registrou a reclamação na ouvidoria de campo para apuração; sem resposta imediata.,reclamacao_atendimento,nao,4,5,protocolo_aberto,desfecho_errado+alucinacao,parcial,nao,reclamacao_atendimento,protocolo_aberto,4,4,5,1
+CALL-000071,2026-10-06,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Kátia. Apareceu na minha fatura uma cobrança de R$ 160,50 de um tal de Banca Digital que eu nunca contratei.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Banca Digital e lancei o estorno de R$ 160,50 na próxima fatura.
+ATENDENTE: O estorno/análise ocorre em até 3 dias úteis. O protocolo é 35462528880.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 160,50 do serviço Banca Digital, não reconhecido por ele. Atendente se desculpou pelo transtorno e mostrou empatia e orientou sobre o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.","Cliente contestou cobrança de R$ 160,50 referente ao serviço Banca Digital, que afirma não ter contratado. A atendente cancelou o serviço e aplicou estorno de R$ 160,50 na próxima fatura. Prazo de 3 dias úteis, protocolo 35462528880. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.",3,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente identificou ativação indevida do Banca Digital, cancelou o serviço e lançou estorno de R$ 160,50 na próxima fatura, resolvendo na ligação.",cobranca_indevida,sim,4,4,resolvido_no_contato,omissao_desfecho,sim,nao,cobranca_indevida,resolvido_no_contato,5,5,5,3
+CALL-000072,2026-01-12,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Tatiane. Eu preciso da segunda via da fatura que vence dia 12, perdi o boleto.
+ATENDENTE: Tatiane, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Vou te enviar agora por SMS e e-mail, com código de barras e PIX.
+ATENDENTE: Enviei agora; o valor é R$ 154,99 e o PIX compensa na hora.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente pediu segunda via da fatura que vence no dia 12. A atendente não conseguiu emitir a segunda via. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e orientou sobre o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente. A atendente garantiu bônus de R$ 167,99 na próxima fatura.","Cliente solicitou a segunda via da fatura com vencimento no dia 12. A atendente enviou a segunda via por SMS e e-mail, com código de barras e PIX. Valor da fatura informado: R$ 154,99. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.",1,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente enviou a segunda via por SMS e e-mail com código de barras e PIX, resolvendo a demanda na ligação.",segunda_via_fatura,sim,5,4,resolvido_no_contato,desfecho_errado+alucinacao,parcial,sim,suporte_tecnico,retencao_aplicada,5,5,4,1
+CALL-000073,2026-08-14,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É João. Eu preciso da segunda via da fatura que vence dia 14, perdi o boleto.
+ATENDENTE: João, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Vou te enviar agora por SMS e e-mail, com código de barras e PIX.
+ATENDENTE: Enviei agora; o valor é R$ 170,90 e o PIX compensa na hora.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente pediu segunda via da fatura que vence no dia 14. Segunda via enviada por SMS e e-mail com opção de PIX. Fatura de R$ 170,90. Cliente agradeceu e elogiou a atendente.","Cliente solicitou a segunda via da fatura com vencimento no dia 14. A atendente enviou a segunda via por SMS e e-mail, com código de barras e PIX. Valor da fatura informado: R$ 170,90. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.",4,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente enviou a segunda via por SMS e e-mail com código de barras e PIX, resolvendo a demanda na ligação.",segunda_via_fatura,sim,5,4,resolvido_no_contato,omissao_menor:postura,sim,sim,segunda_via_fatura,resolvido_no_contato,4,5,3,4
+CALL-000074,2026-08-24,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Fábio. Eu quero cancelar o meu plano Fibra 300 Mega, está muito caro.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Antes de cancelar, consigo te oferecer 30% de desconto por 6 meses no Fibra 300 Mega.
+ATENDENTE: Cliente aceitou a oferta.
+ATENDENTE: O protocolo é 14974744159.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente ligou pedindo para cancelar o Fibra 300 Mega por considerar o valor alto. O plano foi cancelado na ligação. Atendimento frio, apenas protocolar e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente agradeceu e elogiou a atendente. A atendente garantiu bônus de R$ 115,90 na próxima fatura.","Cliente solicitou o cancelamento do plano Fibra 300 Mega alegando preço alto. A atendente ofereceu 30% de desconto por 6 meses e o cliente aceitou permanecer. Protocolo 14974744159. A atendente foi fria e protocolar e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu e elogiou a atendente.",1,5,"Cliente satisfeito porque a demanda foi resolvida na ligação, mas a atendente foi pouco cordial.",sim,"Atendente aplicou oferta de retenção de 30% de desconto por 6 meses, aceita pelo cliente, que manteve o plano.",cancelamento,sim,2,5,retencao_aplicada,desfecho_errado+alucinacao,sim,nao,cancelamento,retencao_aplicada,5,2,5,2
+CALL-000075,2026-03-18,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Sérgio. Eu quero cancelar o meu plano Pós 30GB, está muito caro.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Ofereci desconto mas o senhor recusou, então efetivei o cancelamento.
+ATENDENTE: Pronto.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente ligou pedindo para cancelar o Pós 30GB por considerar o valor alto. Retenção recusada; cancelamento concluído pela atendente. Cliente agradeceu.,"Cliente solicitou o cancelamento do plano Pós 30GB alegando preço alto. O cliente recusou a oferta de retenção e a atendente efetivou o cancelamento. A atendente foi cordial e deu informações vagas, sem prazo. Cliente agradeceu.",4,4,Cliente satisfeito porque a demanda foi resolvida na ligação.,sim,"Atendente ofereceu retenção, recusada; efetivou o cancelamento conforme pedido do cliente.",cancelamento,sim,3,2,cancelamento_efetivado,omissao_menor:postura,sim,sim,suporte_tecnico,cancelamento_efetivado,5,3,2,3
+CALL-000076,2026-11-06,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É João. Apareceu na minha fatura uma cobrança de R$ 23,90 de um tal de Seguro Celular que eu nunca contratei.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Seguro Celular e lancei o estorno de R$ 23,90 na próxima fatura.
+ATENDENTE: É isso.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente ligou para contestar a cobrança de R$ 23,90 do serviço Seguro Celular, não reconhecido por ele. Atendimento frio, apenas protocolar e explicou o procedimento, mas não deu prazo. Cliente aceitou aguardar.","Cliente contestou cobrança de R$ 23,90 referente ao serviço Seguro Celular, que afirma não ter contratado. A atendente cancelou o serviço e aplicou estorno de R$ 23,90 na próxima fatura. A atendente foi fria e protocolar e explicou o procedimento, sem informar o prazo. Cliente aceitou aguardar.",3,3,"Satisfação neutra: a atendente foi pouco cordial, mas a demanda foi resolvida na ligação.",sim,"Atendente identificou ativação indevida do Seguro Celular, cancelou o serviço e lançou estorno de R$ 23,90 na próxima fatura, resolvendo na ligação.",cobranca_indevida,sim,2,3,resolvido_no_contato,omissao_desfecho,sim,sim,cobranca_indevida,sem_solucao,3,2,3,3
+CALL-000077,2026-04-17,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Kátia. Quero trazer meu número de outra operadora para vocês.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Isso é com o setor de vendas, vou transferir.
+ATENDENTE: A portabilidade ocorre em até 10 dias úteis. O protocolo é 75300726285.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente quer portar seu número de outra operadora. Atendimento cordial e objetivo e orientou sobre o procedimento e o próximo passo. Cliente demonstrou insatisfação com o atendimento.,Cliente solicitou portabilidade do número vindo de outra operadora. A atendente transferiu o cliente para o setor de vendas. A atendente foi cordial e explicou o procedimento e o próximo passo. Cliente demonstrou insatisfação com o atendimento.,3,2,Cliente insatisfeito porque a demanda não foi resolvida.,nao,Atendente não tratou a portabilidade e transferiu o cliente para o setor de vendas.,portabilidade,nao,3,4,transferido,omissao_desfecho,nao,sim,portabilidade,transferido,2,3,4,3
+CALL-000078,2026-01-14,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Marina. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Fiz um reset remoto no seu modem e reconfigurei o sinal.
+ATENDENTE: Pode testar agora?
+ATENDENTE: Cliente confirmou que voltou.
+ATENDENTE: Prazo em breve. Na verdade pode ser que já esteja resolvido, ou não, depende do sistema.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Foi necessário agendar visita técnica, pois o reset remoto não funcionou. Atendente se desculpou pelo transtorno e mostrou empatia e as informações passadas foram contraditórias. Cliente agradeceu. A atendente garantiu bônus de R$ 63,00 na próxima fatura.",Cliente relatou quedas frequentes da internet desde o dia anterior. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente fez reset remoto do modem e o cliente confirmou a normalização. A atendente demonstrou empatia e pediu desculpas pelo transtorno e passou informações contraditórias. Cliente agradeceu.,1,4,"Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática, mas o cliente já havia ligado outras vezes pelo mesmo problema.",sim,Atendente realizou reset remoto do modem e reconfiguração; cliente testou e confirmou a normalização durante a ligação.,suporte_tecnico,nao,4,1,resolvido_no_contato,desfecho_errado+alucinacao,sim,nao,suporte_tecnico,resolvido_no_contato,4,4,1,2
+CALL-000079,2026-01-16,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Elaine. Quero mudar do Fibra 300 Mega para o Fibra 600 Mega.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Infelizmente o Fibra 600 Mega não está disponível no seu endereço.
+ATENDENTE: Vale a partir do próximo ciclo.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente solicitou migrar do Fibra 300 Mega para o Fibra 600 Mega. O Fibra 600 Mega não tem disponibilidade no endereço do cliente. Atendimento cordial e objetivo e orientou sobre o procedimento e o próximo passo. Cliente aceitou aguardar.,Cliente pediu a troca do plano Fibra 300 Mega para o Fibra 600 Mega. A atendente informou que o Fibra 600 Mega não está disponível no endereço do cliente. A atendente foi cordial e explicou o procedimento e o próximo passo. Cliente aceitou aguardar.,5,3,Satisfação neutra: a demanda não foi resolvida.,nao,Atendente verificou que o Fibra 600 Mega não está disponível no endereço; troca não realizada.,alteracao_plano,nao,3,4,sem_solucao,nenhum,nao,nao,alteracao_plano,sem_solucao,3,4,4,5
+CALL-000080,2026-07-18,"ATENDENTE: Central de atendimento. Fala.
+CLIENTE: É Kátia. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Tá, já entendi, aguarda aí.
+CLIENTE: Tá bom.
+ATENDENTE: Fiz um reset remoto no seu modem e reconfigurei o sinal.
+ATENDENTE: Pode testar agora?
+ATENDENTE: Cliente confirmou que voltou.
+ATENDENTE: Prazo em até 7 dias úteis. O protocolo é 84000213828.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Mais alguma coisa? Tchau.",Cliente reclamou de instabilidade e quedas da conexão desde ontem. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Atendente tratou o cliente de forma ríspida e orientou sobre o procedimento e o próximo passo. Cliente aceitou aguardar.,Cliente relatou quedas frequentes da internet desde o dia anterior. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente fez reset remoto do modem e o cliente confirmou a normalização. A atendente foi ríspida e explicou o procedimento e o próximo passo. Cliente aceitou aguardar.,3,3,"Satisfação neutra: o cliente já havia ligado outras vezes pelo mesmo problema e a atendente foi pouco cordial, mas a demanda foi resolvida na ligação.",sim,Atendente realizou reset remoto do modem e reconfiguração; cliente testou e confirmou a normalização durante a ligação.,suporte_tecnico,nao,1,4,resolvido_no_contato,omissao_desfecho,sim,nao,suporte_tecnico,resolvido_no_contato,3,2,4,3
+CALL-000081,2026-05-27,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Henrique. Eu quero cancelar o meu plano Pós 30GB, está muito caro.
+ATENDENTE: Henrique, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Antes de cancelar, consigo te oferecer 30% de desconto por 6 meses no Pós 30GB.
+ATENDENTE: Cliente aceitou a oferta.
+ATENDENTE: O protocolo é 28750287988.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou pedindo para cancelar o Pós 30GB por considerar o valor alto. O plano foi cancelado na ligação. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e orientou sobre o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente. A atendente garantiu bônus de R$ 59,90 na próxima fatura.","Cliente solicitou o cancelamento do plano Pós 30GB alegando preço alto. A atendente ofereceu 30% de desconto por 6 meses e o cliente aceitou permanecer. Protocolo 28750287988. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.",1,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente aplicou oferta de retenção de 30% de desconto por 6 meses, aceita pelo cliente, que manteve o plano.",cancelamento,sim,5,4,retencao_aplicada,desfecho_errado+alucinacao,parcial,nao,cancelamento,retencao_aplicada,5,5,5,1
+CALL-000082,2026-10-13,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Carla. Apareceu na minha fatura uma cobrança de R$ 140,50 de um tal de Música Plus que eu nunca contratei.
+ATENDENTE: Carla, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Vou precisar abrir uma contestação para a área financeira analisar.
+ATENDENTE: O estorno/análise ocorre em até 3 dias úteis. O protocolo é 65982569205.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 140,50 do serviço Música Plus, não reconhecido por ele. Foi registrada contestação para análise do financeiro. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e orientou sobre o procedimento e o próximo passo. Cliente agradeceu.","Cliente contestou cobrança de R$ 140,50 referente ao serviço Música Plus, que afirma não ter contratado. A atendente abriu contestação para análise da área financeira. Prazo de 3 dias úteis, protocolo 65982569205. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento e o próximo passo. Cliente agradeceu.",4,4,"Cliente satisfeito porque a atendente foi empática, mas a demanda ficou encaminhada, sem solução imediata.",parcial,Atendente não pôde estornar na hora; abriu contestação para análise do financeiro com prazo de 3 dias úteis.,cobranca_indevida,nao,5,4,protocolo_aberto,omissao_menor:proximo,parcial,nao,cancelamento,protocolo_aberto,3,4,4,4
+CALL-000083,2026-09-17,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Paulo. Apareceu na minha fatura uma cobrança de R$ 90,50 de um tal de Seguro Celular que eu nunca contratei.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Vou precisar abrir uma contestação para a área financeira analisar.
+ATENDENTE: O estorno/análise ocorre em até 7 dias úteis. O protocolo é 69926578818.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 82,99 do serviço Seguro Celular, não reconhecido por ele. Foi registrada contestação para análise do financeiro. Protocolo 46429370331 com prazo de 9 dias úteis. Atendente se desculpou pelo transtorno e mostrou empatia e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente agradeceu.","Cliente contestou cobrança de R$ 90,50 referente ao serviço Seguro Celular, que afirma não ter contratado. A atendente abriu contestação para análise da área financeira. Prazo de 7 dias úteis, protocolo 69926578818. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu.",2,4,"Cliente satisfeito porque a atendente foi empática, mas a demanda ficou encaminhada, sem solução imediata.",parcial,Atendente não pôde estornar na hora; abriu contestação para análise do financeiro com prazo de 7 dias úteis.,cobranca_indevida,nao,4,5,protocolo_aberto,alucinacao_numerica,parcial,nao,cobranca_indevida,protocolo_aberto,4,5,5,1
+CALL-000084,2026-09-19,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Olívia. Quero reclamar do técnico que veio ontem, chegou atrasado e foi grosseiro.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Vou transferir para a ouvidoria.
+ATENDENTE: Retorno em breve. Na verdade pode ser que já esteja resolvido, ou não, depende do sistema.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente registrou queixa sobre o técnico, que atrasou e foi grosseiro na visita de ontem. Ligação transferida para a ouvidoria. Atendimento cordial e objetivo e as informações passadas foram contraditórias. Cliente demonstrou insatisfação com o atendimento. A atendente garantiu bônus de R$ 175,99 na próxima fatura.",Cliente reclamou de atraso e grosseria do técnico na visita do dia anterior. A atendente transferiu a ligação para a ouvidoria. A atendente foi cordial e passou informações contraditórias. Cliente demonstrou insatisfação com o atendimento.,2,2,Cliente insatisfeito porque a demanda não foi resolvida.,nao,Atendente não registrou a reclamação e transferiu para a ouvidoria.,reclamacao_atendimento,nao,3,1,transferido,alucinacao_numerica,nao,indeterminado,reclamacao_atendimento,transferido,1,3,2,1
+CALL-000085,2026-08-14,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Tatiane. Apareceu na minha fatura uma cobrança de R$ 39,90 de um tal de Proteção Premium que eu nunca contratei.
+ATENDENTE: Tatiane, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Infelizmente o sistema mostra que o serviço foi contratado, não consigo fazer nada.
+ATENDENTE: É isso.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 39,90 do serviço Proteção Premium, não reconhecido por ele. Atendente disse que o serviço aparece como contratado e não estornou o valor. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e explicou o procedimento, mas não deu prazo. Cliente demonstrou insatisfação com o atendimento.","Cliente contestou cobrança de R$ 39,90 referente ao serviço Proteção Premium, que afirma não ter contratado. A atendente afirmou que o serviço consta como contratado e não realizou estorno. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento, sem informar o prazo. Cliente demonstrou insatisfação com o atendimento.",5,2,"Cliente insatisfeito porque a demanda não foi resolvida, mas a atendente foi empática.",nao,Atendente alegou que o serviço consta como contratado e encerrou sem estorno nem encaminhamento; demanda não resolvida.,cobranca_indevida,nao,5,3,sem_solucao,nenhum,nao,nao,cobranca_indevida,sem_solucao,3,5,3,5
+CALL-000086,2026-04-14,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Henrique. Quero reclamar do técnico que veio ontem, chegou atrasado e foi grosseiro.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Registrei a sua reclamação para a ouvidoria de campo.
+ATENDENTE: Pronto.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente registrou queixa sobre o técnico, que atrasou e foi grosseiro na visita de ontem. Atendimento cordial e objetivo e explicou o procedimento, mas não deu prazo. Cliente aceitou aguardar.","Cliente reclamou de atraso e grosseria do técnico na visita do dia anterior. A atendente registrou a reclamação para a ouvidoria de campo. A atendente foi cordial e explicou o procedimento, sem informar o prazo. Cliente aceitou aguardar.",3,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata.",parcial,Atendente registrou a reclamação na ouvidoria de campo para apuração; sem resposta imediata.,reclamacao_atendimento,nao,3,3,protocolo_aberto,omissao_desfecho,sim,nao,alteracao_plano,transferido,2,4,3,3
+CALL-000087,2026-08-26,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Olívia. Apareceu na minha fatura uma cobrança de R$ 37,90 de um tal de Música Plus que eu nunca contratei.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Olívia, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Música Plus e lancei o estorno de R$ 37,90 na próxima fatura.
+ATENDENTE: É isso.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 37,90 do serviço Música Plus, não reconhecido por ele. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Serviço cancelado e estorno de R$ 37,90 lançado para a próxima fatura. Cliente agradeceu.","Cliente contestou cobrança de R$ 37,90 referente ao serviço Música Plus, que afirma não ter contratado. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente cancelou o serviço e aplicou estorno de R$ 37,90 na próxima fatura. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento, sem informar o prazo. Cliente agradeceu.",4,4,"Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática, mas o cliente já havia ligado outras vezes pelo mesmo problema.",sim,"Atendente identificou ativação indevida do Música Plus, cancelou o serviço e lançou estorno de R$ 37,90 na próxima fatura, resolvendo na ligação.",cobranca_indevida,nao,5,3,resolvido_no_contato,omissao_menor:postura,sim,nao,cobranca_indevida,resolvido_no_contato,3,5,3,3
+CALL-000088,2026-09-05,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Henrique. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Vou abrir um chamado para a engenharia analisar a sua região.
+ATENDENTE: Prazo em breve. Na verdade pode ser que já esteja resolvido, ou não, depende do sistema.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente reclamou de instabilidade e quedas da conexão desde ontem. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Atendimento cordial e objetivo e as informações passadas foram contraditórias. Cliente demonstrou insatisfação com o atendimento.,Cliente relatou quedas frequentes da internet desde o dia anterior. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente abriu chamado para análise da engenharia na região. A atendente foi cordial e passou informações contraditórias. Cliente demonstrou insatisfação com o atendimento.,3,2,"Cliente insatisfeito porque a demanda ficou encaminhada, sem solução imediata e o cliente já havia ligado outras vezes pelo mesmo problema.",parcial,Atendente abriu chamado para análise de rede na região; sem solução imediata.,suporte_tecnico,nao,3,1,protocolo_aberto,omissao_desfecho,parcial,nao,suporte_tecnico,protocolo_aberto,3,3,1,3
+CALL-000089,2026-09-23,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Fábio. Apareceu na minha fatura uma cobrança de R$ 147,50 de um tal de Seguro Celular que eu nunca contratei.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Vou precisar abrir uma contestação para a área financeira analisar.
+ATENDENTE: O estorno/análise ocorre em breve.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 147,50 do serviço Seguro Celular, não reconhecido por ele. Foi registrada contestação para análise do financeiro. Atendente se desculpou pelo transtorno e mostrou empatia e as orientações foram vagas, sem prazo definido. Cliente aceitou aguardar.","Cliente contestou cobrança de R$ 147,50 referente ao serviço Seguro Celular, que afirma não ter contratado. A atendente abriu contestação para análise da área financeira. A atendente demonstrou empatia e pediu desculpas pelo transtorno e deu informações vagas, sem prazo. Cliente aceitou aguardar.",5,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata, mas a atendente foi empática.",parcial,Atendente não pôde estornar na hora; abriu contestação para análise do financeiro.,cobranca_indevida,nao,4,2,protocolo_aberto,nenhum,nao,indeterminado,cobranca_indevida,protocolo_aberto,3,4,1,4
+CALL-000090,2026-03-16,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Nelson. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Os testes indicam problema no cabo externo.
+ATENDENTE: Agendei visita técnica para o dia 16/03.
+ATENDENTE: Aguarde.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Testes apontaram problema no cabo externo; visita técnica marcada para 16/03. Atendente se desculpou pelo transtorno e mostrou empatia e explicou o procedimento, mas não deu prazo. Cliente aceitou aguardar. A atendente garantiu bônus de R$ 166,90 na próxima fatura.","Cliente relatou quedas frequentes da internet desde o dia anterior. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente identificou falha no cabeamento externo e agendou visita técnica para 16/03. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento, sem informar o prazo. Cliente aceitou aguardar.",2,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata e o cliente já havia ligado outras vezes pelo mesmo problema, mas a atendente foi empática.",parcial,Atendente diagnosticou falha no cabo externo e agendou visita técnica para 16/03; resolução depende da visita.,suporte_tecnico,nao,4,3,encaminhado_tecnico,alucinacao_numerica,parcial,sim,cobranca_indevida,encaminhado_tecnico,3,4,2,1
+CALL-000091,2026-10-13,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Lucas. Quero trazer meu número de outra operadora para vocês.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Registrei o pedido de portabilidade.
+ATENDENTE: A portabilidade ocorre em até 3 dias úteis. O protocolo é 96772131619.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente quer portar seu número de outra operadora. Pedido de portabilidade registrado pela atendente. Protocolo 96772131619; conclusão em até 3 dias úteis. Cliente agradeceu.,"Cliente solicitou portabilidade do número vindo de outra operadora. A atendente registrou o pedido de portabilidade. Prazo de 3 dias úteis, protocolo 96772131619. A atendente foi cordial e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu.",4,4,"Cliente satisfeito porque o atendimento foi conduzido sem atritos, mas a demanda ficou encaminhada, sem solução imediata.",parcial,"Atendente registrou a solicitação de portabilidade, que depende da janela regulatória para ser concluída.",portabilidade,nao,3,5,protocolo_aberto,omissao_menor:postura,parcial,nao,portabilidade,protocolo_aberto,5,3,4,5
+CALL-000092,2026-05-13,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Olívia. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Os testes indicam problema no cabo externo.
+ATENDENTE: Agendei visita técnica para o dia 13/05.
+ATENDENTE: Aguarde.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. O problema foi resolvido remotamente durante a ligação. Atendimento cordial e objetivo e explicou o procedimento, mas não deu prazo. Cliente aceitou aguardar. A atendente garantiu bônus de R$ 73,50 na próxima fatura.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente identificou falha no cabeamento externo e agendou visita técnica para 13/05. A atendente foi cordial e explicou o procedimento, sem informar o prazo. Cliente aceitou aguardar.",1,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata.",parcial,Atendente diagnosticou falha no cabo externo e agendou visita técnica para 13/05; resolução depende da visita.,suporte_tecnico,nao,3,3,encaminhado_tecnico,desfecho_errado+alucinacao,sim,nao,suporte_tecnico,encaminhado_tecnico,4,3,3,1
+CALL-000093,2026-07-09,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Ana. Apareceu na minha fatura uma cobrança de R$ 144,99 de um tal de Seguro Celular que eu nunca contratei.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Infelizmente o sistema mostra que o serviço foi contratado, não consigo fazer nada.
+ATENDENTE: O estorno/análise ocorre em até 10 dias úteis. O protocolo é 09524887956.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 144,99 do serviço Seguro Celular, não reconhecido por ele. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Atendente disse que o serviço aparece como contratado e não estornou o valor. Atendente se desculpou pelo transtorno e mostrou empatia e orientou sobre o procedimento e o próximo passo. Cliente demonstrou insatisfação com o atendimento.","Cliente contestou cobrança de R$ 144,99 referente ao serviço Seguro Celular, que afirma não ter contratado. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente afirmou que o serviço consta como contratado e não realizou estorno. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento e o próximo passo. Cliente demonstrou insatisfação com o atendimento.",5,2,"Cliente insatisfeito porque a demanda não foi resolvida e o cliente já havia ligado outras vezes pelo mesmo problema, mas a atendente foi empática.",nao,Atendente alegou que o serviço consta como contratado e encerrou sem estorno nem encaminhamento; demanda não resolvida.,cobranca_indevida,nao,4,4,sem_solucao,nenhum,nao,nao,cobranca_indevida,sem_solucao,3,3,5,5
+CALL-000094,2026-05-13,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Bruno. Só queria saber até que horas a loja do shopping fica aberta e se lá faz troca de chip.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: A loja abre das 10h às 22h e faz troca de chip, sim.
+ATENDENTE: É isso.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente perguntou o horário da loja do shopping e se ela faz troca de chip. Atendente informou funcionamento das 10h às 22h e que a loja troca chip. Cliente agradeceu.,Cliente pediu informações sobre o horário da loja do shopping e troca de chip. A atendente informou o horário de funcionamento (10h às 22h) e confirmou a troca de chip. A atendente demonstrou empatia e pediu desculpas pelo transtorno e passou informações contraditórias. Cliente agradeceu.,4,4,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente informou horário da loja (10h às 22h) e confirmou que é feita troca de chip, esclarecendo a dúvida.",informacoes_gerais,sim,4,1,resolvido_no_contato,omissao_menor:postura,nao,nao,cobranca_indevida,resolvido_no_contato,4,4,1,3
+CALL-000095,2026-04-26,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Marina. Eu preciso da segunda via da fatura que vence dia 26, perdi o boleto.
+ATENDENTE: Marina, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Vou te enviar agora por SMS e e-mail, com código de barras e PIX.
+ATENDENTE: Já está no seu celular.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente pediu segunda via da fatura que vence no dia 26. Segunda via enviada por SMS e e-mail com opção de PIX. Cliente agradeceu e elogiou a atendente.,"Cliente solicitou a segunda via da fatura com vencimento no dia 26. A atendente enviou a segunda via por SMS e e-mail, com código de barras e PIX. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento, sem informar o prazo. Cliente agradeceu e elogiou a atendente.",4,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente enviou a segunda via por SMS e e-mail com código de barras e PIX, resolvendo a demanda na ligação.",segunda_via_fatura,sim,5,3,resolvido_no_contato,omissao_menor:postura,nao,sim,portabilidade,resolvido_no_contato,5,5,4,3
+CALL-000096,2026-04-12,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Kátia. Apareceu na minha fatura uma cobrança de R$ 18,90 de um tal de Música Plus que eu nunca contratei.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Vou precisar abrir uma contestação para a área financeira analisar.
+ATENDENTE: O estorno/análise ocorre em até 7 dias úteis. O protocolo é 23125515021.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 23,00 do serviço Música Plus, não reconhecido por ele. A atendente estornou imediatamente o valor de R$ 23,00. Atendente se desculpou pelo transtorno e mostrou empatia e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente agradeceu.","Cliente contestou cobrança de R$ 18,90 referente ao serviço Música Plus, que afirma não ter contratado. A atendente abriu contestação para análise da área financeira. Prazo de 7 dias úteis, protocolo 23125515021. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu.",1,4,"Cliente satisfeito porque a atendente foi empática, mas a demanda ficou encaminhada, sem solução imediata.",parcial,Atendente não pôde estornar na hora; abriu contestação para análise do financeiro com prazo de 7 dias úteis.,cobranca_indevida,nao,4,5,protocolo_aberto,desfecho_errado+alucinacao,parcial,nao,cobranca_indevida,protocolo_aberto,5,4,4,1
+CALL-000097,2026-10-18,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Elaine. Quero reclamar do técnico que veio ontem, chegou atrasado e foi grosseiro.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Não tenho como registrar reclamação de técnico por aqui.
+ATENDENTE: Pronto.
+CLIENTE: Isso é um absurdo, vou registrar reclamação no Procon.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente registrou queixa sobre o técnico, que atrasou e foi grosseiro na visita de ontem. Atendente informou que não consegue registrar esse tipo de reclamação. Cliente ficou muito irritado e ameaçou reclamar no Procon.","Cliente reclamou de atraso e grosseria do técnico na visita do dia anterior. A atendente disse não ser possível registrar a reclamação por esse canal. A atendente foi fria e protocolar e explicou o procedimento, sem informar o prazo. Cliente ficou muito irritado e ameaçou reclamar no Procon.",4,1,Cliente insatisfeito porque a demanda não foi resolvida e a atendente foi pouco cordial.,nao,Atendente informou não ser possível registrar a reclamação pelo canal e não ofereceu alternativa.,reclamacao_atendimento,nao,2,3,sem_solucao,omissao_menor:postura,nao,nao,reclamacao_atendimento,sem_solucao,1,2,3,4
+CALL-000098,2026-09-15,"ATENDENTE: Central de atendimento. Fala.
+CLIENTE: É Fábio. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Tá, já entendi, aguarda aí.
+CLIENTE: Tá bom.
+ATENDENTE: Os testes indicam problema no cabo externo.
+ATENDENTE: Agendei visita técnica para o dia 15/09.
+ATENDENTE: Aguarde.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Testes apontaram problema no cabo externo; visita técnica marcada para 15/09. Atendente tratou o cliente de forma ríspida e explicou o procedimento, mas não deu prazo. Cliente demonstrou insatisfação com o atendimento.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente identificou falha no cabeamento externo e agendou visita técnica para 15/09. A atendente foi ríspida e explicou o procedimento, sem informar o prazo. Cliente demonstrou insatisfação com o atendimento.",5,2,"Cliente insatisfeito porque a demanda ficou encaminhada, sem solução imediata e a atendente foi pouco cordial.",parcial,Atendente diagnosticou falha no cabo externo e agendou visita técnica para 15/09; resolução depende da visita.,suporte_tecnico,nao,1,3,encaminhado_tecnico,nenhum,parcial,nao,suporte_tecnico,encaminhado_tecnico,2,1,4,5
+CALL-000099,2026-05-26,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Diego. Eu quero cancelar o meu plano Fibra 300 Mega, está muito caro.
+ATENDENTE: Diego, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Antes de cancelar, consigo te oferecer 30% de desconto por 6 meses no Fibra 300 Mega.
+ATENDENTE: Cliente aceitou a oferta.
+ATENDENTE: Pronto.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou pedindo para cancelar o Fibra 300 Mega por considerar o valor alto. Cliente aceitou oferta de retenção com 30% de desconto por 6 meses. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e explicou o procedimento, mas não deu prazo. Cliente agradeceu e elogiou a atendente.","Cliente solicitou o cancelamento do plano Fibra 300 Mega alegando preço alto. A atendente ofereceu 30% de desconto por 6 meses e o cliente aceitou permanecer. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento, sem informar o prazo. Cliente agradeceu e elogiou a atendente.",5,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente aplicou oferta de retenção de 30% de desconto por 6 meses, aceita pelo cliente, que manteve o plano.",cancelamento,sim,5,3,retencao_aplicada,nenhum,sim,sim,cancelamento,retencao_aplicada,4,5,3,4
+CALL-000100,2026-01-07,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Kátia. Quero mudar do Pós 30GB para o Pós 50GB.
+ATENDENTE: Kátia, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Feito, migrei para o Pós 50GB, a nova mensalidade é R$ 50,50.
+ATENDENTE: Vale a partir do próximo ciclo.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente solicitou migrar do Pós 30GB para o Pós 50GB. Migração para o Pós 50GB concluída; nova mensalidade de R$ 50,50. Mudança válida a partir do próximo ciclo. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente agradeceu e elogiou a atendente.","Cliente pediu a troca do plano Pós 30GB para o Pós 50GB. A atendente realizou a migração para o Pós 50GB, com mensalidade de R$ 50,50. A alteração vale a partir do próximo ciclo de faturamento. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu e elogiou a atendente.",5,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente efetuou a migração para o Pós 50GB na ligação e informou a nova mensalidade de R$ 50,50.",alteracao_plano,sim,5,5,resolvido_no_contato,nenhum,sim,sim,alteracao_plano,resolvido_no_contato,5,5,5,4
+CALL-000101,2026-03-13,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Gabriela. Quero trazer meu número de outra operadora para vocês.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Registrei o pedido de portabilidade.
+ATENDENTE: A portabilidade ocorre em breve. Na verdade pode ser que já esteja resolvido, ou não, depende do sistema.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente quer portar seu número de outra operadora. Atendimento frio, apenas protocolar e as informações passadas foram contraditórias. Cliente demonstrou insatisfação com o atendimento.",Cliente solicitou portabilidade do número vindo de outra operadora. A atendente registrou o pedido de portabilidade. A atendente foi fria e protocolar e passou informações contraditórias. Cliente demonstrou insatisfação com o atendimento.,3,2,"Cliente insatisfeito porque a demanda ficou encaminhada, sem solução imediata e a atendente foi pouco cordial.",parcial,"Atendente registrou a solicitação de portabilidade, que depende da janela regulatória para ser concluída.",portabilidade,nao,2,1,protocolo_aberto,omissao_desfecho,parcial,nao,portabilidade,protocolo_aberto,1,3,2,4
+CALL-000102,2026-06-27,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Ana. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Fiz um reset remoto no seu modem e reconfigurei o sinal.
+ATENDENTE: Pode testar agora?
+ATENDENTE: Cliente confirmou que voltou.
+ATENDENTE: Prazo em até 7 dias úteis. O protocolo é 38283006397.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Após reset remoto do modem, a conexão foi normalizada e confirmada pelo cliente. Cliente agradeceu.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente fez reset remoto do modem e o cliente confirmou a normalização. A atendente foi fria e protocolar e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu.",4,4,"Cliente satisfeito porque a demanda foi resolvida na ligação, mas a atendente foi pouco cordial.",sim,Atendente realizou reset remoto do modem e reconfiguração; cliente testou e confirmou a normalização durante a ligação.,suporte_tecnico,sim,2,5,resolvido_no_contato,omissao_menor:postura,sim,nao,cobranca_indevida,resolvido_no_contato,4,2,5,4
+CALL-000103,2026-11-14,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Ana. Só queria saber até que horas a loja do shopping fica aberta e se lá faz troca de chip.
+ATENDENTE: Ana, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: A loja abre das 10h às 22h e faz troca de chip, sim.
+ATENDENTE: É isso.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente perguntou o horário da loja do shopping e se ela faz troca de chip. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e as orientações foram vagas, sem prazo definido. Cliente agradeceu e elogiou a atendente.","Cliente pediu informações sobre o horário da loja do shopping e troca de chip. A atendente informou o horário de funcionamento (10h às 22h) e confirmou a troca de chip. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e deu informações vagas, sem prazo. Cliente agradeceu e elogiou a atendente.",3,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente informou horário da loja (10h às 22h) e confirmou que é feita troca de chip, esclarecendo a dúvida.",informacoes_gerais,sim,5,2,resolvido_no_contato,omissao_desfecho,parcial,indeterminado,informacoes_gerais,encaminhado_tecnico,5,5,2,4
+CALL-000104,2026-02-24,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Marina. Só queria saber até que horas a loja do shopping fica aberta e se lá faz troca de chip.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: A loja abre das 10h às 22h e faz troca de chip, sim.
+ATENDENTE: Leve um documento com foto.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente perguntou o horário da loja do shopping e se ela faz troca de chip. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Atendente se desculpou pelo transtorno e mostrou empatia e orientou sobre o procedimento e o próximo passo. Cliente agradeceu.,Cliente pediu informações sobre o horário da loja do shopping e troca de chip. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente informou o horário de funcionamento (10h às 22h) e confirmou a troca de chip. Orientou levar documento com foto. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento e o próximo passo. Cliente agradeceu.,3,4,"Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática, mas o cliente já havia ligado outras vezes pelo mesmo problema.",sim,"Atendente informou horário da loja (10h às 22h) e confirmou que é feita troca de chip, esclarecendo a dúvida.",informacoes_gerais,nao,4,4,resolvido_no_contato,omissao_desfecho,parcial,nao,informacoes_gerais,transferido,4,4,4,2
+CALL-000105,2026-02-06,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Henrique. Eu preciso da segunda via da fatura que vence dia 6, perdi o boleto.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Vou te enviar agora por SMS e e-mail, com código de barras e PIX.
+ATENDENTE: Já está no seu celular.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente pediu segunda via da fatura que vence no dia 6. Segunda via enviada por SMS e e-mail com opção de PIX. Atendimento cordial e objetivo e as informações passadas foram contraditórias. Cliente agradeceu.,"Cliente solicitou a segunda via da fatura com vencimento no dia 6. A atendente enviou a segunda via por SMS e e-mail, com código de barras e PIX. A atendente foi cordial e passou informações contraditórias. Cliente agradeceu.",5,4,Cliente satisfeito porque a demanda foi resolvida na ligação.,sim,"Atendente enviou a segunda via por SMS e e-mail com código de barras e PIX, resolvendo a demanda na ligação.",segunda_via_fatura,sim,3,1,resolvido_no_contato,nenhum,parcial,sim,segunda_via_fatura,resolvido_no_contato,5,3,1,5
+CALL-000106,2026-06-09,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Marina. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Os testes indicam problema no cabo externo.
+ATENDENTE: Agendei visita técnica para o dia 9/06.
+ATENDENTE: Prazo em breve. Na verdade pode ser que já esteja resolvido, ou não, depende do sistema.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente reclamou de instabilidade e quedas da conexão desde ontem. Testes apontaram problema no cabo externo; visita técnica marcada para 9/06. Atendimento cordial e objetivo e as informações passadas foram contraditórias. Cliente demonstrou insatisfação com o atendimento.,Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente identificou falha no cabeamento externo e agendou visita técnica para 9/06. A atendente foi cordial e passou informações contraditórias. Cliente demonstrou insatisfação com o atendimento.,5,2,"Cliente insatisfeito porque a demanda ficou encaminhada, sem solução imediata.",parcial,Atendente diagnosticou falha no cabo externo e agendou visita técnica para 9/06; resolução depende da visita.,suporte_tecnico,nao,3,1,encaminhado_tecnico,nenhum,parcial,nao,suporte_tecnico,encaminhado_tecnico,2,2,1,5
+CALL-000107,2026-01-24,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Paulo. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Os testes indicam problema no cabo externo.
+ATENDENTE: Agendei visita técnica para o dia 24/01.
+ATENDENTE: Prazo em breve.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Testes apontaram problema no cabo externo; visita técnica marcada para 24/01. Atendimento cordial e objetivo e as orientações foram vagas, sem prazo definido. Cliente demonstrou insatisfação com o atendimento. A atendente garantiu bônus de R$ 37,90 na próxima fatura.","Cliente relatou quedas frequentes da internet desde o dia anterior. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente identificou falha no cabeamento externo e agendou visita técnica para 24/01. A atendente foi cordial e deu informações vagas, sem prazo. Cliente demonstrou insatisfação com o atendimento.",2,2,"Cliente insatisfeito porque a demanda ficou encaminhada, sem solução imediata e o cliente já havia ligado outras vezes pelo mesmo problema.",parcial,Atendente diagnosticou falha no cabo externo e agendou visita técnica para 24/01; resolução depende da visita.,suporte_tecnico,nao,3,2,encaminhado_tecnico,alucinacao_numerica,parcial,nao,suporte_tecnico,encaminhado_tecnico,1,4,2,2
+CALL-000108,2026-05-11,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Sérgio. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Sérgio, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Fiz um reset remoto no seu modem e reconfigurei o sinal.
+ATENDENTE: Pode testar agora?
+ATENDENTE: Cliente confirmou que voltou.
+ATENDENTE: Prazo em até 7 dias úteis. O protocolo é 59662417561.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Após reset remoto do modem, a conexão foi normalizada e confirmada pelo cliente. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e orientou sobre o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente fez reset remoto do modem e o cliente confirmou a normalização. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.",5,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,Atendente realizou reset remoto do modem e reconfiguração; cliente testou e confirmou a normalização durante a ligação.,suporte_tecnico,sim,5,4,resolvido_no_contato,nenhum,nao,indeterminado,portabilidade,sem_solucao,5,5,5,5
+CALL-000109,2026-11-05,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Bruno. Apareceu na minha fatura uma cobrança de R$ 102,90 de um tal de Banca Digital que eu nunca contratei.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Localizei aqui, o serviço foi ativado sem confirmação.
+ATENDENTE: Já cancelei o Banca Digital e lancei o estorno de R$ 102,90 na próxima fatura.
+ATENDENTE: O estorno/análise ocorre em breve.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 102,90 do serviço Banca Digital, não reconhecido por ele. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Serviço cancelado e estorno de R$ 102,90 lançado para a próxima fatura. Cliente aceitou aguardar.","Cliente contestou cobrança de R$ 102,90 referente ao serviço Banca Digital, que afirma não ter contratado. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente cancelou o serviço e aplicou estorno de R$ 102,90 na próxima fatura. A atendente foi cordial e deu informações vagas, sem prazo. Cliente aceitou aguardar.",4,3,"Satisfação neutra: o cliente já havia ligado outras vezes pelo mesmo problema, mas a demanda foi resolvida na ligação.",sim,"Atendente identificou ativação indevida do Banca Digital, cancelou o serviço e lançou estorno de R$ 102,90 na próxima fatura, resolvendo na ligação.",cobranca_indevida,nao,3,2,resolvido_no_contato,omissao_menor:postura,parcial,nao,cobranca_indevida,resolvido_no_contato,4,2,1,4
+CALL-000110,2026-03-21,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Sérgio. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Os testes indicam problema no cabo externo.
+ATENDENTE: Agendei visita técnica para o dia 21/03.
+ATENDENTE: Prazo em breve.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Testes apontaram problema no cabo externo; visita técnica marcada para 21/03. Atendente se desculpou pelo transtorno e mostrou empatia e as orientações foram vagas, sem prazo definido. Cliente aceitou aguardar.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente identificou falha no cabeamento externo e agendou visita técnica para 21/03. A atendente demonstrou empatia e pediu desculpas pelo transtorno e deu informações vagas, sem prazo. Cliente aceitou aguardar.",4,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata, mas a atendente foi empática.",parcial,Atendente diagnosticou falha no cabo externo e agendou visita técnica para 21/03; resolução depende da visita.,suporte_tecnico,nao,4,2,encaminhado_tecnico,nenhum,sim,nao,suporte_tecnico,encaminhado_tecnico,3,4,2,4
+CALL-000111,2026-05-18,"ATENDENTE: Central de atendimento, informe o CPF do titular.
+CLIENTE: É Lucas. Apareceu na minha fatura uma cobrança de R$ 76,99 de um tal de Seguro Celular que eu nunca contratei.
+ATENDENTE: Certo. Aguarde que vou verificar.
+CLIENTE: Tá bom.
+ATENDENTE: Vou precisar abrir uma contestação para a área financeira analisar.
+ATENDENTE: O estorno/análise ocorre em até 3 dias úteis. O protocolo é 01273972772.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente ligou para contestar a cobrança de R$ 76,99 do serviço Seguro Celular, não reconhecido por ele. Foi registrada contestação para análise do financeiro. Protocolo 01273972772 com prazo de 3 dias úteis. Atendimento frio, apenas protocolar e orientou sobre o procedimento e o próximo passo. Cliente aceitou aguardar.","Cliente contestou cobrança de R$ 76,99 referente ao serviço Seguro Celular, que afirma não ter contratado. A atendente abriu contestação para análise da área financeira. Prazo de 3 dias úteis, protocolo 01273972772. A atendente foi fria e protocolar e explicou o procedimento e o próximo passo. Cliente aceitou aguardar.",5,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata e a atendente foi pouco cordial.",parcial,Atendente não pôde estornar na hora; abriu contestação para análise do financeiro com prazo de 3 dias úteis.,cobranca_indevida,nao,2,4,protocolo_aberto,nenhum,nao,nao,cobranca_indevida,sem_solucao,2,1,3,4
+CALL-000112,2026-01-21,"ATENDENTE: Central de atendimento. Fala.
+CLIENTE: É Ana. Só queria saber até que horas a loja do shopping fica aberta e se lá faz troca de chip.
+ATENDENTE: Tá, já entendi, aguarda aí.
+CLIENTE: Tá bom.
+ATENDENTE: A loja abre das 10h às 22h e faz troca de chip, sim.
+ATENDENTE: Leve um documento com foto.
+ATENDENTE: Ficou claro pra você? Quer que eu repita o protocolo?
+CLIENTE: Ficou claro, obrigado.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Mais alguma coisa? Tchau.","Cliente perguntou o horário da loja do shopping e se ela faz troca de chip. Atendente informou funcionamento das 10h às 22h e que a loja troca chip. Atendente tratou o cliente de forma ríspida e detalhou procedimento, prazo e protocolo, checando se o cliente entendeu. Cliente agradeceu.","Cliente pediu informações sobre o horário da loja do shopping e troca de chip. A atendente informou o horário de funcionamento (10h às 22h) e confirmou a troca de chip. Orientou levar documento com foto. A atendente foi ríspida e explicou com clareza o procedimento, o prazo e o protocolo, confirmando o entendimento do cliente. Cliente agradeceu.",4,4,"Cliente satisfeito porque a demanda foi resolvida na ligação, mas a atendente foi pouco cordial.",sim,"Atendente informou horário da loja (10h às 22h) e confirmou que é feita troca de chip, esclarecendo a dúvida.",informacoes_gerais,sim,1,5,resolvido_no_contato,omissao_menor:proximo,nao,nao,informacoes_gerais,transferido,4,1,5,4
+CALL-000113,2026-07-19,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Olívia. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Fiz um reset remoto no seu modem e reconfigurei o sinal.
+ATENDENTE: Pode testar agora?
+ATENDENTE: Cliente confirmou que voltou.
+ATENDENTE: Prazo em até 7 dias úteis. O protocolo é 43063823875.
+CLIENTE: Ok, obrigado pela ajuda.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Após reset remoto do modem, a conexão foi normalizada e confirmada pelo cliente. Cliente agradeceu.",Cliente relatou quedas frequentes da internet desde o dia anterior. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente fez reset remoto do modem e o cliente confirmou a normalização. A atendente foi cordial e explicou o procedimento e o próximo passo. Cliente agradeceu.,5,4,"Cliente satisfeito porque a demanda foi resolvida na ligação, mas o cliente já havia ligado outras vezes pelo mesmo problema.",sim,Atendente realizou reset remoto do modem e reconfiguração; cliente testou e confirmou a normalização durante a ligação.,suporte_tecnico,nao,3,4,resolvido_no_contato,omissao_menor:postura,sim,nao,suporte_tecnico,encaminhado_tecnico,5,3,4,5
+CALL-000114,2026-04-26,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É Marina. Apareceu na minha fatura uma cobrança de R$ 20,99 de um tal de Música Plus que eu nunca contratei.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Vou precisar abrir uma contestação para a área financeira analisar.
+ATENDENTE: O estorno/análise ocorre em até 7 dias úteis. O protocolo é 04385680664.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou para contestar a cobrança de R$ 142,90 do serviço Música Plus, não reconhecido por ele. Foi registrada contestação para análise do financeiro. Protocolo 91987694773 com prazo de 12 dias úteis. Atendente se desculpou pelo transtorno e mostrou empatia e orientou sobre o procedimento e o próximo passo. Cliente aceitou aguardar.","Cliente contestou cobrança de R$ 20,99 referente ao serviço Música Plus, que afirma não ter contratado. A atendente abriu contestação para análise da área financeira. Prazo de 7 dias úteis, protocolo 04385680664. A atendente demonstrou empatia e pediu desculpas pelo transtorno e explicou o procedimento e o próximo passo. Cliente aceitou aguardar.",2,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata, mas a atendente foi empática.",parcial,Atendente não pôde estornar na hora; abriu contestação para análise do financeiro com prazo de 7 dias úteis.,cobranca_indevida,nao,4,4,protocolo_aberto,alucinacao_numerica,parcial,nao,cobranca_indevida,resolvido_no_contato,3,4,5,1
+CALL-000115,2026-02-17,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Sérgio. Quero trazer meu número de outra operadora para vocês.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Isso é com o setor de vendas, vou transferir.
+ATENDENTE: Aguarde o SMS.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente quer portar seu número de outra operadora. Ligação transferida para vendas. Atendimento cordial e objetivo e explicou o procedimento, mas não deu prazo. Cliente demonstrou insatisfação com o atendimento.","Cliente solicitou portabilidade do número vindo de outra operadora. A atendente transferiu o cliente para o setor de vendas. A atendente foi cordial e explicou o procedimento, sem informar o prazo. Cliente demonstrou insatisfação com o atendimento.",5,2,Cliente insatisfeito porque a demanda não foi resolvida.,nao,Atendente não tratou a portabilidade e transferiu o cliente para o setor de vendas.,portabilidade,nao,3,3,transferido,nenhum,parcial,nao,portabilidade,cancelamento_efetivado,3,2,3,4
+CALL-000116,2026-03-25,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Fábio. Eu quero cancelar o meu plano Controle 15GB, está muito caro.
+ATENDENTE: Fábio, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Ofereci desconto mas o senhor recusou, então efetivei o cancelamento.
+ATENDENTE: O protocolo é 81852192660.
+CLIENTE: Nossa, muito obrigado, você foi ótima!
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente ligou pedindo para cancelar o Controle 15GB por considerar o valor alto. Retenção recusada; cancelamento concluído pela atendente. Protocolo informado: 81852192660. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e orientou sobre o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.","Cliente solicitou o cancelamento do plano Controle 15GB alegando preço alto. O cliente recusou a oferta de retenção e a atendente efetivou o cancelamento. Protocolo 81852192660. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento e o próximo passo. Cliente agradeceu e elogiou a atendente.",5,5,Cliente satisfeito porque a demanda foi resolvida na ligação e a atendente foi empática.,sim,"Atendente ofereceu retenção, recusada; efetivou o cancelamento conforme pedido do cliente.",cancelamento,sim,5,4,cancelamento_efetivado,nenhum,sim,sim,cancelamento,cancelamento_efetivado,5,4,4,5
+CALL-000117,2026-11-19,"ATENDENTE: Olá, central de atendimento, meu nome é Paula, com quem eu falo, por favor?
+CLIENTE: É João. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+CLIENTE: E olha, essa já é a terceira vez que eu ligo por causa disso, ninguém resolve.
+ATENDENTE: Sinto muito pelo transtorno, vou verificar agora mesmo pra você.
+CLIENTE: Tá bom.
+ATENDENTE: Os testes indicam problema no cabo externo.
+ATENDENTE: Agendei visita técnica para o dia 19/11.
+ATENDENTE: Prazo em breve. Na verdade pode ser que já esteja resolvido, ou não, depende do sistema.
+CLIENTE: Não resolveu nada, que decepção.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!",Cliente reclamou de instabilidade e quedas da conexão desde ontem. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. Testes apontaram problema no cabo externo; visita técnica marcada para 19/11. Cliente demonstrou insatisfação com o atendimento.,Cliente relatou quedas frequentes da internet desde o dia anterior. Cliente relatou que já havia ligado outras vezes pelo mesmo motivo. A atendente identificou falha no cabeamento externo e agendou visita técnica para 19/11. A atendente demonstrou empatia e pediu desculpas pelo transtorno e passou informações contraditórias. Cliente demonstrou insatisfação com o atendimento.,4,2,"Cliente insatisfeito porque a demanda ficou encaminhada, sem solução imediata e o cliente já havia ligado outras vezes pelo mesmo problema, mas a atendente foi empática.",parcial,Atendente diagnosticou falha no cabo externo e agendou visita técnica para 19/11; resolução depende da visita.,suporte_tecnico,nao,4,1,encaminhado_tecnico,omissao_menor:postura,nao,sim,suporte_tecnico,encaminhado_tecnico,3,4,1,5
+CALL-000118,2026-10-24,"ATENDENTE: Central de atendimento. Fala.
+CLIENTE: É Bruno. Eu quero cancelar o meu plano Fibra 300 Mega, está muito caro.
+ATENDENTE: Tá, já entendi, aguarda aí.
+CLIENTE: Tá bom.
+ATENDENTE: Vou te transferir para o setor de retenção.
+ATENDENTE: Pronto.
+CLIENTE: Isso é um absurdo, vou registrar reclamação no Procon.
+ATENDENTE: Mais alguma coisa? Tchau.",Cliente ligou pedindo para cancelar o Fibra 300 Mega por considerar o valor alto. Ligação transferida para a retenção. Cliente ficou muito irritado e ameaçou reclamar no Procon.,"Cliente solicitou o cancelamento do plano Fibra 300 Mega alegando preço alto. A atendente transferiu a ligação para o setor de retenção. A atendente foi ríspida e explicou o procedimento, sem informar o prazo. Cliente ficou muito irritado e ameaçou reclamar no Procon.",4,1,Cliente insatisfeito porque a demanda não foi resolvida e a atendente foi pouco cordial.,nao,Atendente não concluiu o cancelamento e transferiu o cliente para o setor de retenção.,cancelamento,nao,1,3,transferido,omissao_menor:postura,nao,indeterminado,cobranca_indevida,encaminhado_tecnico,1,1,3,4
+CALL-000119,2026-01-20,"ATENDENTE: Bom dia! Aqui é a Paula, é um prazer te atender. Com quem eu falo?
+CLIENTE: É Gabriela. Quero trazer meu número de outra operadora para vocês.
+ATENDENTE: Gabriela, eu entendo totalmente a sua chateação e peço desculpas. Vou cuidar disso pessoalmente, tudo bem?
+CLIENTE: Tá bom.
+ATENDENTE: Isso é com o setor de vendas, vou transferir.
+ATENDENTE: A portabilidade ocorre em até 3 dias úteis. O protocolo é 76963308253.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente quer portar seu número de outra operadora. Ligação transferida para vendas. Atendente foi muito acolhedora, assumiu o caso e tranquilizou o cliente e orientou sobre o procedimento e o próximo passo. Cliente aceitou aguardar.","Cliente solicitou portabilidade do número vindo de outra operadora. A atendente transferiu o cliente para o setor de vendas. A atendente acolheu o cliente, assumiu o caso pessoalmente e o tranquilizou e explicou o procedimento e o próximo passo. Cliente aceitou aguardar.",5,3,"Satisfação neutra: a demanda não foi resolvida, mas a atendente foi empática.",nao,Atendente não tratou a portabilidade e transferiu o cliente para o setor de vendas.,portabilidade,nao,5,4,transferido,nenhum,sim,nao,suporte_tecnico,transferido,2,5,4,4
+CALL-000120,2026-11-15,"ATENDENTE: Central de atendimento, meu nome é Paula, com quem eu falo?
+CLIENTE: É Paulo. Minha internet está caindo toda hora desde ontem, não consigo trabalhar.
+ATENDENTE: Entendi. Vou verificar no sistema, um momento.
+CLIENTE: Tá bom.
+ATENDENTE: Os testes indicam problema no cabo externo.
+ATENDENTE: Agendei visita técnica para o dia 15/11.
+ATENDENTE: Prazo em breve.
+CLIENTE: Tá, vou aguardar então.
+ATENDENTE: Agradeço o contato, tenha um ótimo dia!","Cliente reclamou de instabilidade e quedas da conexão desde ontem. Testes apontaram problema no cabo externo; visita técnica marcada para 15/11. Atendimento cordial e objetivo e as orientações foram vagas, sem prazo definido. Cliente aceitou aguardar.","Cliente relatou quedas frequentes da internet desde o dia anterior. A atendente identificou falha no cabeamento externo e agendou visita técnica para 15/11. A atendente foi cordial e deu informações vagas, sem prazo. Cliente aceitou aguardar.",5,3,"Satisfação neutra: a demanda ficou encaminhada, sem solução imediata.",parcial,Atendente diagnosticou falha no cabo externo e agendou visita técnica para 15/11; resolução depende da visita.,suporte_tecnico,nao,3,2,encaminhado_tecnico,nenhum,parcial,nao,suporte_tecnico,encaminhado_tecnico,2,3,3,5

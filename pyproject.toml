@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kpibench"
+version = "0.1.0"
+description = "Benchmark de custo x performance de LLMs para extração de KPIs de resumos de chamadas (speech analytics)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pandas>=2.0",
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "scikit-learn>=1.3",
+  "pyyaml>=6.0",
+  "pydantic>=2.5",
+  "jinja2>=3.1",
+  "matplotlib>=3.7",
+  "tabulate>=0.9",
+  "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+llm = ["openai>=1.40", "anthropic>=0.40", "tiktoken>=0.7", "python-dotenv>=1.0"]
+neural = ["torch>=2.2", "transformers>=4.44", "bert-score>=0.3.13", "sentence-transformers>=3.0"]
+azure = ["azure-storage-blob>=12.19", "azure-identity>=1.15"]
+notebooks = ["plotly>=5.20", "nbformat>=5.9"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+kpibench = "kpibench.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
