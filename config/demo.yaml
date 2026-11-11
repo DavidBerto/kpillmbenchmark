@@ -92,6 +92,12 @@ simulation:
   grok-4.3:              {skill: 0.84, invalid_rate: 0.02, out_tokens: 380, latency_s: 3.8}
   grok-4.6:              {skill: 0.89, invalid_rate: 0.01, out_tokens: 420, latency_s: 4.8}
   kimi-k2.6:             {skill: 0.85, invalid_rate: 0.02, out_tokens: 400, latency_s: 4.2}
+  # backends de config/extractors.yaml (FICTÍCIOS): ScaleDown CDM (Decisions ~0,16 s, Summarize ~0,65 s),
+  # Jev ~0,15 s; LLM com structured outputs nunca quebra o JSON (decodificação restrita)
+  cdm:                   {skill: 0.81, invalid_rate: 0.00, out_tokens: 4, latency_s: 0.16}
+  cdm@summarize:         {skill: 0.78, invalid_rate: 0.00, out_tokens: 40, latency_s: 0.65}
+  jev:                   {skill: 0.80, invalid_rate: 0.00, out_tokens: 4, latency_s: 0.15}
+  gpt-6-luna@llm_estruturado: {skill: 0.84, invalid_rate: 0.00, fence_rate: 0.0, out_tokens: 340, latency_s: 2.3}
   kpi_difficulty:        # subtraído do skill
     qualidade_resumo: 0.10
     csat: 0.08

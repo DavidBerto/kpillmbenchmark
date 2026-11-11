@@ -60,6 +60,10 @@ class MockLLMClient(LLMClient):
         rng = _rng(self.seed, self.spec.id, md.get("task"), md.get("kpi"), md.get("call_id"),
                    md.get("candidate_model", ""))
         task = md["task"]
+        if task in ("jev", "decisions"):
+            return self._jev_response(req, md, rng)
+        if task == "summarize":
+            return self._summarize_response(req, md, rng)
         if task == "kpi":
             payload = self._kpi_output(md["kpi_spec"], md["record"], rng)
         elif task == "kpi_all":
@@ -133,6 +137,48 @@ class MockLLMClient(LLMClient):
             pool = [t for t in self.pool.get(kpi.name, []) if t != gt] or ["Resumo não traz elementos suficientes."]
             v = str(rng.choice(pool))
         return {kpi.output_field: v}
+
+    def _jev_response(self, req: LLMRequest, md: dict, rng: np.random.Generator) -> LLMResponse:
+        """Resposta no formato do TypeSafe Jev: choice/score com probabilidades e confiança.
+
+        Confiança simulada maior quando o valor bate com o rótulo (para exercitar o fallback por limiar)."""
+        answers = {}
+        for k in md["kpi_specs"]:
+            krng = _rng(self.seed, self.spec.id, "jev", k.name, md.get("call_id"))
+            out = self._kpi_output(k, md["record"], krng)
+            gt = md["record"].get(k.gt_column)
+            correct = out[k.output_field] == gt or (k.type == "ordinal" and not _isnan(gt) and gt is not None
+                                                    and int(out[k.output_field]) == int(gt))
+            conf = float(krng.uniform(0.45, 0.97) if correct else krng.uniform(0.05, 0.6))
+            if k.type == "categorical":
+                labels = list(k.labels)
+                rest = (1 - (0.5 + conf / 2)) / max(len(labels) - 1, 1)
+                probs = {lab: (0.5 + conf / 2) if lab == out[k.output_field] else rest for lab in labels}
+                answers[k.name] = {"type": "choice", "choice": out[k.output_field], "probabilities": probs,
+                                   "confidence": conf}
+            else:
+                lo = k.scale.min
+                pos = float(np.clip(int(out[k.output_field]) - lo + krng.normal(0, 0.25 * (1 - conf)), 0,
+                                    k.scale.max - lo))
+                answers[k.name] = {"type": "score", "score": pos, "confidence": conf}
+        text = json.dumps({"model": self.spec.model, "answers": answers,
+                           "usage": {"input_tokens": estimate_tokens(req.user), "output_tokens": 4 * len(answers)}},
+                          ensure_ascii=False)
+        usage = Usage(input_tokens=estimate_tokens(req.user), output_tokens=4 * len(answers))
+        latency = float(self.profile.get("latency_s", 0.15) * rng.lognormal(0, 0.3))
+        return LLMResponse(text=text, usage=usage, latency_s=latency, model=self.spec.model, finish_reason="stop",
+                           simulated=True)
+
+    def _summarize_response(self, req: LLMRequest, md: dict, rng: np.random.Generator) -> LLMResponse:
+        """Formato do ScaleDown Summarize: content = JSON string com "summary"."""
+        k = md["kpi_spec"]
+        out = self._kpi_output(k, md["record"], _rng(self.seed, self.spec.id, "summarize", k.name, md.get("call_id")))
+        n_in = estimate_tokens(req.system) + estimate_tokens(req.user)
+        text = json.dumps({"summary": out[k.output_field], "finish_reason": "stop", "input_tokens": n_in},
+                          ensure_ascii=False)
+        latency = float(self.profile.get("latency_s", 0.65) * rng.lognormal(0, 0.3))
+        return LLMResponse(text=text, usage=Usage(input_tokens=n_in, output_tokens=estimate_tokens(out[k.output_field])),
+                           latency_s=latency, model=self.spec.model, finish_reason="stop", simulated=True)
 
     @staticmethod
     def _as_consolidated(kpi: KPISpec, out: dict) -> dict:

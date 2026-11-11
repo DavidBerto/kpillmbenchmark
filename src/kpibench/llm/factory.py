@@ -11,7 +11,8 @@ def build_client(spec: ModelSpec, cfg: BenchmarkConfig, dataset: Dataset | None 
         from kpibench.llm.providers.mock_provider import MockLLMClient
 
         sim = cfg.simulation or {}
-        profile = sim.get(spec.id, {"skill": 0.8, "out_tokens": 200, "latency_s": 2.0})
+        # ids derivados (ex.: "gpt-6-luna@llm_consolidado") usam o perfil do modelo base
+        profile = sim.get(spec.id) or sim.get(spec.id.split("@")[0]) or {"skill": 0.8, "out_tokens": 200, "latency_s": 2.0}
         pool: dict[str, list[str]] = {}
         if dataset is not None:
             for k in cfg.selected_kpis:
@@ -28,6 +29,16 @@ def build_client(spec: ModelSpec, cfg: BenchmarkConfig, dataset: Dataset | None 
         from kpibench.llm.providers.openai_provider import OpenAIChatClient
 
         return OpenAIChatClient(spec)
+
+    if spec.provider == "typesafe":
+        from kpibench.llm.providers.typesafe_provider import TypeSafeJevClient
+
+        return TypeSafeJevClient(spec)
+
+    if spec.provider == "scaledown":   # ScaleDown CDM, Decisions API (choice/score)
+        from kpibench.llm.providers.typesafe_provider import ScaleDownDecisionsClient
+
+        return ScaleDownDecisionsClient(spec)
 
     if spec.provider == "anthropic":
         from kpibench.llm.providers.anthropic_provider import AnthropicClient

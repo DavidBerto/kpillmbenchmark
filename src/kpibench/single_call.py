@@ -264,6 +264,74 @@ def reference_labels(cfg: BenchmarkConfig, calls: pd.DataFrame, reference: str, 
     return gt, float(preds["cost_usd"].sum())
 
 
+def clean_calls(calls: pd.DataFrame, need_summary: bool = True) -> tuple[pd.DataFrame, list[str]]:
+    """Mantém só ligações com transcrição (e resumo, se exigido): todos os fluxos medidos nas mesmas ligações."""
+    calls = calls.copy()
+    calls["call_id"] = calls["call_id"].astype(str)
+    for c in ("resumo", "transcricao"):
+        if c not in calls:
+            calls[c] = ""
+        calls[c] = calls[c].fillna("").astype(str)
+    ok = calls["transcricao"].str.strip().str.len() > 0
+    if need_summary:
+        ok &= calls["resumo"].str.strip().str.len() > 0
+    notes = []
+    if (~ok).any():
+        notes.append(f"{int((~ok).sum())} ligações sem {'resumo ou ' if need_summary else ''}transcrição foram "
+                     "excluídas (todos os fluxos precisam ser medidos nas mesmas ligações).")
+    calls = calls[ok].reset_index(drop=True)
+    if calls.empty:
+        raise ValueError("nenhuma ligação utilizável (sem transcrição" + (" ou resumo)" if need_summary else ")"))
+    return calls, notes
+
+
+def reference_notes(reference: str, mode: str) -> list[str]:
+    if reference.startswith("arquivo:"):
+        return []
+    if mode == "consolidado":
+        return [f"Referência = {reference} com o prompt consolidado sobre a transcrição: vê toda a ligação, mas "
+                "compartilha o prompt dos fluxos consolidados (tende a favorecê-los). Para decisão final, use "
+                "rótulos auditados (REFERENCIA = 'arquivo:...')."]
+    return [f"Referência = {reference} com os prompts por KPI sobre o resumo: não vê o que o resumo omitiu e "
+            "compartilha o prompt do fluxo atual (tende a favorecê-lo)."]
+
+
+def build_eval_dataset(cfg: BenchmarkConfig, calls: pd.DataFrame, gt: pd.DataFrame, out_dir: Path
+                       ) -> tuple[pd.DataFrame, Dataset, BenchmarkConfig]:
+    """Ligações + referência (gt) + baseline de produção -> dataset.csv, Dataset e cfg de avaliação."""
+    from kpibench.live import map_production_baseline
+
+    prod, _ = map_production_baseline(calls)
+    dataset = (_frame_for_llm(cfg, calls)[["call_id", "resumo", "transcricao"]]
+               .merge(gt, on="call_id", how="left").merge(prod, on="call_id", how="left"))
+    if "data_referencia" in calls:
+        dataset = dataset.merge(calls[["call_id", "data_referencia"]], on="call_id", how="left")
+    dataset.to_csv(out_dir / "dataset.csv", index=False)
+    c_eval = cfg.model_copy(deep=True)
+    c_eval.data.path = str(out_dir / "dataset.csv")
+    c_eval.data.transcript_column = "transcricao"
+    c_eval.data.reference_summary_column = None
+    c_eval.data.baseline_prefix = "prod_"
+    c_eval.data.sample = None
+    return dataset, load_dataset(c_eval), c_eval
+
+
+def paired_decision(lo: float, hi: float, margin: float) -> str:
+    """Decisão sobre o IC da diferença (candidato − base): melhora · equivalente · nao_inferior · piora ·
+    inconclusivo · sem_dados."""
+    if not np.isfinite(lo):
+        return "sem_dados"
+    if lo > 0:
+        return "melhora"
+    if hi < -margin:
+        return "piora"
+    if lo > -margin and hi < margin:
+        return "equivalente"
+    if lo > -margin:
+        return "nao_inferior"
+    return "inconclusivo"
+
+
 def run_study(cfg: BenchmarkConfig, calls: pd.DataFrame, *, model_single: str = "gpt-6-luna",
               model_per_kpi: str = "gpt-6-luna", reference: str = "claude-opus-5-5",
               reference_mode: str = "consolidado", include_summary_quality: bool = True,
@@ -271,23 +339,9 @@ def run_study(cfg: BenchmarkConfig, calls: pd.DataFrame, *, model_single: str = 
               summary_cost_usd_per_call: float | None = None, kpi_weights: dict[str, float] | None = None,
               label: str = "extracao_consolidada") -> SingleCallStudy:
     """Roda referência, fluxo atual e fluxo consolidado nas mesmas ligações e compara qualidade e custo."""
-    from kpibench.live import map_production_baseline
     from kpibench.pipeline import _baseline_text_rows
 
-    calls = calls.copy()
-    calls["call_id"] = calls["call_id"].astype(str)
-    for c in ("resumo", "transcricao"):
-        if c not in calls:
-            calls[c] = ""
-        calls[c] = calls[c].fillna("").astype(str)
-    notes = []
-    ok = (calls["resumo"].str.strip().str.len() > 0) & (calls["transcricao"].str.strip().str.len() > 0)
-    if (~ok).any():
-        notes.append(f"{int((~ok).sum())} ligações sem resumo ou sem transcrição foram excluídas "
-                     "(os dois fluxos precisam ser medidos nas mesmas ligações).")
-    calls = calls[ok].reset_index(drop=True)
-    if calls.empty:
-        raise ValueError("nenhuma ligação com resumo E transcrição")
+    calls, notes = clean_calls(calls)
     kpis_single = single_call_kpis(cfg, include_summary_quality)
 
     out_dir = cfg.resolve(cfg.run.output_dir) / f"{label}_{datetime.now():%Y%m%d_%H%M%S}"
@@ -296,27 +350,8 @@ def run_study(cfg: BenchmarkConfig, calls: pd.DataFrame, *, model_single: str = 
     # ------------------------------------------------------------- referência + dataset de avaliação
     gt, ref_cost = reference_labels(cfg, calls, reference, reference_mode, out_dir, kpis=kpis_single,
                                     max_tokens=max_tokens, max_palavras=max_palavras)
-    if reference_mode == "consolidado" and not reference.startswith("arquivo:"):
-        notes.append(f"Referência = {reference} com o prompt consolidado sobre a transcrição: vê toda a ligação, "
-                     "mas compartilha o prompt do fluxo novo (tende a favorecê-lo). Para decisão final, use "
-                     "rótulos auditados (REFERENCIA = 'arquivo:...').")
-    elif reference_mode == "por_kpi" and not reference.startswith("arquivo:"):
-        notes.append(f"Referência = {reference} com os prompts por KPI sobre o resumo: não vê o que o resumo "
-                     "omitiu e compartilha o prompt do fluxo atual (tende a favorecê-lo).")
-    prod, _ = map_production_baseline(calls)
-    dataset = (_frame_for_llm(cfg, calls)[["call_id", "resumo", "transcricao"]]
-               .merge(gt, on="call_id", how="left").merge(prod, on="call_id", how="left"))
-    if "data_referencia" in calls:
-        dataset = dataset.merge(calls[["call_id", "data_referencia"]], on="call_id", how="left")
-    dataset.to_csv(out_dir / "dataset.csv", index=False)
-
-    c_eval = cfg.model_copy(deep=True)
-    c_eval.data.path = str(out_dir / "dataset.csv")
-    c_eval.data.transcript_column = "transcricao"
-    c_eval.data.reference_summary_column = None
-    c_eval.data.baseline_prefix = "prod_"
-    c_eval.data.sample = None
-    ds = load_dataset(c_eval)
+    notes += reference_notes(reference, reference_mode)
+    dataset, ds, c_eval = build_eval_dataset(cfg, calls, gt, out_dir)
     notes += ds.warnings
     renderer = PromptRenderer(cfg.root / "prompts")
 
@@ -384,18 +419,7 @@ def quality_table(cfg: BenchmarkConfig, evals: dict[str, KPIEvaluation]) -> pd.D
         lo, hi = percentile_ci(diff, cfg.statistics.ci)
         fin = diff[np.isfinite(diff)]
         m = ev.kpi.ni_margin
-        if not np.isfinite(lo):
-            dec = "sem_dados"
-        elif lo > 0:
-            dec = "melhora"
-        elif hi < -m:
-            dec = "piora"
-        elif lo > -m and hi < m:
-            dec = "equivalente"
-        elif lo > -m:
-            dec = "nao_inferior"
-        else:
-            dec = "inconclusivo"
+        dec = paired_decision(lo, hi, m)
         row = {"kpi": name, "display": ev.kpi.display, "tipo": ev.kpi.type, "metrica": ev.primary_name,
                "n": ev.n_items, "margem": m,
                "atual": t.at[PER_KPI, "primary"], "atual_ci_low": t.at[PER_KPI, "ci_low"],

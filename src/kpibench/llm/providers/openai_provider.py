@@ -45,6 +45,7 @@ class OpenAIChatClient(LLMClient):
         kwargs.update(params)
         if self.spec.json_mode:
             kwargs["response_format"] = {"type": "json_object"}
+        kwargs.update(req.params)   # ex.: response_format json_schema estrito (CDM), extra_body guided_json
 
         o = self._openai
         t0 = time.perf_counter()

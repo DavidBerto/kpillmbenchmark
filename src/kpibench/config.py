@@ -20,7 +20,8 @@ class Pricing(BaseModel):
 
 class ModelSpec(BaseModel):
     id: str
-    provider: Literal["nexus", "azure_openai", "openai", "anthropic", "openai_compatible", "mock"]
+    provider: Literal["nexus", "azure_openai", "openai", "anthropic", "openai_compatible", "typesafe",
+                      "scaledown", "mock"]
     model: str
     tier: str = ""
     pricing: Pricing

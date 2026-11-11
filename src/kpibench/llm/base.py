@@ -31,6 +31,9 @@ class LLMRequest:
     user: str
     # metadados NÃO enviados ao modelo; usados para cache-key e pelo provider mock
     metadata: dict[str, Any] = field(default_factory=dict)
+    # parâmetros extras da API por requisição (ex.: response_format com JSON Schema do CDM);
+    # entram na chave de cache e sobrescrevem os parâmetros do modelo
+    params: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass
@@ -41,6 +44,7 @@ class LLMResponse:
     model: str
     finish_reason: str | None = None
     simulated: bool = False
+    reported_cost_usd: float | None = None   # custo informado pela própria API (ex.: usage.cost da ScaleDown)
 
     def to_dict(self) -> dict:
         d = asdict(self)

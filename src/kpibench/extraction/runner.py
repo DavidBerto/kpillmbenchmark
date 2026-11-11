@@ -45,13 +45,14 @@ class LLMExecutor:
                 self._clients[model_id] = build_client(self.cfg.model(model_id), self.cfg, self.dataset)
             return self._clients[model_id]
 
-    def call(self, model_id: str, prompt: RenderedPrompt, metadata: dict) -> CallResult:
+    def call(self, model_id: str, prompt: RenderedPrompt, metadata: dict, params: dict | None = None) -> CallResult:
         cli = self.client(model_id)
-        key = cache_key(model_id, cli.spec.model, cli.generation_params(), prompt.system, prompt.user)
+        gen = {**cli.generation_params(), **(params or {})}
+        key = cache_key(model_id, cli.spec.model, gen, prompt.system, prompt.user)
         hit = self.cache.get(key)
         if hit is not None:
             return CallResult(hit, None, cached=True)
-        req = LLMRequest(system=prompt.system, user=prompt.user, metadata=metadata)
+        req = LLMRequest(system=prompt.system, user=prompt.user, metadata=metadata, params=dict(params or {}))
         last_err = None
         for attempt in range(self.cfg.run.max_retries + 1):
             try:

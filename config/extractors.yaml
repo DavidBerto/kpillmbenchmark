@@ -1,0 +1,105 @@
+# =============================================================================
+# Backends de extração de KPIs (produção e comparação) — kpibench.extractors
+#
+#   llm_per_kpi      sistema atual: 1 chamada de LLM por KPI sobre o resumo
+#   llm_single_call  1 chamada de LLM por ligação, todos os KPIs num JSON pedido no prompt
+#   llm_json_schema  LLM com structured outputs: 1 chamada por ligação com a geração RESTRITA a um
+#                    JSON Schema estrito gerado dos KPIs (decodificação restrita no servidor do LLM)
+#   cdm              ScaleDown Constrained Decoding Models (CDMs): Decisions API (choice/score) para os
+#                    KPIs categóricos e ordinais numa requisição + Summarize para cada KPI de texto livre
+#   jev              TypeSafe Jev (System One): modelo de decisão tipada; KPIs categóricos viram "choice"
+#                    e ordinais viram "score". NÃO gera texto: KPIs de texto livre ficam fora
+#   hybrid           primário de decisão (Jev ou CDM) nos KPIs estruturados + secundário (LLM) para os KPIs
+#                    de texto e para os KPIs em que o primário respondeu com confiança abaixo do limiar
+#
+# API keys ficam no .env (nunca neste arquivo). Uso em produção:
+#   python -m kpibench extract --backend cdm --input ligacoes.csv --output kpis.jsonl
+# =============================================================================
+
+extractors:
+
+  llm_por_kpi:
+    type: llm_per_kpi
+    model: gpt-6-luna              # id de config/models.yaml (via Nexus)
+    input: resumo                  # o sistema atual lê o resumo
+    parallel_kpis: true            # em produção as N chamadas saem em paralelo (latência = a mais lenta)
+
+  llm_consolidado:
+    type: llm_single_call
+    model: gpt-6-luna
+    max_tokens: 4000
+    justificativas: true
+    max_palavras: 25
+
+  llm_estruturado:
+    type: llm_json_schema
+    provider: nexus                # modelo de models.yaml via Nexus com response_format json_schema strict
+    model: gpt-6-luna
+    schema_mode: json_schema       # json_schema (OpenAI/Azure/Nexus) | guided_json (vLLM/SGLang, extra_body)
+    max_tokens: 4000
+    justificativas: true
+    max_palavras: 25
+    # Endpoint próprio (OpenAI-compatível) em vez do Nexus:
+    #   provider: openai_compatible · base_url_env · api_key_env · model_env · pricing: {...}
+
+  cdm:
+    type: cdm                      # ScaleDown CDM — docs.scaledown.ai
+    base_url: https://api.scaledown.xyz        # api.scaledown.ai NÃO é host de API
+    path: /v1/scaledown                        # Decisions API (choice/score), header x-api-key
+    api_key_env: SCALEDOWN_API_KEY
+    model: classify-1                          # fixado (alias "classify" = mais recente)
+    timeout_s: 30
+    parallel_requests: true                    # Decisions e Summarize saem em paralelo (latência = a mais lenta)
+    summarize:                                 # KPIs de texto livre: Summarize (abstrativo, guiado por instrução)
+      enabled: true
+      model: summarize-1                       # /v1/chat/completions, OpenAI-compatível
+      max_tokens: 150                          # teto da API: 1000
+      max_palavras: 40
+    # ESTIMATIVA: US$ 0,05/1M tokens de entrada e saída gratuita (relatado em teste independente; a ScaleDown
+    # não publica tabela e devolve o custo real em usage.cost na Decisions API, usado no custo medido).
+    # Contas novas têm 50M tokens grátis. Cada pergunta da Decisions API é cobrada como uma chamada.
+    pricing: {input: 0.05, cached_input: 0.05, output: 0.0}
+    pricing_is_estimate: true
+    pricing_source: "ESTIMATIVA — US$ 0,05/1M entrada (teste independente; usage.cost da API prevalece no medido)"
+    score_levels: &score_levels
+      csat:
+        - "1: cliente irritado ou frustrado, demanda não atendida, ameaça cancelar ou reclamar em órgão"
+        - "2: insatisfeito; demanda não atendida ou atendida com muito atrito"
+        - "3: neutro; demanda parcialmente atendida ou sem sinais claros de emoção"
+        - "4: satisfeito; demanda atendida com algum atrito ou espera"
+        - "5: muito satisfeito; demanda atendida e cliente agradece ou elogia"
+      qualidade_resumo:
+        - "1: péssimo; alucina desfecho, valor, data ou protocolo, ou omite quase tudo"
+        - "2: ruim; alucinação relevante ou omissões graves"
+        - "3: regular; fiel, mas omite o desfecho ou elementos essenciais"
+        - "4: bom; fiel e cobre quase todos os elementos essenciais"
+        - "5: excelente; fiel, completo, relevante e bem escrito"
+
+  jev:
+    type: jev
+    base_url: https://api.typesafe.ai     # via OpenRouter: https://openrouter.ai/api
+    path: /v1/systemone                    # via OpenRouter: /alpha/decisions
+    api_key_env: TYPESAFE_API_KEY          # via OpenRouter: OPENROUTER_API_KEY
+    model: jev-1.13.0                      # versão fixada (aliases: jev-latest; OpenRouter: typesafe/jev-1.14)
+    long_context: auto                     # header de contexto longo só quando o texto passa de ~32 KB
+    timeout_s: 30
+    # Só a entrada é cobrada (saída gratuita). US$ 0,042/1M tokens de entrada segundo a documentação
+    # comunitária do Jev — confirme em docs.typesafe.ai/models antes de orçar.
+    pricing: {input: 0.042, cached_input: 0.042, output: 0.0}
+    pricing_is_estimate: true
+    pricing_source: "ESTIMATIVA — US$ 0,042/1M entrada (referência comunitária), saída gratuita"
+    score_levels: *score_levels
+
+  cdm_hibrido:
+    type: hybrid
+    primary: cdm                   # Decisions da ScaleDown nos KPIs categóricos e ordinais
+    primary_types: [categorical, ordinal]
+    secondary: llm_consolidado     # KPIs de texto livre + reextração dos KPIs de baixa confiança
+    confidence_threshold: 0.30
+
+  jev_hibrido:
+    type: hybrid
+    primary: jev                   # KPIs categóricos e ordinais
+    primary_types: [categorical, ordinal]
+    secondary: llm_consolidado     # KPIs de texto livre (o Jev não gera texto) + baixa confiança
+    confidence_threshold: 0.30

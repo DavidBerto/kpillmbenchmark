@@ -66,6 +66,12 @@ Em `notebooks/`:
   - divergências entre os fluxos.
 
   Fonte do notebook: `scripts/build_notebook_04.py`. A lógica está em `kpibench/single_call.py` e os gráficos em `kpibench/reporting/single_call_charts.py`. Detalhes na seção "Extração consolidada".
+- `05_comparacao_llm_cdm_jev.ipynb` — **qual compensa mais em produção**: o sistema atual de LLM
+  (1 chamada por KPI) × LLM consolidado × LLM com structured outputs × **CDM da ScaleDown** (Constrained
+  Decoding Models) × **Jev da TypeSafe** × híbridos CDM + LLM e Jev + LLM. Mede latência, custo (medido,
+  projetado e cálculo por componente), qualidade nos KPIs comuns, fronteira de custo-efetividade,
+  calibração da confiança do CDM e do Jev e a recomendação pela regra de decisão. Fonte do notebook:
+  `scripts/build_notebook_05.py`. Detalhes na seção "Backends de produção".
 
   Sem rótulos auditados na base, a referência padrão é um **modelo forte via Nexus**
   (`REFERENCIA = "claude-opus-5-5"`): as métricas medem concordância com ele, não acerto. Com rótulos
@@ -248,17 +254,50 @@ atual pelo consolidado.
   Gráficos: `quality_cost_dashboard` (agregado com IC, por KPI e custo por ponto de qualidade) e `cost_calculation` (custo empilhado por componente). No fluxo novo, o custo por KPI é o **rateio igual** da chamada única.
 - **Simulação**: o provider mock atende a tarefa `kpi_all`. `MODO_SIMULADO = True` no notebook 04 valida o fluxo sem Azure nem Nexus, mas os números não servem para decisão.
 
+### Backends de produção: LLM × CDM × Jev (`kpibench/extractors.py`)
+
+Todo backend implementa `Extractor.extract(ligação) -> Extraction`: valores por KPI validados no domínio
+(com confiança, quando o backend informa), requisições com tokens, custo e latência, e `to_json()`. Eles
+são configurados em `config/extractors.yaml`, e as API keys ficam no `.env`.
+
+| Backend (`type`) | Como funciona | Req/ligação | Cobertura |
+|---|---|---|---|
+| `llm_per_kpi` | sistema atual: `prompts/kpis/<kpi>.md` sobre o resumo; `parallel_kpis` define se a latência é a máxima ou a soma das chamadas | 1 por KPI | todos |
+| `llm_single_call` | prompt consolidado (seção anterior) | 1 | todos |
+| `llm_json_schema` (`llm_estruturado`) | LLM com **structured outputs**: prompt consolidado + **JSON Schema estrito** gerado dos KPIs (`kpi_json_schema`: enum nos categóricos, inteiros na escala nos ordinais, `additionalProperties: false`). `schema_mode: json_schema` envia `response_format` strict (OpenAI/Azure/Nexus); `guided_json` envia `extra_body` (vLLM/SGLang). Padrão: gpt-6-luna via Nexus | 1 | todos |
+| `cdm` | **ScaleDown CDM** (provedor dos Constrained Decoding Models). **Decisions API**: `POST https://api.scaledown.xyz/v1/scaledown`, header `x-api-key: $SCALEDOWN_API_KEY`, modelo `classify-1`; `state.text` = transcrição; categóricos viram `choice`, ordinais viram `score`, com a rubrica em `instructions`; devolve confiança e `usage.cost`. **Summarize** (`/v1/chat/completions`, modelo `summarize-1`, OpenAI-compatível): um KPI de texto livre por chamada, com a rubrica como instrução. As requisições saem em paralelo (latência = a mais lenta) | 1 + 1 por KPI de texto | todos |
+| `jev` | **TypeSafe Jev**, mesmo contrato de perguntas tipadas: `POST /v1/systemone`, `Authorization: Bearer $TYPESAFE_API_KEY`; `state.transcricao`; níveis em `score_levels`; header de contexto longo acima de ~32 KB. Não gera texto | 1 | só categóricos e ordinais |
+| `hybrid` (`cdm_hibrido`, `jev_hibrido`) | `primary` (CDM ou Jev) nos `primary_types` (categóricos e ordinais) + `secondary` (`llm_consolidado`) nos KPIs de texto e nos KPIs com confiança < `confidence_threshold` | 1–2 | todos |
+
+Os clientes de decisão ficam em `llm/providers/typesafe_provider.py` (`DecisionAPIClient`, com as subclasses `TypeSafeJevClient` e `ScaleDownDecisionsClient`). Os extratores ficam em `DecisionModelExtractor`, com as subclasses `JevExtractor` e `ScaleDownCDMExtractor`. Quando a API informa o custo (`usage.cost` da ScaleDown), o custo medido usa esse valor (`LLMResponse.reported_cost_usd`); caso contrário, usa tokens × preço.
+
+- **Produção:** `python -m kpibench extract --backend <nome> --input ligacoes.csv --output kpis.jsonl [--kpis a,b] [--simulated]` grava um JSON por ligação e imprime custo e latência do lote.
+- **Comparação** (`kpibench/backend_comparison.py`, notebook 05):
+  - roda todos os backends nas mesmas ligações contra a mesma referência;
+  - qualidade nos **KPIs comuns** (os que o Jev cobre), com IC bootstrap pareado e decisão contra a base;
+  - custo medido e **projetado por requisição** (`projected_cost_per_call`);
+  - latência p50/p95/p99 e % dentro do SLA;
+  - fronteira de custo-efetividade (`frontier_icer`) e cálculo do custo por componente;
+  - calibração confiança × acerto, para escolher o limiar do híbrido.
+- **Regra de recomendação** (`recommend`): o backend precisa cobrir todos os KPIs e não ser inferior à base (margem em pp nos KPIs comuns). Entre os elegíveis vence o menor custo projetado, com a latência como desempate.
+- **Infra:** `LLMRequest.params` e `LLMExecutor.call(..., params=)` enviam parâmetros por requisição (o schema dos structured outputs muda conforme os KPIs pedidos) e entram na chave de cache. Os providers OpenAI e Nexus repassam esses parâmetros. O mock simula as tarefas `kpi_all`, `jev`/`decisions` e `summarize`, com os perfis `cdm`, `cdm@summarize`, `jev` e `gpt-6-luna@llm_estruturado` em `demo.yaml`.
+- **Preços** (marcados como **estimados** em `extractors.yaml`; confirme no contrato antes de decidir):
+  - **ScaleDown:** US$ 0,05 por 1M tokens de entrada e saída gratuita, segundo teste independente. A ScaleDown não publica tabela; o `usage.cost` da Decisions API prevalece no custo medido. Cada pergunta é uma chamada cobrada, e contas novas têm 50M tokens grátis.
+  - **Jev:** US$ 0,042 por 1M tokens de entrada e saída gratuita, segundo referência comunitária.
+
 ## Estrutura
 
 ```
 config/        models.yaml (registro + preços) · kpis.yaml (KPIs, taxonomias, margens)
                benchmark.yaml (rodada real) · demo.yaml (simulação offline)
+               extractors.yaml (backends de produção: LLM, CDM, Jev, híbrido)
 prompts/       _base_system.md · kpis/<kpi>.md (1 por KPI) · consolidado/todos_kpis.md (1 chamada por ligação) · judges/
 data/          SCHEMA.md · input/exemplo_kpis_validacao.csv
 src/kpibench/  config · data · prompts · llm (providers, cache, pricing) · extraction
                metrics (classificação, texto, stats, summary/) · analysis · reporting · pipeline · cli · live
-scripts/       generate_sample_data.py · build_notebook_03.py / build_notebook_04.py (fontes dos notebooks)
-tests/         métricas, parser, preços, prompts, custo-efetividade, extração consolidada, notebook 03 e smoke test
+               single_call (extração consolidada) · extractors (backends) · backend_comparison
+scripts/       generate_sample_data.py · build_notebook_03/04/05.py (fontes dos notebooks)
+tests/         métricas, parser, preços, prompts, custo-efetividade, extração consolidada, backends (CDM/Jev/híbrido), notebook 03 e smoke test
 ```
 
 ## Guia para alterações futuras
@@ -280,6 +319,7 @@ Mapa do código, por etapa do pipeline (`pipeline.run` → `pipeline.evaluate`):
 | Relatório | `reporting/report.py`, `reporting/figures.py` | `build_report` (seções 1–7) | `report.md` + PNGs |
 | Notebook 03 | `live.py`, `reporting/aa_charts.py`, `scripts/build_notebook_03.py` | `run_live`, `load_results`, `model_scoreboard`, `executive_summary` | painéis executivos |
 | Extração consolidada (notebook 04) | `single_call.py`, `reporting/single_call_charts.py`, `prompts/consolidado/todos_kpis.md`, `scripts/build_notebook_04.py` | `run_study`, `run_single_call`, `render_single_call`, `estimate_study_cost`, `executive_summary` | `saida_consolidada.jsonl`, `comparacao_*.csv` |
+| Backends de produção (notebook 05) | `extractors.py`, `backend_comparison.py`, `llm/providers/typesafe_provider.py`, `reporting/backend_charts.py`, `config/extractors.yaml`, `scripts/build_notebook_05.py` | `build_extractor`, `Extractor.extract`, `run_extractor`, `kpi_json_schema`, `run_backend_comparison`, `final_report`, `cli extract` | `saida_<backend>.jsonl`, `resumo_backends.csv`, `relatorio.md` |
 
 Convenções:
 
@@ -295,7 +335,9 @@ Convenções:
 - **`producao_atual`** (`BASELINE_NAME`) aparece nas tabelas de métrica, mas fica fora de custo, roteamento e custo-efetividade, porque não tem custo.
 - **Respostas inválidas** contam como erro (`invalid_policy: pessimistic`). O custo efetivo também as penaliza.
 - **Reavaliar sem gastar**: `python -m kpibench evaluate --run-dir outputs/<rodada>` refaz avaliação, custo, roteamento, ICER e relatório a partir dos CSVs salvos. Use isso para testar mudanças de análise.
-- **Notebooks 03 e 04**: edite `scripts/build_notebook_0X.py` e rode `python scripts/build_notebook_0X.py`. Não edite o `.ipynb` à mão. O builder do 04 não depende de `nbformat`. Regenerar apaga as saídas executadas do notebook.
+- **Notebooks 03, 04 e 05**: edite `scripts/build_notebook_0X.py` e rode `python scripts/build_notebook_0X.py`. Não edite o `.ipynb` à mão. Os builders do 04 e do 05 não dependem de `nbformat`. Regenerar apaga as saídas executadas do notebook.
+- **Um backend novo** (outro CDM, outro modelo de decisão): basta uma entrada em `config/extractors.yaml` se o tipo já existir. Para um tipo novo, crie uma subclasse de `Extractor` (`extract` + `estimate`, e `supports` se a cobertura for parcial) e registre-a em `build_extractor`. O comparativo e a CLI passam a aceitá-lo sem outras mudanças.
+- **Ordinais no Jev** precisam de `score_levels` com um nível por ponto da escala (validado na construção).
 - **Um KPI novo entra automaticamente no prompt consolidado**: a rubrica vem do template por KPI. O template precisa manter a linha "Formato de saída" para que o bloco de formato seja cortado.
 - **Idioma**: código e identificadores em inglês; colunas de saída, relatórios e comentários de domínio em português.
 
@@ -326,3 +368,97 @@ rotuladas, estratificadas por motivo e desfecho.
 - KPIs extraídos do resumo herdam os erros do resumo.
 - Consistência numérica não reconhece números por extenso na transcrição (saída típica de ASR).
 - O demo é **simulado**: serve para validar o pipeline, não para escolher modelo.
+
+## Referências
+
+### Referências do estudo
+
+Fonte: `docs/Benchmark de LLMs por KPI — Adv Insights · Brasil Cap.html`, slide "Referências — Base científica do estudo".
+
+**Concordância e classificação** (QWK, kappa, F1, MCC, AUC — `metrics/classification.py`, `metrics/summary/meta_eval.py`)
+- Cohen, J. (1960). A coefficient of agreement for nominal scales. *Educational and Psychological Measurement*, 20(1), 37–46.
+- Cohen, J. (1968). Weighted kappa: nominal scale agreement with provision for scaled disagreement or partial credit. *Psychological Bulletin*, 70(4), 213–220.
+- Fleiss, J. L., & Cohen, J. (1973). The equivalence of weighted kappa and the intraclass correlation coefficient as measures of reliability. *Educational and Psychological Measurement*, 33(3), 613–619.
+- Krippendorff, K. (2004). *Content Analysis: An Introduction to Its Methodology* (2ª ed.). Sage. (alfa de Krippendorff)
+- Spearman, C. (1904). The proof and measurement of association between two things. *American Journal of Psychology*, 15(1), 72–101.
+- Kendall, M. G. (1938). A new measure of rank correlation. *Biometrika*, 30(1/2), 81–93.
+- Matthews, B. W. (1975). Comparison of the predicted and observed secondary structure of T4 phage lysozyme. *Biochimica et Biophysica Acta*, 405(2), 442–451. (MCC)
+- Sokolova, M., & Lapalme, G. (2009). A systematic analysis of performance measures for classification tasks. *Information Processing & Management*, 45(4), 427–437.
+- Chicco, D., & Jurman, G. (2020). The advantages of the Matthews correlation coefficient (MCC) over F1 score and accuracy in binary classification evaluation. *BMC Genomics*, 21, 6.
+- Hanley, J. A., & McNeil, B. J. (1982). The meaning and use of the area under a receiver operating characteristic (ROC) curve. *Radiology*, 143(1), 29–36.
+
+**Estatística e decisão** (bootstrap pareado, não-inferioridade — `metrics/stats.py`, `analysis/routing.py`)
+- Efron, B., & Tibshirani, R. J. (1993). *An Introduction to the Bootstrap*. Chapman & Hall/CRC.
+- Koehn, P. (2004). Statistical significance tests for machine translation evaluation. *EMNLP 2004*. (bootstrap pareado)
+- Piaggio, G., Elbourne, D. R., Pocock, S. J., Evans, S. J. W., & Altman, D. G. (2012). Reporting of noninferiority and equivalence randomized trials: extension of the CONSORT 2010 statement. *JAMA*, 308(24), 2594–2604.
+- Wellek, S. (2010). *Testing Statistical Hypotheses of Equivalence and Noninferiority* (2ª ed.). CRC Press.
+
+**Sumarização e similaridade** (`metrics/text.py`, `metrics/summary/`)
+- Papineni, K., Roukos, S., Ward, T., & Zhu, W.-J. (2002). BLEU: a method for automatic evaluation of machine translation. *ACL 2002*.
+- Lin, C.-Y. (2004). ROUGE: a package for automatic evaluation of summaries. *Text Summarization Branches Out* (ACL Workshop).
+- Popović, M. (2015). chrF: character n-gram F-score for automatic MT evaluation. *WMT 2015*; Popović, M. (2017). chrF++: words helping character n-grams. *WMT 2017*.
+- Zhang, T., Kishore, V., Wu, F., Weinberger, K. Q., & Artzi, Y. (2020). BERTScore: evaluating text generation with BERT. *ICLR 2020*.
+- Conneau, A., et al. (2020). Unsupervised cross-lingual representation learning at scale. *ACL 2020*. (XLM-R)
+- Wang, L., et al. (2024). Multilingual E5 text embeddings: a technical report. *arXiv:2402.05672*.
+- He, P., Gao, J., & Chen, W. (2023). DeBERTaV3: improving DeBERTa using ELECTRA-style pre-training with gradient-disentangled embedding sharing. *ICLR 2023*.
+- Fabbri, A. R., Kryściński, W., McCann, B., Xiong, C., Socher, R., & Radev, D. (2021). SummEval: re-evaluating summarization evaluation. *TACL*, 9, 391–409.
+- Wang, A., Cho, K., & Lewis, M. (2020). Asking and answering questions to evaluate the factual consistency of summaries. *ACL 2020*. (QAGS)
+- Laban, P., Schnabel, T., Bennett, P. N., & Hearst, M. A. (2022). SummaC: re-visiting NLI-based models for inconsistency detection in summarization. *TACL*, 10, 163–177.
+- Min, S., et al. (2023). FActScore: fine-grained atomic evaluation of factual precision in long form text generation. *EMNLP 2023*.
+
+**LLM-juiz, robustez e calibração** (G-Eval, juiz de justificativas, confiança × acerto — `prompts/judges/`, `backend_comparison.calibration_table`)
+- Liu, Y., et al. (2023). G-Eval: NLG evaluation using GPT-4 with better human alignment. *EMNLP 2023*.
+- Zheng, L., et al. (2023). Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. *NeurIPS 2023*.
+- Panickssery, A., Bowman, S. R., & Feng, S. (2024). LLM evaluators recognize and favor their own generations. *NeurIPS 2024*. (autopreferência)
+- Sclar, M., Choi, Y., Tsvetkov, Y., & Suhr, A. (2024). Quantifying language models' sensitivity to spurious features in prompt design. *ICLR 2024*.
+- Brier, G. W. (1950). Verification of forecasts expressed in terms of probability. *Monthly Weather Review*, 78(1), 1–3.
+- Epstein, E. S. (1969). A scoring system for probability forecasts of ranked categories. *Journal of Applied Meteorology*, 8(6), 985–987. (RPS)
+- Guo, C., Pleiss, G., Sun, Y., & Weinberger, K. Q. (2017). On calibration of modern neural networks. *ICML 2017*.
+- Kahneman, D. (2011). *Thinking, Fast and Slow* (ed. bras. *Rápido e Devagar*). Farrar, Straus and Giroux.
+
+### Metodologia adicional usada no código
+
+**Custo-efetividade** (ICER, dominância forte e estendida, NMB, CEAC — `analysis/cost_effectiveness.py`, seção "Custo-efetividade")
+- Weinstein, M. C., & Stason, W. B. (1977). Foundations of cost-effectiveness analysis for health and medical practices. *New England Journal of Medicine*, 296(13), 716–721.
+- Cantor, S. B. (1994). Cost-effectiveness analysis, extended dominance, and ethics: a quantitative assessment. *Medical Decision Making*, 14(3), 259–265.
+- Stinnett, A. A., & Mullahy, J. (1998). Net health benefits: a new framework for the analysis of uncertainty in cost-effectiveness analysis. *Medical Decision Making*, 18(2 Suppl), S68–S80.
+- Fenwick, E., Claxton, K., & Sculpher, M. (2001). Representing uncertainty: the role of cost-effectiveness acceptability curves. *Health Economics*, 10(8), 779–787.
+- Drummond, M. F., Sculpher, M. J., Claxton, K., Stoddart, G. L., & Torrance, G. W. (2015). *Methods for the Economic Evaluation of Health Care Programmes* (4ª ed.). Oxford University Press.
+
+**Saída estruturada e decodificação restrita** (`llm_json_schema`, CDM — `extractors.py`)
+- Willard, B. T., & Louf, R. (2023). Efficient guided generation for large language models. *arXiv:2307.09702*. (Outlines)
+- Geng, S., Josifoski, M., Peyrard, M., & West, R. (2023). Grammar-constrained decoding for structured NLP tasks without finetuning. *EMNLP 2023*.
+- Geng, S., et al. (2025). JSONSchemaBench: a rigorous benchmark of structured outputs for language models. *arXiv:2501.10868*. https://arxiv.org/pdf/2501.10868
+- Tam, Z. R., et al. (2024). Let me speak freely? A study on the impact of format restrictions on performance of large language models. *arXiv:2408.02442*. https://arxiv.org/pdf/2408.02442
+- OpenAI (2024). Introducing Structured Outputs in the API. https://openai.com/index/introducing-structured-outputs-in-the-api/
+- DZone. Constrained Decoding Models Explained. https://dzone.com/articles/constrained-decoding-models-explained
+- ibl.ai. Constrained Decoding Models Are Not a New Architecture. https://ibl.ai/blog/constrained-decoding-models-not-a-new-architecture
+
+### Provedores e APIs
+
+**ScaleDown — CDM** (`cdm`, `cdm_hibrido`)
+- Introdução e produtos (Compress, Summarize, Extract, Classify, CDMs): https://docs.scaledown.ai/introduction
+- Decisions API (`POST /v1/scaledown`, `choice`/`noul`/`score`, `usage.cost`): https://docs.scaledown.ai/api-reference/decisions.md
+- Summarize (`summarize-1`, OpenAI-compatível): https://docs.scaledown.ai/api-reference/summarize.md
+- Extract (`extract`, JSON Schema com chaves de classificação): https://docs.scaledown.ai/api-reference/extract.md e https://docs.scaledown.ai/api-reference/extract-overview
+- Classify: https://docs.scaledown.ai/api-reference/classify.md · Cookbook de voz e ligações: https://docs.scaledown.ai/cookbooks/voice.md
+- Índice da documentação: https://docs.scaledown.ai/llms.txt
+- Teste independente (latência e preço de US$ 0,05 por 1M de entrada): https://dev.to/ishank-dev/scaledown-cdms-fast-cheap-classify-extract-and-summarize-models-tested-1adp
+- Integração com LangChain: https://www.langchain.com/blog/building-long-running-agents-with-scaledown-and-deep-agents
+
+**TypeSafe — Jev** (`jev`, `jev_hibrido`)
+- API System One: https://docs.typesafe.ai/api
+- Jev no OpenRouter (Decisions/Extractions, IDs de modelo): https://openrouter.ai/docs/guides/community/jev
+- Referência comunitária (primitivas, limites, preço, padrões): https://gist.github.com/pjburnhill/adf8d28efcad9df037bfdece178ef965
+- Ficha do modelo: https://www.llmreference.com/model/jev
+
+**LLMs** (`config/models.yaml`): gateway Nexus (endpoint interno OpenAI-compatível); OpenAI API e Structured Outputs; Azure OpenAI pricing (https://azure.microsoft.com/pricing/details/azure-openai); Anthropic API. As fontes e datas de preço de cada modelo estão nos campos `pricing_source`/`verified_on`.
+
+### Ferramentas
+
+- **Linguagem e dados:** Python ≥ 3.10 · pandas · NumPy · SciPy · scikit-learn · PyYAML · pydantic · Jinja2 · tabulate · openpyxl
+- **Gráficos e notebooks:** matplotlib · Jupyter (formato nbformat 4; os builders dos notebooks 04 e 05 dispensam o pacote) · plotly (opcional, `[notebooks]`)
+- **LLMs e APIs:** SDK `openai` (Nexus, OpenAI, Azure, endpoints compatíveis, Summarize da ScaleDown) · SDK `anthropic` · `tiktoken` (contagem de tokens, `o200k_base`) · `python-dotenv` · `urllib` da biblioteca padrão (Decisions API da ScaleDown e do Jev)
+- **Métricas neurais (opcional, `[neural]`):** PyTorch · Hugging Face `transformers` · `bert-score` · `sentence-transformers`. Modelos: `xlm-roberta-large` (BERTScore), `intfloat/multilingual-e5-base` (embeddings), `MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7` (SummaC-ZS/NLI)
+- **Azure (opcional, `[azure]`):** `azure-storage-blob` · `azure-identity` (`DefaultAzureCredential`)
+- **Testes:** pytest
