@@ -33,6 +33,9 @@ class ModelSpec(BaseModel):
     api_key_env: str | None = None
     pricing_source: str = ""
     verified_on: str = ""
+    # True quando `pricing` é ESTIMATIVA (sem tabela oficial conferida). Relatórios e
+    # gráficos marcam o custo desses modelos como estimado.
+    pricing_is_estimate: bool = False
 
 
 # --------------------------------------------------------------------------- KPIs

@@ -15,36 +15,71 @@ def cfg():
     return load_config(PROJECT_ROOT / "config" / "benchmark.yaml")
 
 
-def test_azure_reasoning_model_request(cfg, monkeypatch):
-    from kpibench.llm.providers.openai_provider import OpenAIChatClient
-
-    monkeypatch.setenv("AZURE_OPENAI_ENDPOINT", "https://x.openai.azure.com/")
-    monkeypatch.setenv("AZURE_OPENAI_API_KEY", "k")
-    cli = OpenAIChatClient(cfg.model("gpt-5.4-mini"))
-    seen = {}
-
+def _fake_openai_create(seen: dict, content: str = '{"csat": 4}'):
     def fake_create(**kw):
         seen.update(kw)
         usage = SimpleNamespace(prompt_tokens=500, completion_tokens=300,
                                 prompt_tokens_details=SimpleNamespace(cached_tokens=100),
                                 completion_tokens_details=SimpleNamespace(reasoning_tokens=200))
-        msg = SimpleNamespace(content='{"csat": 4}')
+        msg = SimpleNamespace(content=content)
         return SimpleNamespace(usage=usage, choices=[SimpleNamespace(message=msg, finish_reason="stop")])
+    return fake_create
 
-    monkeypatch.setattr(cli.client.chat.completions, "create", fake_create)
+
+def test_all_models_route_through_nexus(cfg):
+    assert {s.provider for s in cfg.model_registry.values()} == {"nexus"}
+
+
+def test_nexus_reasoning_model_request(cfg, monkeypatch):
+    from kpibench.llm.providers.nexus_provider import NexusChatClient
+
+    monkeypatch.setenv("base_url", "https://nexus.exemplo/v1")
+    monkeypatch.setenv("bearer_token", "t")
+    cli = NexusChatClient(cfg.model("gpt-6-luna"))
+    seen = {}
+    monkeypatch.setattr(cli.client.chat.completions, "create", _fake_openai_create(seen))
     r = cli.complete(LLMRequest(system="S", user="U"))
-    assert "temperature" not in seen                       # reasoning model
-    assert seen["max_completion_tokens"] == 1200
-    assert seen["reasoning_effort"] == "low"
+    assert seen["model"] == "gpt-6-luna"
+    assert "temperature" not in seen                       # modelo de raciocínio
+    assert seen["max_tokens"] == 1200 and seen["reasoning_effort"] == "low"
     assert seen["response_format"] == {"type": "json_object"}
     assert (r.usage.input_tokens, r.usage.cached_tokens, r.usage.output_tokens) == (400, 100, 300)
+
+
+def test_nexus_claude_request(cfg, monkeypatch):
+    from kpibench.llm.providers.nexus_provider import NexusChatClient
+
+    monkeypatch.setenv("base_url", "https://nexus.exemplo/v1")
+    monkeypatch.setenv("bearer_token", "t")
+    cli = NexusChatClient(cfg.model("claude-haiku-4-5"))
+    seen = {}
+    monkeypatch.setattr(cli.client.chat.completions, "create", _fake_openai_create(seen))
+    cli.complete(LLMRequest(system="S", user="U"))
+    assert seen["temperature"] == 0.0 and seen["max_tokens"] == 800
+    assert "response_format" not in seen and "reasoning_effort" not in seen
+
+
+def test_nexus_claude_5_5_family_drops_temperature(cfg, monkeypatch):
+    """claude-{haiku,sonnet,opus}-5-5: o gateway Nexus rejeita temperature != 1
+    (BadRequestError real, visto em outputs/teste_ligacoes_20261030_083719), por
+    isso supports_temperature: false em config/models.yaml para os três."""
+    from kpibench.llm.providers.nexus_provider import NexusChatClient
+
+    monkeypatch.setenv("base_url", "https://nexus.exemplo/v1")
+    monkeypatch.setenv("bearer_token", "t")
+    for model_id in ("claude-haiku-5-5", "claude-sonnet-5-5", "claude-opus-5-5"):
+        cli = NexusChatClient(cfg.model(model_id))
+        seen = {}
+        monkeypatch.setattr(cli.client.chat.completions, "create", _fake_openai_create(seen))
+        cli.complete(LLMRequest(system="S", user="U"))
+        assert "temperature" not in seen, f"{model_id} não deveria enviar temperature"
 
 
 def test_anthropic_request(cfg, monkeypatch):
     from kpibench.llm.providers.anthropic_provider import AnthropicClient
 
     monkeypatch.setenv("ANTHROPIC_API_KEY", "k")
-    cli = AnthropicClient(cfg.model("claude-haiku-5-5"))
+    cli = AnthropicClient(cfg.model("claude-haiku-4-5"))
     seen = {}
 
     def fake_create(**kw):

@@ -161,7 +161,13 @@ def build_report(cfg: BenchmarkConfig, ds: Dataset, evals: dict[str, KPIEvaluati
         erro=("error_rate", "mean"), prefixo_cacheavel=("prefix_cacheable", "any"),
     ).reset_index().sort_values("usd_mes_todos_kpis")
     L.append("Médias por chamada de KPI (um KPI por chamada). `usd_mes_todos_kpis` = 10 chamadas por ligação.\n")
+    agg.insert(2, "preco_estimado", agg["model"].map(
+        lambda m: bool(m in cfg.model_registry and cfg.model_registry[m].pricing_is_estimate)))
     L.append(_md(agg, floatfmt=".4f"))
+    estimated = agg.loc[agg["preco_estimado"], "model"].tolist()
+    if estimated:
+        L.append(f"\n> Preço ESTIMADO (sem tabela oficial conferida, ver `config/models.yaml`): "
+                 f"{', '.join(estimated)}. Os custos desses modelos são aproximados.")
     if not costs["prefix_cacheable"].any():
         L.append("\n> Nenhum system prompt atinge o mínimo cacheável (≈1.024 tokens): prompt caching não reduz custo "
                  "neste desenho. Não vale inflar o prompt só para cachear — o ganho real está na Batch API.")

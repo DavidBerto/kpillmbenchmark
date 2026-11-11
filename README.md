@@ -22,7 +22,11 @@ python -m kpibench evaluate --run-dir outputs/<rodada>   # reavalia sem chamar A
 ```
 
 Todos os modelos em `config/models.yaml` usam o gateway **Nexus** (1 endpoint OpenAI-compatível
-+ 1 token, expondo múltiplos provedores). Configure `base_url` e `bearer_token` no `.env` — o
++ 1 token, expondo múltiplos provedores). Estão registrados os 22 modelos de chat da lista de
+`/models` do gateway (OpenAI, Anthropic, DeepSeek, xAI, Moonshot); `text-embedding-3-small` e
+`gpt-realtime` ficam de fora por não servirem à extração em JSON. Modelos sem tabela oficial de
+preço têm valor **estimado**, comentado no próprio YAML (`# ESTIMATIVA`) e marcado com
+`pricing_is_estimate: true` — relatório e notebook sinalizam esses custos como aproximados. Configure `base_url` e `bearer_token` no `.env` — o
 `kpibench` carrega o `.env` automaticamente (via `python-dotenv`). As demais variáveis
 (`AZURE_OPENAI_*`, `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`) só são necessárias
 se você reativar algum modelo com `provider: azure_openai | openai | anthropic | openai_compatible`.
@@ -40,6 +44,22 @@ Em `notebooks/`:
 - `02_analise_resultados_benchmark.ipynb` — carrega os CSVs da rodada mais
   recente em `outputs/` e monta gráficos de performance por KPI/modelo, custo
   × performance (Pareto) e notas do juiz, além de renderizar o `report.md`.
+- `03_teste_ligacoes_nexus.ipynb` — **teste de modelos em ligações reais**. Parâmetros no topo
+  (`START_DATE`, `END_DATE`, `NUM_CALLS`, `CALL_IDS`, `MODELOS`, `REFERENCIA`, `PESOS_KPI`,
+  `SLA_LATENCIA_S`). Carrega as ligações pela conexão padrão do Azure (`DefaultAzureCredential`,
+  via `azure_blob_loader`), estima o custo antes de executar, roda referência e candidatos via
+  Nexus e mostra painéis executivos em matplotlib (sem plotly): resumo executivo, ranking, concordância
+  × custo com quadrante mais atrativo, custo por 1.000 ligações, latência com SLA, confiabilidade,
+  heatmap e IC por KPI, produção atual × recomendado, roteamento por KPI e inspeção lado a lado das
+  ligações mais divergentes. `MODO_SIMULADO = True` testa o fluxo sem Azure/Nexus. Fonte do notebook:
+  `scripts/build_notebook_03.py`; lógica em `kpibench/live.py`, `kpibench/data/azure_calls.py` e
+  `kpibench/reporting/aa_charts.py`.
+
+  Sem rótulos auditados na base, a referência padrão é um **modelo forte via Nexus**
+  (`REFERENCIA = "claude-opus-5-5"`): as métricas medem concordância com ele, não acerto. Com rótulos
+  auditados, use `REFERENCIA = "arquivo:<csv com call_id + gt_*>"`. A produção atual entra como
+  baseline só nos KPIs de domínio comparável (CSAT 0–10 convertido para 1–5; resolvida e FCR
+  Sim/Não; razão do CSAT e solver reasoning via juiz).
 
 ## Desenho
 

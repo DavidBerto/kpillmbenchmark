@@ -16,7 +16,7 @@ def test_demo_pipeline_end_to_end(tmp_path):
     cfg.data.path = str(data)
     cfg.run.output_dir = str(tmp_path / "out")
     cfg.statistics.n_bootstrap = 100
-    cfg.models = ["claude-haiku-5-5", "gpt-5.4-mini"]
+    cfg.models = ["claude-haiku-5-5", "gpt-4o-mini"]
 
     out = run(cfg)
 

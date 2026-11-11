@@ -1,0 +1,96 @@
+{
+  "modules": {
+    "summary": {
+      "prompt": "\nVocê é um assistente projetado para resumir transcrições de chamadas de telemarketing.\nVocê identificará os pontos principais e fornecerá um resumo da chamada.\nOs resumos não devem ter mais de 300 palavras e devem estar em Português. \nAbstenha-se de fornecer outras informações além do resumo com os pontos principais \ne as diretrizes fornecidas acima. \nAs informações devem ser fornecidas no seguinte formato:\n\n<resumo>.\n    "
+    },
+    "metrics": [
+      {
+        "metric": "solved",
+        "reasoning": true,
+        "prompt": "\nVocê está analisando o resumo de uma chamada de telemarketing.\nVocê irá identificar se o problema do cliente relatado no resumo da chamada \na seguir foi resolvido ou não pelo atendente da chamada.\n\nResponda com “Sim” se o problema tiver sido resolvido pelo atendente. \nResponda com “Não” se o problema não tiver sido resolvido pelo atendente.\n\nAlém disso, você irá determinar o principal motivo pelo qual o problema do cliente \nfoi ou não resolvido pelo atendente. Responda brevemente em, no máximo, 50 palavras \napós \"Sim\" ou \"Não\" e um pipe \"|\".\n\nSua resposta deve ser em Português.\n\nCaso você não consiga determinar se o problema foi resolvido ou não, responda com “Indeterminado”.\n\nA seguir, dois exemplos de como deve ser a sua resposta:\n\nExemplos de saída:\n- Sim | O problema foi resolvido, pois o cliente atualizou o aplicativo conforme sugerido pelo atendente.\n- Não | O problema não foi resolvido, pois o cliente ligou para o departamento errado e o atendente transferiu a chamada.\n"
+      },
+      {
+        "metric": "call_reason",
+        "reasoning": false,
+        "prompt": "\nVocê está analisando o resumo de uma chamada de telemarketing.\nVocê irá identificar o motivo pelo qual o cliente entrou em contato com a central de atendimento no resumo a seguir.\n\nSua resposta deve conter, no máximo, 4 palavras e deve estar em Português.\n\nCaso não consiga identificar o motivo da chamada, responda com “Indeterminado”.\n\nA seguir, cinco exemplos de como deve ser a sua resposta:\n\nExemplos de saída:\n- Problemas de acesso;\n- Aplicativo com problema;\n- Cliente não consegue agendamento;\n- Internet não funciona;\n- TV não liga.\n"
+      },
+      {
+        "metric": "persuasion",
+        "reasoning": true,
+        "prompt": "\nVocê está analisando o resumo de uma chamada de telemarketing.\nNo resumo a seguir, você irá identificar se o funcionário tentou persuadir o cliente a:\n- comprar qualquer um dos produtos da empresa\n- não cancelar sua assinatura/produto\n- melhorar sua assinatura/produto atual\n- assinar qualquer um dos produtos da empresa\n\nResponda com “Sim”, se o funcionário fez a tentativa.\nResponda com “Não”, se não houve tentativa.\n\nAlém disso, você deverá apresentar seu raciocínio sobre o motivo da resposta. \nResponda brevemente, em no máximo 50 palavras, após “Sim” ou “Não” e após um “|”.\nVocê avaliará apenas se o funcionário tentou persuadir o cliente; não importa \nse a tentativa foi bem-sucedida ou não. \nA resposta Sim/Não, juntamente com a justificativa, deve estar em Português.\n\nCaso você não consiga determinar se houve tentativa de persuasão ou não, responda com “Indeterminado”.\n\nA seguir, quatro exemplos de como deve ser a sua resposta:\n\nExemplos de saída\n- Sim | O atendente ofereceu a melhoria do plano de internet para o cliente\n- Não | O cliente quis cancelar o plano e o atendente não fez uma contraoferta\n- Sim | O atendente sugeriu que o cliente comprasse o produto da empresa\n- Sim | O atendente convenceu o cliente a assinar o plano de TAGs da empresa\n"
+      },
+      {
+        "metric": "csat",
+        "reasoning": true,
+        "prompt": "\nVocê está analisando o resumo de uma chamada de telemarketing.\nNo resumo a seguir, você irá classificar a satisfação do cliente de 1 a 10, sendo 10 totalmente satisfeito, \n1 muito insatisfeito e 5 neutro.\nAlém disso, você deverá explicar por que escolheu essa nota. Responda brevemente, \nem no máximo 50 palavras, após a nota e um pipe “|”.\n\nCaso você não consiga dar uma nota para a satisfação do cliente, responda com “Indeterminado”.\nSua resposta deve estar em Português.\n\nA seguir, cinco exemplos de como deve ser a sua resposta:\n\nExemplos de saída:\n- 10 | O cliente teve seu pedido atendido e agradeceu o atendente com veemência, demonstrando sua total satisfação.\n- 7 | O cliente teve seu problema resolvido, mas a solução apresentada poderia ter trazido mais vantagens ao cliente, o que não caracteriza uma satisfação total.\n- 1 | O cliente demonstrou claramente que não ficou satisfeito com o atendimento e até ameaçou processar a empresa\n- 3 | O cliente não teve seu problema resolvido, mas, como o atendente tentou de todas as formas resolver, porém sem sucesso, o cliente pode não ter ficado totalmente insatisfeito.\n- 5 | Não houve uma questão/problema a ser tratada na chamada, apenas uma transferência para outro setor, portanto, satisfação neutra.\n"
+      },
+      {
+        "metric": "complaint_prob",
+        "reasoning": true,
+        "prompt": "\nVocê está analisando o resumo de uma chamada de telemarketing.\nVocê deve elaborar um sistema de análise de texto capaz de: identificar se o cliente se encontra \ninsatisfeito e pode, possivelmente, contatar um órgão de defesa do consumidor ou alguma agência regulatória \ndo serviço para o qual entrou em contato. Para isso, você deverá procurar por indicativos \nde insatisfação, frustração ou confusão que possam levar o cliente a considerar a abertura de uma reclamação, como \nquestões não resolvidas, falta de clareza nas informações fornecidas, promessas não cumpridas, \nentre outros.\n\nAtravés destas informações obtidas, você deverá estimar uma probabilidade do cliente abrir uma \nreclamação nos órgãos de defesa do consumidor, agências regulatórias ou até mesmo buscar ajuda jurídica. \nEste valor deve estar entre 0 e 100% e deve ser em incrementos de 5%. Sua resposta final deverá \nconter a probabilidade do cliente abrir uma reclamação e sua justificativa, de, no máximo, 50 palavras, \npara tal probabilidade após um \"|\".\n\nNão traga o resumo ou uma descrição do resumo em sua resposta, limite-se a trazer a probabilidade \njuntamente com a justificativa conforme indicado acima e nos exemplos abaixo.\n\nCaso você não consiga determinar a probabilidade responda com “Indeterminado”.\nSua resposta deve ser em Português.\n\nExemplos de saída:\n- 70% | O cliente aparenta estar irritado e menciona que já enviou os documentos, mas o reembolso ainda não foi recebido, indicando insatisfação e possível motivo para reclamação.\n- 50% | O cliente se mostra um pouco irritado e menciona que está há 1 dia sem internet, indicando insatisfação e possivelmente uma reclamação se o problema não for resolvido.\n- 25% | O cliente se mantém calmo durante a chamada, porém menciona dificuldades em obter informações sobre os protocolos e contatos da empresa, indicando possível insatisfação.\n- 0% | O cliente se mostra calmo e apenas tira algumas dúvidas com o atendente. Não há indícios de insatisfação e não há motivo para reclamação.\n- 90% | O cliente expressa um alto nível de frustração e desespero, ameaçando tomar uma decisão radical se não for atendido. Ele também menciona a recusa da médica em atendê-lo anteriormente e a falta de disponibilidade de outros neurologistas, indicando potencial insatisfação e motivo para reclamação.\n- 90% | A cliente expressa alto nível de insatisfação e frustração com a empresa, uma vez que menciona ter entrado em contato 4 vezes com a empresa e não consegue o reparo do seu dipositivo que está na garantia. Cliente menciona que entrará em contato com o órgão de defesa do consumidor.\n- 30% | A cliente não demonstrou uma grande frustração ou indicativos claros de abertura de reclamação, porém a inconsistência nos dados bancários e a necessidade de correção podem levar a um possível atraso no seu reembolso, o que pode gerar insatisfação e serem motivos de reclamação no futuro.\n"
+      },
+      {
+        "metric": "dash_advins_fcr",
+        "reasoning": false,
+        "source": "summary",
+        "prompt": "\nVocê está analisando o resumo de uma chamada de telemarketing.\nVocê irá identificar se o problema/solicitação do cliente foi resolvido já neste \nprimeiro contato, sem necessidade de nova ligação, transferência para outro setor, \nabertura de protocolo pendente ou retorno futuro (First Contact Resolution).\n\nResponda APENAS com uma única palavra, sem pontuação nem justificativa:\n- Responda \"Sim\" se o problema foi totalmente resolvido neste primeiro contato.\n- Responda \"Não\" se não foi resolvido neste contato ou dependeu de retorno/transferência.\n\nNão adicione nenhum outro texto além de \"Sim\" ou \"Não\".\n"
+      },
+      {
+        "metric": "dash_advins_odc",
+        "reasoning": false,
+        "source": "summary",
+        "prompt": "\nVocê está analisando o resumo de uma chamada de telemarketing.\nVocê irá identificar se há indícios claros de que o cliente pretende ou ameaça \nacionar um órgão de defesa do consumidor, agência regulatória ou buscar ajuda \njurídica em razão da insatisfação com o atendimento ou com o serviço.\n\nResponda APENAS com uma única palavra, sem pontuação nem justificativa:\n- Responda \"Sim\" se houver menção ou ameaça de acionar órgão de defesa do consumidor, agência regulatória ou via jurídica.\n- Responda \"Não\" se não houver qualquer indício desse tipo.\n\nNão adicione nenhum outro texto além de \"Sim\" ou \"Não\".\n"
+      },
+      {
+        "metric": "dash_advins_speed",
+        "reasoning": false,
+        "source": "summary",
+        "prompt": "\nVocê está analisando o resumo de uma chamada de telemarketing.\nVocê irá avaliar a habilidade de RAPIDEZ do atendente, ou seja, se ele foi ágil \nna condução do atendimento, evitando demoras desnecessárias e resolvendo a \ndemanda do cliente de forma eficiente em relação ao tempo.\n\nResponda APENAS com uma única palavra, sem pontuação nem justificativa:\n- Responda \"Sim\" se o atendente demonstrou rapidez/agilidade no atendimento.\n- Responda \"Não\" se o atendente foi lento ou não demonstrou agilidade.\n\nNão adicione nenhum outro texto além de \"Sim\" ou \"Não\".\n"
+      },
+      {
+        "metric": "dash_advins_assertiveness",
+        "reasoning": false,
+        "source": "summary",
+        "prompt": "\nVocê está analisando o resumo de uma chamada de telemarketing.\nVocê irá avaliar a habilidade de ASSERTIVIDADE do atendente, ou seja, se ele foi \nobjetivo, seguro e preciso nas informações e orientações fornecidas ao cliente, \ncomunicando-se de forma firme e clara sem rodeios.\n\nResponda APENAS com uma única palavra, sem pontuação nem justificativa:\n- Responda \"Sim\" se o atendente demonstrou assertividade.\n- Responda \"Não\" se o atendente não demonstrou assertividade.\n\nNão adicione nenhum outro texto além de \"Sim\" ou \"Não\".\n"
+      },
+      {
+        "metric": "dash_advins_flexibility",
+        "reasoning": false,
+        "source": "summary",
+        "prompt": "\nVocê está analisando o resumo de uma chamada de telemarketing.\nVocê irá avaliar a habilidade de FLEXIBILIDADE do atendente, ou seja, se ele foi \ncapaz de considerar alternativas, negociar e ajustar a solução às necessidades \ne ao contexto específico do cliente.\n\nResponda APENAS com uma única palavra, sem pontuação nem justificativa:\n- Responda \"Sim\" se o atendente demonstrou flexibilidade.\n- Responda \"Não\" se o atendente foi rígido ou não demonstrou flexibilidade.\n\nNão adicione nenhum outro texto além de \"Sim\" ou \"Não\".\n"
+      },
+      {
+        "metric": "dash_advins_adaptability",
+        "reasoning": false,
+        "source": "summary",
+        "prompt": "\nVocê está analisando o resumo de uma chamada de telemarketing.\nVocê irá avaliar a habilidade de ADAPTABILIDADE do atendente, ou seja, se ele foi \ncapaz de se ajustar a mudanças, imprevistos ou novas informações durante a \nchamada, adaptando sua abordagem conforme a situação evoluiu.\n\nResponda APENAS com uma única palavra, sem pontuação nem justificativa:\n- Responda \"Sim\" se o atendente demonstrou adaptabilidade.\n- Responda \"Não\" se o atendente não demonstrou adaptabilidade.\n\nNão adicione nenhum outro texto além de \"Sim\" ou \"Não\".\n"
+      },
+      {
+        "metric": "dash_advins_empathy",
+        "reasoning": false,
+        "source": "summary",
+        "prompt": "\nVocê está analisando o resumo de uma chamada de telemarketing.\nVocê irá avaliar a habilidade de EMPATIA do atendente, ou seja, se ele demonstrou \ncompreensão, cordialidade e sensibilidade em relação aos sentimentos e à situação \ndo cliente ao longo do atendimento.\n\nResponda APENAS com uma única palavra, sem pontuação nem justificativa:\n- Responda \"Sim\" se o atendente demonstrou empatia.\n- Responda \"Não\" se o atendente não demonstrou empatia.\n\nNão adicione nenhum outro texto além de \"Sim\" ou \"Não\".\n"
+      },
+      {
+        "metric": "dash_advins_resolution",
+        "reasoning": false,
+        "source": "summary",
+        "prompt": "\nVocê está analisando o resumo de uma chamada de telemarketing.\nVocê irá avaliar a habilidade de RESOLUÇÃO do atendente, ou seja, se ele foi \ncapaz de conduzir o atendimento em direção a uma solução efetiva para a demanda \ndo cliente, demonstrando foco na resolução do problema.\n\nResponda APENAS com uma única palavra, sem pontuação nem justificativa:\n- Responda \"Sim\" se o atendente demonstrou capacidade de resolução.\n- Responda \"Não\" se o atendente não demonstrou capacidade de resolução.\n\nNão adicione nenhum outro texto além de \"Sim\" ou \"Não\".\n"
+      },
+      {
+        "metric": "dash_advins_active_listening",
+        "reasoning": false,
+        "source": "summary",
+        "prompt": "\nVocê está analisando o resumo de uma chamada de telemarketing.\nVocê irá avaliar a habilidade de ESCUTA ATIVA do atendente, ou seja, se ele \ndemonstrou atenção ao que o cliente disse, compreendeu corretamente a demanda \ne respondeu de forma coerente sem exigir repetições desnecessárias.\n\nResponda APENAS com uma única palavra, sem pontuação nem justificativa:\n- Responda \"Sim\" se o atendente demonstrou escuta ativa.\n- Responda \"Não\" se o atendente não demonstrou escuta ativa.\n\nNão adicione nenhum outro texto além de \"Sim\" ou \"Não\".\n"
+      },
+      {
+        "metric": "dash_advins_clarity",
+        "reasoning": false,
+        "source": "summary",
+        "prompt": "\nVocê está analisando o resumo de uma chamada de telemarketing.\nVocê irá avaliar a habilidade de CLAREZA do atendente, ou seja, se ele se \ncomunicou de forma clara e compreensível, com linguagem adequada, evitando \nambiguidades e garantindo que o cliente entendesse as informações.\n\nResponda APENAS com uma única palavra, sem pontuação nem justificativa:\n- Responda \"Sim\" se o atendente se comunicou com clareza.\n- Responda \"Não\" se o atendente não se comunicou com clareza.\n\nNão adicione nenhum outro texto além de \"Sim\" ou \"Não\".\n"
+      }
+    ],
+    "pii": false,
+    "diarize_with": "atento-dm"
+  }
+}

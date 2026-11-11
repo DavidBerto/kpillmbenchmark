@@ -46,7 +46,7 @@ def test_cost_and_projection(cfg):
     spec = cfg.model("claude-sonnet-5-5")  # 2.00 / 0.10 / 10.00 por 1M
     u = Usage(input_tokens=1_000_000, cached_tokens=1_000_000, output_tokens=1_000_000)
     assert cost_usd(spec, u) == pytest.approx(2.0 + 0.10 + 10.0)
-    assert cost_usd(spec, u, batch=True) == pytest.approx((2.0 + 0.10 + 10.0) * 0.5)
+    assert cost_usd(spec, u, batch=True) == pytest.approx((2.0 + 0.10 + 10.0) * (1 - spec.batch_discount))
     # prefixo abaixo do mínimo cacheável: cache não se aplica
     a = projected_cost_per_call(spec, 1000, 100, static_prefix_tokens=500, cache_hit_ratio=1.0, batch=False)
     assert a == pytest.approx((1000 * 2.0 + 100 * 10.0) / 1e6)

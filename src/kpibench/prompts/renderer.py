@@ -13,6 +13,7 @@ import hashlib
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
+from types import SimpleNamespace
 
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
@@ -37,6 +38,19 @@ class PromptRenderer:
         self.env = Environment(loader=FileSystemLoader(str(self.dir)), undefined=StrictUndefined,
                                keep_trailing_newline=False, trim_blocks=False)
 
+    @staticmethod
+    def _coerce_scale(value):
+        if value is None:
+            return SimpleNamespace(min=1, max=5)
+        if isinstance(value, dict):
+            coerced = {k: PromptRenderer._coerce_scale(v) for k, v in value.items()}
+            if {"min", "max"}.issubset(coerced):
+                return SimpleNamespace(**coerced)
+            return SimpleNamespace(min=1, max=5, **coerced)
+        if isinstance(value, list):
+            return [PromptRenderer._coerce_scale(v) for v in value]
+        return value
+
     @lru_cache(maxsize=None)
     def template_hash(self, rel_path: str) -> str:
         """sha256 do template + includes (12 primeiros hex)."""
@@ -46,6 +60,10 @@ class PromptRenderer:
         return h.hexdigest()[:12]
 
     def render(self, rel_path: str, **variables) -> RenderedPrompt:
+        if "scale" not in variables or variables["scale"] is None:
+            variables["scale"] = self._coerce_scale(None)
+        else:
+            variables["scale"] = self._coerce_scale(variables["scale"])
         text = self.env.get_template(rel_path).render(**variables)
         if "### USER" not in text or "### SYSTEM" not in text:
             raise ValueError(f"{rel_path}: o template precisa das seções '### SYSTEM' e '### USER'")

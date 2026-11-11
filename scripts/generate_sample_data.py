@@ -146,10 +146,13 @@ def build_call(i: int, rng: np.random.Generator) -> dict:
     row = {
         "call_id": f"CALL-{i:06d}", "data_chamada": f"2026-{v['mes']:02d}-{v['dia']:02d}",
         "transcricao": transcricao, "resumo": resumo, "resumo_referencia": resumo_ref,
-        "gt_qualidade_resumo": nota_humana, "gt_csat": csat, "gt_razao_csat": razao_csat,
-        "gt_solicitacao_resolvida": resolvida, "gt_solver_reasoning": S["solver"],
-        "gt_razao_ligacao": motivo, "gt_fcr": fcr, "gt_empatia": empatia,
-        "gt_clareza_informacoes": clareza, "gt_odc": odc, "defeito_resumo": defeito,
+        "qualidade_resumo": nota_humana, "csat": csat, "csat_reasoning": razao_csat,
+        "solved": resolvida, "solved_reasoning": S["solver"], "call_reason": motivo,
+        "dash_advins_fcr": fcr, "dash_advins_empathy": "sim" if empatia >= 4 else "nao",
+        "dash_advins_clarity": "sim" if clareza >= 4 else "nao",
+        "dash_advins_odc": "sim" if odc in {"protocolo_aberto", "transferido", "sem_solucao"} else "nao",
+        "persuasion": "sim" if rng.random() < 0.5 else "nao",
+        "defeito_resumo": defeito,
     }
     row.update(production_outputs(row, rng))
     return row
@@ -386,15 +389,18 @@ def production_outputs(row: dict, rng: np.random.Generator) -> dict:
     out = {}
     cats = {"solicitacao_resolvida": ["sim", "parcial", "nao"], "first_call_resolution": ["sim", "nao", "indeterminado"],
             "razao_ligacao": list(MOTIVO_WEIGHTS), "odc": list(ODC_TO_RESOLVIDA)}
-    gtcol = {"solicitacao_resolvida": "gt_solicitacao_resolvida", "first_call_resolution": "gt_fcr",
-             "razao_ligacao": "gt_razao_ligacao", "odc": "gt_odc"}
+    gtcol = {"solicitacao_resolvida": "solved", "first_call_resolution": "dash_advins_fcr",
+             "razao_ligacao": "call_reason", "odc": "dash_advins_odc"}
     for k, labels in cats.items():
         gt = row[gtcol[k]]
         out[f"prod_{k}"] = gt if rng.random() < 0.72 else str(rng.choice([l for l in labels if l != gt]))
-    for k, col in {"csat": "gt_csat", "empatia": "gt_empatia", "clareza_informacoes": "gt_clareza_informacoes",
-                   "qualidade_resumo": "gt_qualidade_resumo"}.items():
+    for k, col in {"csat": "csat", "empatia": "dash_advins_empathy", "clareza_informacoes": "dash_advins_clarity",
+                   "qualidade_resumo": "qualidade_resumo"}.items():
         gt = row[col]
-        out[f"prod_{k}"] = gt if rng.random() < 0.6 else int(np.clip(gt + rng.choice([-1, 1]), 1, 5))
+        if k in {"empatia", "clareza_informacoes"}:
+            out[f"prod_{k}"] = gt if rng.random() < 0.6 else ("sim" if gt == "sim" else "nao")
+        else:
+            out[f"prod_{k}"] = gt if rng.random() < 0.6 else int(np.clip(gt + rng.choice([-1, 1]), 1, 5))
     return out
 
 

@@ -63,13 +63,29 @@ projection:
 #   invalid_rate: fração de JSON inválido; out_tokens: tokens de saída médios
 #   (inclui raciocínio p/ modelos reasoning); latency_s: latência mediana
 simulation:
-  gpt-5-nano:            {skill: 0.70, invalid_rate: 0.03, out_tokens: 420, latency_s: 2.4}
-  gpt-5.4-mini:          {skill: 0.84, invalid_rate: 0.01, out_tokens: 380, latency_s: 2.9}
-  gpt-5.4:               {skill: 0.90, invalid_rate: 0.00, out_tokens: 450, latency_s: 5.8}
+  # perfis FICTÍCIOS para validar o pipeline offline (não refletem a qualidade real)
+  gpt-4.1:               {skill: 0.82, invalid_rate: 0.01, out_tokens: 140, latency_s: 2.2}
+  gpt-4o-mini:           {skill: 0.74, invalid_rate: 0.02, out_tokens: 130, latency_s: 1.4}
+  gpt-5-mini:            {skill: 0.83, invalid_rate: 0.01, out_tokens: 380, latency_s: 3.0}
+  gpt-5.1:               {skill: 0.88, invalid_rate: 0.00, out_tokens: 420, latency_s: 4.6}
+  gpt-5.3-codex:         {skill: 0.84, invalid_rate: 0.01, out_tokens: 440, latency_s: 4.9}
+  gpt-5.6-luna:          {skill: 0.81, invalid_rate: 0.01, out_tokens: 360, latency_s: 2.6}
+  gpt-5.6-terra:         {skill: 0.90, invalid_rate: 0.00, out_tokens: 430, latency_s: 5.2}
+  gpt-6-luna:            {skill: 0.84, invalid_rate: 0.01, out_tokens: 340, latency_s: 2.3}
+  gpt-6-sol:             {skill: 0.92, invalid_rate: 0.00, out_tokens: 420, latency_s: 5.6}
+  gpt-oss-120b:          {skill: 0.76, invalid_rate: 0.03, out_tokens: 300, latency_s: 1.8}
+  claude-haiku-4-5:      {skill: 0.80, invalid_rate: 0.01, out_tokens: 170, latency_s: 1.6}
   claude-haiku-5-5:      {skill: 0.83, invalid_rate: 0.01, out_tokens: 160, latency_s: 1.3}
+  claude-sonnet-5:       {skill: 0.88, invalid_rate: 0.00, out_tokens: 190, latency_s: 3.2}
   claude-sonnet-5-5:     {skill: 0.91, invalid_rate: 0.00, out_tokens: 190, latency_s: 3.1}
+  claude-opus-5:         {skill: 0.92, invalid_rate: 0.00, out_tokens: 210, latency_s: 5.1}
   claude-opus-5-5:       {skill: 0.94, invalid_rate: 0.00, out_tokens: 210, latency_s: 5.0}
-  gemini-2.5-flash-lite: {skill: 0.72, invalid_rate: 0.04, out_tokens: 150, latency_s: 1.1}
+  claude-fable-5:        {skill: 0.95, invalid_rate: 0.00, out_tokens: 230, latency_s: 6.4}
+  deepseek-v4-flash:     {skill: 0.79, invalid_rate: 0.02, out_tokens: 260, latency_s: 2.0}
+  deepseek-v4-pro:       {skill: 0.87, invalid_rate: 0.01, out_tokens: 420, latency_s: 6.0}
+  grok-4.3:              {skill: 0.84, invalid_rate: 0.02, out_tokens: 380, latency_s: 3.8}
+  grok-4.6:              {skill: 0.89, invalid_rate: 0.01, out_tokens: 420, latency_s: 4.8}
+  kimi-k2.6:             {skill: 0.85, invalid_rate: 0.02, out_tokens: 400, latency_s: 4.2}
   kpi_difficulty:        # subtraído do skill
     qualidade_resumo: 0.10
     csat: 0.08
