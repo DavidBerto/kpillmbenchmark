@@ -55,6 +55,18 @@ Em `notebooks/`:
   `scripts/build_notebook_03.py`; lógica em `kpibench/live.py`, `kpibench/data/azure_calls.py` e
   `kpibench/reporting/aa_charts.py`.
 
+- `04_extracao_consolidada_transcricao.ipynb` — **extração consolidada**: uma única chamada de LLM
+  por ligação (padrão `gpt-6-luna`), sobre a **transcrição completa**, devolvendo **todos os KPIs num
+  JSON**. Compara com o fluxo atual (1 chamada por KPI sobre o resumo) nas mesmas ligações e contra a
+  mesma referência. Mostra:
+  - redução de custo (medido e projetado por mês);
+  - consumo de tokens por componente (instruções, conteúdo, saída, raciocínio);
+  - sensibilidade ao tamanho da transcrição e latência;
+  - qualidade por KPI, com diferença pareada e IC 95%;
+  - divergências entre os fluxos.
+
+  Fonte do notebook: `scripts/build_notebook_04.py`. A lógica está em `kpibench/single_call.py` e os gráficos em `kpibench/reporting/single_call_charts.py`. Detalhes na seção "Extração consolidada".
+
   Sem rótulos auditados na base, a referência padrão é um **modelo forte via Nexus**
   (`REFERENCIA = "claude-opus-5-5"`): as métricas medem concordância com ele, não acerto. Com rótulos
   auditados, use `REFERENCIA = "arquivo:<csv com call_id + gt_*>"`. A produção atual entra como
@@ -196,17 +208,57 @@ No notebook 03:
 
 Para implementar NMB e CEAC, reaproveite `normalize_quality`, `effective_cost` e as réplicas de `KPIEvaluation.dists`: o laço de réplicas de `cost_effectiveness()` já tem o formato necessário.
 
+### Extração consolidada (1 chamada por ligação, transcrição completa)
+
+`src/kpibench/single_call.py` mede quanto se economiza, e o que acontece com a qualidade, ao trocar o fluxo
+atual pelo consolidado.
+
+| | Fluxo atual (`por_kpi_resumo`) | Fluxo novo (`consolidado_transcricao`) |
+|---|---|---|
+| Chamadas por ligação | 1 por KPI | 1 |
+| Entrada | resumo | transcrição completa (+ resumo só se `qualidade_resumo` estiver incluído) |
+| Saída | 1 JSON por KPI | `{"kpis": {"<kpi>": {"justificativa": ..., "valor": ...}, ...}}` |
+
+- **Prompt** (`prompts/consolidado/todos_kpis.md`): reúne as regras gerais, a rubrica de cada KPI e o formato único.
+  - As rubricas são extraídas dos próprios `prompts/kpis/<kpi>.md`, sem o bloco "Formato de saída". Mudar um critério num template por KPI muda os dois fluxos.
+  - O hash do prompt (`prompt_hash`) cobre o template consolidado e todos os templates por KPI.
+  - O system prompt tem cerca de 2,8 mil tokens, acima do mínimo cacheável, então entra no cache da projeção.
+- **Parser** (`parse_all_kpis_output`): tolerante no envelope (cercas, KPIs no topo, valor direto) e estrito no domínio, KPI a KPI. Um KPI inválido não derruba os outros; um JSON truncado vira `json_invalido`.
+- **`max_tokens`**: a saída traz todos os KPIs, então o estudo eleva o `max_tokens` do modelo (padrão 4.000) e registra `truncado` quando `finish_reason == "length"`.
+- **Referência**:
+  - `arquivo:<csv>` (rótulos auditados) é a opção sem viés;
+  - modelo em modo `consolidado` (transcrição + prompt consolidado; tende a favorecer o fluxo novo);
+  - modelo em modo `por_kpi` (resumo + prompts por KPI; tende a favorecer o atual). Rodar os dois modos limita o viés.
+- **Qualidade** (`quality_table`): reaproveita `evaluate_kpi`, com bootstrap pareado da diferença novo − atual e margem `ni_margin`. A decisão é `melhora`, `equivalente`, `nao_inferior`, `piora` ou `inconclusivo`. A qualidade agregada usa a qualidade normalizada do ICER (0% = acaso).
+- **Custo e tokens** (`cost_table`, `savings_summary`), por abordagem:
+  - chamadas por ligação e tokens (instruções, conteúdo, saída, raciocínio, cache);
+  - US$/1k ligações medido e projetado (Batch e cache conforme `projection`) e US$/mês;
+  - latência sequencial e paralela; % de ligações com todos os KPIs válidos.
+  - `summary_cost_usd_per_call` soma ao fluxo atual o custo de gerar o resumo, de que ele depende.
+- **Saídas** (`outputs/extracao_consolidada_<timestamp>/`):
+  - `saida_consolidada.jsonl` (um JSON por ligação, valores normalizados e flag `valido`);
+  - `comparacao_custo_tokens.csv`, `comparacao_qualidade.csv`, `tokens_custo_por_ligacao.csv`;
+  - `predicoes.csv`, `juiz.csv`, `referencia_predicoes.csv`, `dataset.csv`, `estudo.json`.
+- **Relatório final** (seção 12 do notebook, salvo em `relatorio_final.md`), gerado por `final_report`:
+  1. diferença de custo por ligação, por 1k, por mês e por ano (medido e projetado);
+  2. cálculo do custo por componente (`cost_breakdown`: tokens médios × preço por 1M), cuja soma reproduz o custo medido (testado);
+  3. relação qualidade × custo (`quality_cost_summary`): qualidade normalizada média com IC bootstrap pareado (`aggregate_quality`), custo por ponto de qualidade e veredito (o novo domina, troca qualidade por economia, troca economia por qualidade ou é dominado);
+  4. operação e ressalvas.
+
+  Gráficos: `quality_cost_dashboard` (agregado com IC, por KPI e custo por ponto de qualidade) e `cost_calculation` (custo empilhado por componente). No fluxo novo, o custo por KPI é o **rateio igual** da chamada única.
+- **Simulação**: o provider mock atende a tarefa `kpi_all`. `MODO_SIMULADO = True` no notebook 04 valida o fluxo sem Azure nem Nexus, mas os números não servem para decisão.
+
 ## Estrutura
 
 ```
 config/        models.yaml (registro + preços) · kpis.yaml (KPIs, taxonomias, margens)
                benchmark.yaml (rodada real) · demo.yaml (simulação offline)
-prompts/       _base_system.md · kpis/<kpi>.md (1 por KPI) · judges/ (juízes)
+prompts/       _base_system.md · kpis/<kpi>.md (1 por KPI) · consolidado/todos_kpis.md (1 chamada por ligação) · judges/
 data/          SCHEMA.md · input/exemplo_kpis_validacao.csv
 src/kpibench/  config · data · prompts · llm (providers, cache, pricing) · extraction
                metrics (classificação, texto, stats, summary/) · analysis · reporting · pipeline · cli · live
-scripts/       generate_sample_data.py · build_notebook_03.py (fonte do notebook 03)
-tests/         métricas, parser, preços, prompts, custo-efetividade, notebook 03 e smoke test end-to-end
+scripts/       generate_sample_data.py · build_notebook_03.py / build_notebook_04.py (fontes dos notebooks)
+tests/         métricas, parser, preços, prompts, custo-efetividade, extração consolidada, notebook 03 e smoke test
 ```
 
 ## Guia para alterações futuras
@@ -227,6 +279,7 @@ Mapa do código, por etapa do pipeline (`pipeline.run` → `pipeline.evaluate`):
 | Resumo | `metrics/summary/*` | `compute_summary_metrics`, `meta_evaluate` | `meta_avaliacao_metricas_resumo.csv` |
 | Relatório | `reporting/report.py`, `reporting/figures.py` | `build_report` (seções 1–7) | `report.md` + PNGs |
 | Notebook 03 | `live.py`, `reporting/aa_charts.py`, `scripts/build_notebook_03.py` | `run_live`, `load_results`, `model_scoreboard`, `executive_summary` | painéis executivos |
+| Extração consolidada (notebook 04) | `single_call.py`, `reporting/single_call_charts.py`, `prompts/consolidado/todos_kpis.md`, `scripts/build_notebook_04.py` | `run_study`, `run_single_call`, `render_single_call`, `estimate_study_cost`, `executive_summary` | `saida_consolidada.jsonl`, `comparacao_*.csv` |
 
 Convenções:
 
@@ -242,7 +295,8 @@ Convenções:
 - **`producao_atual`** (`BASELINE_NAME`) aparece nas tabelas de métrica, mas fica fora de custo, roteamento e custo-efetividade, porque não tem custo.
 - **Respostas inválidas** contam como erro (`invalid_policy: pessimistic`). O custo efetivo também as penaliza.
 - **Reavaliar sem gastar**: `python -m kpibench evaluate --run-dir outputs/<rodada>` refaz avaliação, custo, roteamento, ICER e relatório a partir dos CSVs salvos. Use isso para testar mudanças de análise.
-- **Notebook 03**: edite `scripts/build_notebook_03.py` e rode `python scripts/build_notebook_03.py`. Não edite o `.ipynb` à mão.
+- **Notebooks 03 e 04**: edite `scripts/build_notebook_0X.py` e rode `python scripts/build_notebook_0X.py`. Não edite o `.ipynb` à mão. O builder do 04 não depende de `nbformat`. Regenerar apaga as saídas executadas do notebook.
+- **Um KPI novo entra automaticamente no prompt consolidado**: a rubrica vem do template por KPI. O template precisa manter a linha "Formato de saída" para que o bloco de formato seja cortado.
 - **Idioma**: código e identificadores em inglês; colunas de saída, relatórios e comentários de domínio em português.
 
 ## Pendências conhecidas (nov/2026)
@@ -252,6 +306,7 @@ Convenções:
 - Arquivos `*:Zone.Identifier` (metadados do Windows) estão versionados ou soltos no repositório. Agora são ignorados pelo `.gitignore`; os já versionados podem ser removidos com `git rm --cached`.
 - `exemplo_kpis_validacao.csv` e `report.md` soltos na raiz parecem cópias antigas de `data/input/` e `outputs/`.
 - O teto de qualidade do ICER é 1,0 até que a concordância inter-anotador seja medida (`quality_ceiling`).
+- `razao_ligacao` está como `type: text` em `kpis.yaml` (sem `labels`), mas `prompts/kpis/razao_ligacao.md` pede "exatamente um rótulo da taxonomia". A taxonomia sai vazia no prompt, tanto no fluxo por KPI quanto no consolidado. Defina se o KPI é texto livre ou categórico e alinhe prompt e config.
 
 ## Adaptar para os seus dados
 

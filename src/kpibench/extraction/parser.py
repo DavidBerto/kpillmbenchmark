@@ -79,9 +79,45 @@ def parse_kpi_output(text: str, kpi: KPISpec) -> ParsedOutput:
         return ParsedOutput(None, False, "json_invalido")
     if kpi.output_field not in obj:
         return ParsedOutput(None, False, f"campo_ausente:{kpi.output_field}")
-    raw = obj[kpi.output_field]
     extras = {k: v for k, v in obj.items() if k != kpi.output_field}
+    return parse_kpi_value(obj[kpi.output_field], kpi, extras)
 
+
+def parse_all_kpis_output(text: str, kpis: list[KPISpec], value_key: str = "valor"
+                          ) -> tuple[dict | None, dict[str, ParsedOutput]]:
+    """Saída consolidada (todos os KPIs numa chamada): {"kpis": {"<kpi>": {"valor": ..., ...}}}.
+
+    Tolerante no envelope: aceita os KPIs no topo do objeto e o valor direto (sem {"valor": ...});
+    estrita no domínio, KPI a KPI (um KPI inválido não invalida os demais).
+    """
+    obj = extract_json(text)
+    if obj is None:
+        return None, {k.name: ParsedOutput(None, False, "json_invalido") for k in kpis}
+    block = obj.get("kpis") if isinstance(obj.get("kpis"), dict) else obj
+    if not any(k.name in block or k.output_field in block for k in kpis):
+        # ex.: JSON truncado em que só um objeto interno fecha -> nenhum KPI reconhecível
+        return None, {k.name: ParsedOutput(None, False, "json_invalido") for k in kpis}
+    out = {}
+    for k in kpis:
+        item = block.get(k.name, block.get(k.output_field))
+        if item is None:
+            out[k.name] = ParsedOutput(None, False, f"campo_ausente:{k.name}")
+            continue
+        if isinstance(item, dict):
+            if value_key not in item and k.output_field not in item:
+                out[k.name] = ParsedOutput(None, False, f"campo_ausente:{k.name}.{value_key}")
+                continue
+            raw = item.get(value_key, item.get(k.output_field))
+            extras = {kk: v for kk, v in item.items() if kk not in (value_key, k.output_field)}
+        else:
+            raw, extras = item, {}
+        out[k.name] = parse_kpi_value(raw, k, extras)
+    return obj, out
+
+
+def parse_kpi_value(raw: Any, kpi: KPISpec, extras: dict | None = None) -> ParsedOutput:
+    """Valida e normaliza o valor de UM KPI (domínio estrito)."""
+    extras = extras or {}
     if kpi.type == "ordinal":
         v = to_ordinal(raw, kpi)
         return ParsedOutput(v, v is not None, None if v is not None else f"fora_da_escala:{raw}", extras)

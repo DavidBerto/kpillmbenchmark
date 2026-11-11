@@ -62,6 +62,9 @@ class MockLLMClient(LLMClient):
         task = md["task"]
         if task == "kpi":
             payload = self._kpi_output(md["kpi_spec"], md["record"], rng)
+        elif task == "kpi_all":
+            payload = {"kpis": {k.name: self._as_consolidated(k, self._kpi_output(k, md["record"], _rng(
+                self.seed, self.spec.id, task, k.name, md.get("call_id")))) for k in md["kpi_specs"]}}
         elif task == "judge_reasoning":
             payload = self._judge_output(md["referencia"], md["candidata"], rng)
         elif task == "claim_faithfulness":
@@ -78,6 +81,8 @@ class MockLLMClient(LLMClient):
 
         base_out = self.profile.get("out_tokens", 200)
         out_mult = 1.8 if md.get("kpi") == "qualidade_resumo" or task == "claim_faithfulness" else 1.0
+        if task == "kpi_all":  # uma chamada com todos os KPIs: raciocínio compartilhado, saída cresce por KPI
+            out_mult = 0.7 + 0.3 * len(md["kpi_specs"])
         out_tokens = int(base_out * out_mult * rng.lognormal(0, 0.25))
         usage = Usage(input_tokens=estimate_tokens(req.system) + estimate_tokens(req.user),
                       output_tokens=max(out_tokens, estimate_tokens(text)))
@@ -128,6 +133,12 @@ class MockLLMClient(LLMClient):
             pool = [t for t in self.pool.get(kpi.name, []) if t != gt] or ["Resumo não traz elementos suficientes."]
             v = str(rng.choice(pool))
         return {kpi.output_field: v}
+
+    @staticmethod
+    def _as_consolidated(kpi: KPISpec, out: dict) -> dict:
+        item = {"justificativa": out.get("justificativa", out.get("analise", ""))} if kpi.type != "text" else {}
+        item["valor"] = out[kpi.output_field]
+        return item
 
     def _judge_output(self, ref: str, cand: str, rng: np.random.Generator) -> dict:
         from kpibench.metrics.text import chrf
