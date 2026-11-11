@@ -62,3 +62,9 @@ projection:
   monthly_calls: 1000000      # volume mensal de chamadas para projetar custo
   cache_hit_ratio: 0.9        # fração do prefixo estático servida do cache
   use_batch: true             # KPIs pós-chamada toleram latência -> Batch API (-50%)
+
+cost_effectiveness:
+  # ICER na fronteira de eficiência (kpibench.analysis.cost_effectiveness)
+  quality_floor: chance       # zero da escala: acaso (0 p/ QWK e juiz; 1/K p/ macro-F1) ou um número
+  quality_ceiling: 1.0        # teto: 1.0 ou a concordância inter-anotador medida
+  kpi_weights: {}             # pesos do agregado por modelo, ex.: {csat: 2, odc: 1}; padrão 1

@@ -57,6 +57,9 @@ class KPISpec(BaseModel):
     needs_transcript: bool = False
     judge_prompt: str | None = None
     judge_context: str = ""
+    # custo-efetividade: sobrescrevem cost_effectiveness.quality_floor/quality_ceiling do benchmark
+    quality_floor: Literal["chance"] | float | None = None
+    quality_ceiling: float | None = None
 
     @model_validator(mode="after")
     def _check_type_fields(self) -> "KPISpec":
@@ -119,6 +122,13 @@ class ProjectionCfg(BaseModel):
     use_batch: bool = True
 
 
+class CostEffectivenessCfg(BaseModel):
+    """Normalização da qualidade para o ICER (ver kpibench.analysis.cost_effectiveness)."""
+    quality_floor: Literal["chance"] | float = "chance"   # zero da escala: acaso (0 p/ QWK/juiz, 1/K p/ macro-F1)
+    quality_ceiling: float = 1.0                           # ou a concordância inter-anotador medida
+    kpi_weights: dict[str, float] = Field(default_factory=dict)   # pesos do agregado por modelo (padrão 1)
+
+
 class BenchmarkConfig(BaseModel):
     run: RunCfg = RunCfg()
     data: DataCfg
@@ -128,6 +138,7 @@ class BenchmarkConfig(BaseModel):
     summary_metrics: SummaryMetricsCfg = SummaryMetricsCfg()
     statistics: StatsCfg = StatsCfg()
     projection: ProjectionCfg = ProjectionCfg()
+    cost_effectiveness: CostEffectivenessCfg = CostEffectivenessCfg()
     simulation: dict[str, Any] = Field(default_factory=dict)
 
     # preenchidos em load_config

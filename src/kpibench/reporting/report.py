@@ -25,7 +25,7 @@ def _usd(x: float) -> str:
 def build_report(cfg: BenchmarkConfig, ds: Dataset, evals: dict[str, KPIEvaluation], full: pd.DataFrame,
                  rec: pd.DataFrame, plans: pd.DataFrame, costs: pd.DataFrame, meta: pd.DataFrame | None,
                  prompt_hashes: dict[str, str], overhead: dict, figures: dict[str, Path | None],
-                 out_dir: Path) -> Path:
+                 out_dir: Path, ce_agg: pd.DataFrame | None = None) -> Path:
     simulated = bool(costs["simulated"].any()) if "simulated" in costs else False
     pj = cfg.projection
     L: list[str] = []
@@ -74,7 +74,7 @@ def build_report(cfg: BenchmarkConfig, ds: Dataset, evals: dict[str, KPIEvaluati
     n_inc = int(rec["n_inconclusivos"].sum())
     if n_inc:
         L.append(f"\n> **{n_inc} comparações inconclusivas**: o IC da diferença cruza a margem. Com "
-                 f"n={len(ds.df)}, a amostra não separa modelos próximos. Ver seção 6 para o tamanho de amostra.")
+                 f"n={len(ds.df)}, a amostra não separa modelos próximos. Ver seção 7 para o tamanho de amostra.")
     if figures.get("pareto"):
         L.append(f"\n![Pareto]({figures['pareto'].name})\n")
 
@@ -175,7 +175,9 @@ def build_report(cfg: BenchmarkConfig, ds: Dataset, evals: dict[str, KPIEvaluati
              f"juiz de justificativas {_usd(overhead['judge_usd'])}, fidelidade por afirmações {_usd(overhead['claims_usd'])}.\n")
 
     # ------------------------------------------------------------------ validade
-    L.append("## 6. Limitações e ameaças à validade\n")
+    _cost_effectiveness_section(L, full, rec, ce_agg, figures)
+
+    L.append("## 7. Limitações e ameaças à validade\n")
     worst = full[full["model"] != BASELINE_NAME].assign(w=lambda d: d["ci_high"] - d["ci_low"])["w"].median()
     n = len(ds.df)
     target = max(cfg.kpi_registry[k].ni_margin for k in evals) if evals else 0.05
@@ -196,3 +198,44 @@ def build_report(cfg: BenchmarkConfig, ds: Dataset, evals: dict[str, KPIEvaluati
     path = out_dir / "report.md"
     path.write_text("\n".join(L), encoding="utf-8")
     return path
+
+
+def _ce_chain(t: pd.DataFrame) -> str:
+    """Leitura da fronteira: 'acaso → A (+x pp por US$ y/pp) → B ...'."""
+    f = t[t["status_ce"] == "fronteira"].sort_values("usd_1k_efetivo")
+    steps = [f"`{r.model}` (q̃ {100 * r.q_norm:.1f}%, {_usd(r.usd_1k_efetivo)}/1k, ICER US$ {r.icer_usd_1k_por_pp:.3g}/pp)"
+             for r in f.itertuples()]
+    return " → ".join(["acaso"] + steps)
+
+
+def _cost_effectiveness_section(L: list[str], full: pd.DataFrame, rec: pd.DataFrame, ce_agg: pd.DataFrame | None,
+                                figures: dict[str, Path | None]) -> None:
+    L.append("## 6. Custo-efetividade (ICER na fronteira de eficiência)\n")
+    if "status_ce" not in full.columns:
+        L.append("_Não calculado nesta rodada._\n")
+        return
+    L.append("A razão `qualidade / custo` premia modelos ruins e quase grátis e depende do zero arbitrário de cada "
+             "métrica. Aqui a qualidade é **normalizada do acaso (0%) ao teto (100%)** — q̃ — e o custo é o "
+             "**custo efetivo** por 1.000 respostas válidas (custo projetado ÷ taxa de respostas válidas). "
+             "Um modelo é **dominado** se outro mais barato entrega q̃ maior ou igual (o próprio acaso, de custo "
+             "zero, domina quem não o supera) e **dominado estendido** se uma combinação dos vizinhos o supera "
+             "(ICER não crescente). Na fronteira, o **ICER** é quanto custa, em US$ por 1.000 chamadas, cada "
+             "ponto percentual de q̃ a mais em relação ao vizinho anterior: compare-o com o valor que o negócio "
+             "atribui a esse ponto. `p_fronteira` = fração das réplicas bootstrap em que o modelo fica na "
+             "fronteira (robustez da conclusão).\n")
+    if ce_agg is not None and not ce_agg.empty:
+        L.append("**Agregado por modelo** (custo somado em todos os KPIs = US$ por 1.000 ligações; q̃ = média dos KPIs):\n")
+        a = ce_agg.sort_values("usd_1k_efetivo")
+        L.append(_md(a[[c for c in ["model", "q_norm", "usd_1k_efetivo", "status_ce", "icer_usd_1k_por_pp",
+                                    "vizinho_anterior", "p_fronteira"] if c in a.columns]], floatfmt=".4g"))
+        L.append(f"\n**Leitura:** {_ce_chain(a)}.\n")
+    L.append("**Por KPI:**\n")
+    disp = dict(zip(rec["kpi"], rec["display"]))
+    rows = []
+    for kpi, t in full[full["status_ce"].notna()].groupby("kpi", sort=False):
+        rows.append({"KPI": disp.get(kpi, kpi), "fronteira (do mais barato ao melhor)": _ce_chain(t),
+                     "dominados": ", ".join(t.loc[t["status_ce"].str.startswith("dominado"), "model"]) or "—"})
+    L.append(_md(pd.DataFrame(rows)))
+    if figures.get("icer"):
+        L.append(f"\n![Fronteira de custo-efetividade]({figures['icer'].name})\n")
+    L.append("")

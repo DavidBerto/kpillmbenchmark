@@ -6,6 +6,9 @@ Regra de decisão (por KPI):
      diferença abaixo da margem `ni_margin` do KPI);
   3. recomendado = elegível com menor custo projetado por chamada.
 Modelos "inconclusivos" NÃO são elegíveis: falta amostra para afirmar empate.
+
+Qualidade por custo (ICER na fronteira de eficiência) fica em `analysis.cost_effectiveness`;
+a razão ingênua primária/custo foi removida por premiar modelos ruins e quase grátis.
 """
 from __future__ import annotations
 
@@ -52,7 +55,6 @@ def routing(cfg: BenchmarkConfig, evals: dict[str, KPIEvaluation], costs: pd.Dat
                     on="model", how="left")
         front = pareto_front(t[t["model"] != BASELINE_NAME], "proj_usd_per_1k", "primary")
         t["pareto"] = t["model"].isin(front)
-        t["perf_por_usd"] = t["primary"] / t["proj_usd_per_1k"]
         full_rows.append(t)
 
         elig = t[t["decision"].isin(["referencia", "nao_inferior"]) & (t["model"] != BASELINE_NAME)]

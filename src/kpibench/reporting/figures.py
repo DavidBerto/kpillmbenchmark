@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 from matplotlib.colors import LinearSegmentedColormap  # noqa: E402
+from matplotlib.ticker import FuncFormatter, NullFormatter  # noqa: E402
 
 SURFACE = "#fcfcfb"
 INK = "#0b0b0b"
@@ -123,6 +124,57 @@ def summary_meta_eval(meta: pd.DataFrame, out: Path) -> Path | None:
     ax.set_title("Qualidade do resumo: concordância de cada métrica com a avaliação humana", loc="left")
     fig.tight_layout()
     path = out / "meta_avaliacao_metricas_resumo.png"
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+    return path
+
+
+def _icer_panel(ax, t: pd.DataFrame, title: str) -> None:
+    t = t.dropna(subset=["usd_1k_efetivo", "q_norm"])
+    t = t[t["usd_1k_efetivo"] > 0]
+    for row in t.itertuples():
+        on_front = row.status_ce == "fronteira"
+        ax.scatter(row.usd_1k_efetivo, 100 * row.q_norm, s=46, color=S1 if on_front else MUTED,
+                   edgecolor=SURFACE, linewidth=1.2, zorder=3)
+        ax.annotate(row.model, (row.usd_1k_efetivo, 100 * row.q_norm), xytext=(6, -10 if on_front else 4),
+                    textcoords="offset points", fontsize=7.5, color=INK_2 if on_front else MUTED)
+    f = t[t["status_ce"] == "fronteira"].sort_values("usd_1k_efetivo")
+    ax.plot(f["usd_1k_efetivo"], 100 * f["q_norm"], color=S1, lw=1.5, alpha=0.6, zorder=2)
+    for a, b in zip(f.iloc[:-1].itertuples(), f.iloc[1:].itertuples()):
+        x, y = math.sqrt(a.usd_1k_efetivo * b.usd_1k_efetivo), 50 * (a.q_norm + b.q_norm)
+        ax.annotate(f"US$ {b.icer_usd_1k_por_pp:.3g}/pp", (x, y), xytext=(-4, 6), textcoords="offset points",
+                    fontsize=7, color=INK, ha="right")
+    ax.set_xscale("log")
+    if len(t):
+        lo, hi = t["usd_1k_efetivo"].min() / 1.25, t["usd_1k_efetivo"].max() * 1.25
+        ax.set_xlim(lo, hi)
+        ax.set_xticks(np.geomspace(lo * 1.1, hi / 1.1, 4))
+        ax.xaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v:.3g}"))
+        ax.xaxis.set_minor_formatter(NullFormatter())
+    ax.set_ylim(min(-2, ax.get_ylim()[0]), 102)
+    ax.set_title(title, loc="left")
+    ax.set_xlabel("US$ por 1.000 respostas válidas (projetado, log)")
+    ax.set_ylabel("qualidade normalizada (% do acaso ao teto)")
+
+
+def icer_frontier(ce_kpi: pd.DataFrame, ce_agg: pd.DataFrame, rec: pd.DataFrame, out: Path) -> Path | None:
+    """Fronteira de eficiência: agregado (todos os KPIs) + um painel por KPI, ICER anotado nos segmentos."""
+    if ce_kpi is None or ce_kpi.empty:
+        return None
+    display = dict(zip(rec["kpi"], rec["display"]))
+    panels = [("Todos os KPIs (custo somado · qualidade média)", ce_agg)] if ce_agg is not None and len(ce_agg) else []
+    panels += [(display.get(k, k), ce_kpi[ce_kpi["kpi"] == k]) for k in rec["kpi"] if k in set(ce_kpi["kpi"])]
+    ncols = 2
+    nrows = math.ceil(len(panels) / ncols)
+    fig, axes = plt.subplots(nrows, ncols, figsize=(11, 3.4 * nrows), squeeze=False)
+    for ax, (title, t) in zip(axes.flat, panels):
+        _icer_panel(ax, t, title)
+    for ax in list(axes.flat)[len(panels):]:
+        ax.set_visible(False)
+    fig.suptitle("Custo-efetividade — azul: fronteira de eficiência · cinza: dominados · rótulo: ICER "
+                 "(US$/1k por ponto percentual a mais)", x=0.01, ha="left", fontsize=10, color=INK_2)
+    fig.tight_layout(rect=(0, 0, 1, 0.97))
+    path = out / "icer_fronteira.png"
     fig.savefig(path, dpi=150)
     plt.close(fig)
     return path

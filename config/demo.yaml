@@ -58,6 +58,12 @@ projection:
   cache_hit_ratio: 0.9
   use_batch: true
 
+cost_effectiveness:
+  # ICER na fronteira de eficiência (kpibench.analysis.cost_effectiveness)
+  quality_floor: chance       # zero da escala: acaso (0 p/ QWK e juiz; 1/K p/ macro-F1) ou um número
+  quality_ceiling: 1.0        # teto: 1.0 ou a concordância inter-anotador medida
+  kpi_weights: {}             # pesos do agregado por modelo, ex.: {csat: 2, odc: 1}; padrão 1
+
 # Perfis de simulação (só usados pelo provider mock)
 #   skill: prob. de acerto base; ordinal_spread: desvio típico quando erra
 #   invalid_rate: fração de JSON inválido; out_tokens: tokens de saída médios

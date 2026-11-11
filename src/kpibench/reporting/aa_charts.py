@@ -122,13 +122,21 @@ def _ordered_providers(series: pd.Series) -> list[str]:
 def scorecards(board: pd.DataFrame, routing: pd.DataFrame, n_calls: int, footer: str = ""):
     """Quatro números que resumem a decisão (stat tiles)."""
     best = board.iloc[0]
-    value = board.sort_values("indice_por_dolar", ascending=False).iloc[0]
     fastest = board.sort_values("lat_p50").iloc[0]
     routed = float(routing["usd_1k_recomendado"].sum()) if "usd_1k_recomendado" in routing else np.nan
+    if "status_ce" in board:
+        f = board[board["status_ce"] == "fronteira"].sort_values("usd_1k_efetivo")
+        icers = f["icer_usd_1k_por_pp"]
+        ce_tile = ("Fronteira custo-efetiva", f"{len(f)} modelo(s)",
+                   f"ICER US$ {br(icers.min(), 3)} a {br(icers.max(), 3)} por pp" if len(f) else "—",
+                   textwrap.shorten(" → ".join(f["model"]), 46, placeholder="…"))
+    else:
+        value = board.sort_values("indice_por_dolar", ascending=False).iloc[0]
+        ce_tile = ("Melhor índice por dólar", br(value["indice"], 1),
+                   f"por {usd(value['usd_1k_ligacoes'])} / 1.000 lig.", value["model"])
     tiles = [
         ("Maior concordância", br(best["indice"], 1), "de 100", best["model"]),
-        ("Melhor índice por dólar", br(value["indice"], 1), f"por {usd(value['usd_1k_ligacoes'])} / 1.000 lig.",
-         value["model"]),
+        ce_tile,
         ("Roteamento por KPI", usd(routed), "por 1.000 ligações", f"{routing['recomendado'].nunique()} modelo(s)"),
         ("Menor latência (p50)", f"{br(fastest['lat_p50'], 1)} s", "por chamada de KPI", fastest["model"]),
     ]
@@ -225,6 +233,50 @@ def quality_vs_cost(board: pd.DataFrame, footer: str = ""):
     extra = [Line2D([], [], marker="o", ls="", markerfacecolor=SURFACE, markeredgecolor=INK_2, markersize=8,
                     markeredgewidth=2, label="preço estimado")]
     _provider_legend(ax, _ordered_providers(b["provedor"]), extra=extra)
+    _footer(fig, footer)
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    return fig
+
+
+# =============================================================================== custo-efetividade
+def cost_effectiveness_frontier(board: pd.DataFrame, footer: str = ""):
+    """Fronteira de eficiência: qualidade normalizada × custo por 1.000 ligações válidas, ICER nos segmentos."""
+    if "status_ce" not in board:
+        return None
+    b = board.dropna(subset=["usd_1k_efetivo", "q_norm_media"])
+    b = b[b["usd_1k_efetivo"] > 0]
+    if b.empty:
+        return None
+    fig, ax = plt.subplots(figsize=(10, 6.2))
+    f = b[b["status_ce"] == "fronteira"].sort_values("usd_1k_efetivo")
+    ax.plot(f["usd_1k_efetivo"], 100 * f["q_norm_media"], color=INK_2, lw=1.4, zorder=2)
+    for a, c in zip(f.iloc[:-1].itertuples(), f.iloc[1:].itertuples()):
+        x, y = np.sqrt(a.usd_1k_efetivo * c.usd_1k_efetivo), 50 * (a.q_norm_media + c.q_norm_media)
+        ax.annotate(f"+US$ {br(c.icer_usd_1k_por_pp, 3)} por pp", (x, y), xytext=(-6, 8), textcoords="offset points",
+                    fontsize=8.5, color=INK, ha="right", weight="bold")
+    for r in b.itertuples():
+        on = r.status_ce == "fronteira"
+        c = _color(r.provedor) if on else NEUTRAL
+        ax.scatter(r.usd_1k_efetivo, 100 * r.q_norm_media, s=110 if on else 70,
+                   color=c if not r.preco_estimado else SURFACE, edgecolor=c, linewidth=2.2, zorder=3)
+        label = r.model if on else f"{r.model} (dominado)"
+        ax.annotate(label, (r.usd_1k_efetivo, 100 * r.q_norm_media), xytext=(7, -12 if on else 5),
+                    textcoords="offset points", fontsize=8.5, color=INK if on else MUTED)
+    ax.set_xscale("log")
+    from matplotlib.ticker import LogLocator
+    ax.xaxis.set_major_locator(LogLocator(base=10, subs=(1.0, 2.0, 5.0)))
+    ax.xaxis.set_minor_locator(LogLocator(base=10, subs=()))
+    ax.set_xlim(b["usd_1k_efetivo"].min() / 1.8, b["usd_1k_efetivo"].max() * 1.8)
+    ax.grid(axis="x", color=GRID, lw=0.6)
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda v, _: usd(v)))
+    ax.yaxis.set_major_formatter(_br_axis(0, suffix="%"))
+    ax.set_xlabel("Custo por 1.000 ligações com resposta válida (projetado, escala log)")
+    ax.set_ylabel("Qualidade normalizada (0% = acaso, 100% = teto)")
+    _header(ax, "Custo-efetividade: fronteira de eficiência",
+            "Rótulo do segmento = ICER: custo extra por ponto percentual de qualidade a mais")
+    extra = [Line2D([], [], marker="o", ls="", color=NEUTRAL, markersize=8, label="dominado")]
+    _provider_legend(ax, _ordered_providers(f["provedor"]) if len(f) else [], extra=extra, loc="lower right",
+                     inside=True)
     _footer(fig, footer)
     fig.tight_layout(rect=(0, 0.03, 1, 1))
     return fig
@@ -478,17 +530,22 @@ def style_routing(routing: pd.DataFrame, board: pd.DataFrame | None = None):
 def style_scoreboard(board: pd.DataFrame):
     cols = {"model": "Modelo", "provedor": "Provedor", "indice": "Índice (0–100)",
             "kpis_nao_inferiores": "KPIs não-inferiores", "usd_1k_ligacoes": "US$ / 1.000 lig.",
-            "indice_por_dolar": "Índice por US$", "lat_p50": "Latência p50", "lat_p95": "Latência p95",
+            "q_norm_media": "Qualidade normalizada", "usd_1k_efetivo": "US$ / 1.000 lig. válidas",
+            "status_ce": "Custo-efetividade", "icer_usd_1k_por_pp": "ICER (US$/1k por pp)",
+            "p_fronteira": "P(fronteira)", "lat_p50": "Latência p50", "lat_p95": "Latência p95",
             "taxa_resposta_valida": "Respostas válidas", "preco_estimado": "Preço estimado"}
     t = board[[c for c in cols if c in board.columns]].rename(columns=cols).copy()
     if "KPIs não-inferiores" in t and "n_kpis" in board:
         t["KPIs não-inferiores"] = [f"{a} de {b}" for a, b in zip(board["kpis_nao_inferiores"], board["n_kpis"])]
     t["Preço estimado"] = t["Preço estimado"].map({True: "sim", False: "não"})
-    fmt = {"Índice (0–100)": lambda v: br(v, 1), "US$ / 1.000 lig.": usd, "Índice por US$": lambda v: br(v, 1),
+    fmt = {"Índice (0–100)": lambda v: br(v, 1), "US$ / 1.000 lig.": usd,
+           "Qualidade normalizada": lambda v: f"{br(100 * v, 1)}%", "US$ / 1.000 lig. válidas": usd,
+           "ICER (US$/1k por pp)": lambda v: br(v, 3), "P(fronteira)": lambda v: f"{br(100 * v, 0)}%",
            "Latência p50": lambda v: f"{br(v, 1)} s", "Latência p95": lambda v: f"{br(v, 1)} s",
            "Respostas válidas": lambda v: f"{br(100 * v, 1)}%"}
     return (t.style.format(fmt).hide(axis="index").set_table_styles(_TABLE_STYLES)
-            .set_properties(subset=["Modelo", "Provedor", "KPIs não-inferiores", "Preço estimado"],
+            .set_properties(subset=[c for c in ["Modelo", "Provedor", "KPIs não-inferiores", "Preço estimado",
+                                                "Custo-efetividade"] if c in t.columns],
                             **{"text-align": "left"}))
 
 

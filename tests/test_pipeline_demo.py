@@ -31,3 +31,13 @@ def test_demo_pipeline_end_to_end(tmp_path):
     assert {"rougeL_f", "numeric_consistency"} <= set(meta["metric"])
     full = pd.read_csv(out / "metricas_por_kpi_modelo.csv")
     assert "producao_atual" in set(full["model"])
+    # custo-efetividade: ICER na fronteira, por KPI e agregado
+    ce = pd.read_csv(out / "custo_efetividade_por_kpi.csv")
+    assert set(ce["kpi"]) == set(cfg.kpi_registry) and "producao_atual" not in set(ce["model"])
+    assert ce["q_norm"].between(0, 1).all() and ce["p_fronteira"].between(0, 1).all()
+    assert (ce.groupby("kpi")["status_ce"].apply(lambda s: (s == "fronteira").any())).all()
+    agg = pd.read_csv(out / "custo_efetividade_agregado.csv")
+    assert set(agg["model"]) == set(cfg.models)
+    assert {"status_ce", "icer_usd_1k_por_pp"} <= set(full.columns) and "perf_por_usd" not in full.columns
+    assert "Custo-efetividade" in (out / "report.md").read_text(encoding="utf-8")
+    assert (out / "icer_fronteira.png").exists()

@@ -317,6 +317,7 @@ class Results:
     preds: pd.DataFrame        # predição por ligação × KPI × modelo
     judge: pd.DataFrame
     run_dir: Path
+    cost_eff: pd.DataFrame = None  # custo_efetividade_agregado.csv (p_fronteira com os pesos do benchmark)
 
 
 def load_results(run_dir: Path) -> Results:
@@ -325,7 +326,7 @@ def load_results(run_dir: Path) -> Results:
         return pd.read_csv(p, **kw) if p.exists() and p.stat().st_size > 1 else pd.DataFrame()
     return Results(rd("metricas_por_kpi_modelo.csv"), rd("custos_latencia.csv"), rd("recomendacao_roteamento.csv"),
                    rd("predictions.csv", dtype={"call_id": str}), rd("judge_scores.csv", dtype={"call_id": str}),
-                   run_dir)
+                   run_dir, rd("custo_efetividade_agregado.csv"))
 
 
 def model_scoreboard(res: Results, cfg: BenchmarkConfig, weights: dict[str, float] | None = None) -> pd.DataFrame:
@@ -345,7 +346,14 @@ def model_scoreboard(res: Results, cfg: BenchmarkConfig, weights: dict[str, floa
     board = board.reset_index().rename(columns={"index": "model"})
     board["provedor"] = board["model"].map(provider_of)
     board["preco_estimado"] = board["model"].map(lambda x: cfg.model(x).pricing_is_estimate)
-    board["indice_por_dolar"] = board["indice"] / board["usd_1k_ligacoes"].replace(0, np.nan)
+    board["indice_por_dolar"] = board["indice"] / board["usd_1k_ligacoes"].replace(0, np.nan)  # legado
+    if {"q_norm", "usd_1k_efetivo"} <= set(m.columns):
+        from kpibench.analysis.cost_effectiveness import aggregate_point
+
+        ce = aggregate_point(m, weights).rename(columns={"q_norm": "q_norm_media"}).drop(columns="n_kpis")
+        if not weights and res.cost_eff is not None and "p_fronteira" in res.cost_eff:
+            ce = ce.merge(res.cost_eff[["model", "p_fronteira"]], on="model", how="left")
+        board = board.merge(ce, on="model", how="left")
     return board.sort_values("indice", ascending=False).reset_index(drop=True)
 
 
@@ -378,7 +386,6 @@ def executive_summary(board: pd.DataFrame, res: Results, live: LiveRun | None, n
     best = board.iloc[0]
     eligible = board[board["kpis_nao_inferiores"] == board["n_kpis"]]
     cheapest_ok = eligible.sort_values("usd_1k_ligacoes").iloc[0] if len(eligible) else None
-    value = board.sort_values("indice_por_dolar", ascending=False).iloc[0]
     routed_cost = float(res.routing["usd_1k_recomendado"].sum()) if "usd_1k_recomendado" in res.routing else np.nan
     inconc = int(res.routing["n_inconclusivos"].sum()) if "n_inconclusivos" in res.routing else 0
     from kpibench.reporting.aa_charts import br, usd
@@ -394,8 +401,14 @@ def executive_summary(board: pd.DataFrame, res: Results, live: LiveRun | None, n
     else:
         L.append("- **Nenhum modelo é não-inferior ao melhor em todos os KPIs** com esta amostra: "
                  "o roteamento por KPI é o caminho.")
-    L.append(f"- **Melhor índice por dólar:** `{value['model']}` ({br(value['indice'], 1)} pontos a "
-             f"{usd(value['usd_1k_ligacoes'])}/1.000 ligações).")
+    if "status_ce" in board:
+        f = board[board["status_ce"] == "fronteira"].sort_values("usd_1k_efetivo")
+        chain = " → ".join(f"`{r.model}` (+US$ {br(r.icer_usd_1k_por_pp, 3)}/1.000 lig. por pp)" for r in f.itertuples())
+        dom = board.loc[board["status_ce"].astype(str).str.startswith("dominado"), "model"]
+        L.append(f"- **Fronteira de custo-efetividade** (qualidade normalizada acima do acaso × custo por resposta "
+                 f"válida): {chain or '—'}. Cada passo mostra quanto custa cada ponto percentual de qualidade a mais "
+                 f"frente ao anterior." + (f" Dominados (há opção mais barata e melhor): "
+                                           f"{', '.join('`' + x + '`' for x in dom)}." if len(dom) else ""))
     if np.isfinite(routed_cost):
         L.append(f"- **Roteamento recomendado por KPI:** {usd(routed_cost)} por 1.000 ligações "
                  f"(cada KPI no modelo mais barato não-inferior; ver tabela 7.7).")

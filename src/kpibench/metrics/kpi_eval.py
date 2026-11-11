@@ -25,6 +25,7 @@ class KPIEvaluation:
     dists: dict[str, np.ndarray]             # distribuição bootstrap da primária por modelo
     per_class: pd.DataFrame | None = None    # categóricos
     confusion: dict[str, pd.DataFrame] = field(default_factory=dict)
+    chance: float = 0.0                      # primária esperada de um preditor aleatório (piso do ICER)
 
 
 def _pessimistic_ordinal(gt: int, lo: int, hi: int) -> int:
@@ -132,6 +133,13 @@ def evaluate_kpi(cfg: BenchmarkConfig, ds: Dataset, kpi: KPISpec, preds: pd.Data
         rows.append(row)
         dists[m] = dist
 
+    # macro-F1 de um preditor aleatório que segue a distribuição das K classes presentes: F1 da
+    # classe l = p_l (precisão = recall = p_l), média sobre as K classes = 1/K. QWK e juiz: 0.
+    chance = 0.0
+    if kpi.type == "categorical":
+        k = len(set(gt["gt"].astype(str)) & set(kpi.labels))
+        chance = 1.0 / k if k else 0.0
+
     table = pd.DataFrame(rows).sort_values("primary", ascending=False).reset_index(drop=True)
     per_class = pd.DataFrame(per_class_rows) if per_class_rows else None
-    return KPIEvaluation(kpi, primary_name, n, table, dists, per_class, confusion)
+    return KPIEvaluation(kpi, primary_name, n, table, dists, per_class, confusion, chance)

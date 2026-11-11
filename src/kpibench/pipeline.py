@@ -12,6 +12,7 @@ import yaml
 
 from kpibench import __version__
 from kpibench.analysis.cost import cost_latency_table, evaluation_overhead
+from kpibench.analysis.cost_effectiveness import CE_COLUMNS, cost_effectiveness
 from kpibench.analysis.routing import routing
 from kpibench.config import BenchmarkConfig
 from kpibench.data.loader import Dataset, load_dataset
@@ -84,6 +85,8 @@ def evaluate(cfg: BenchmarkConfig, ds: Dataset, preds: pd.DataFrame, judge: pd.D
 
     costs = cost_latency_table(cfg, preds)
     full, rec, plans = routing(cfg, evals, costs)
+    ce_kpi, ce_agg = cost_effectiveness(cfg, evals, costs)
+    full = full.merge(ce_kpi[["kpi", "model", *CE_COLUMNS]], on=["kpi", "model"], how="left")
 
     sm_results = compute_summary_metrics(cfg, ds, preds, claims)
     meta = meta_evaluate(cfg, ds, sm_results) if sm_results else pd.DataFrame()
@@ -94,6 +97,8 @@ def evaluate(cfg: BenchmarkConfig, ds: Dataset, preds: pd.DataFrame, judge: pd.D
     rec.to_csv(out / "recomendacao_roteamento.csv", index=False)
     plans.to_csv(out / "planos_custo_mensal.csv", index=False)
     costs.to_csv(out / "custos_latencia.csv", index=False)
+    ce_kpi.to_csv(out / "custo_efetividade_por_kpi.csv", index=False)
+    ce_agg.to_csv(out / "custo_efetividade_agregado.csv", index=False)
     if not meta.empty:
         meta.to_csv(out / "meta_avaliacao_metricas_resumo.csv", index=False)
         per_item_table(ds, sm_results, gt_q).to_csv(out / "metricas_resumo_por_item.csv", index=False)
@@ -106,10 +111,11 @@ def evaluate(cfg: BenchmarkConfig, ds: Dataset, preds: pd.DataFrame, judge: pd.D
         "pareto": figures.pareto_grid(full, rec, fig_dir),
         "heatmap": figures.heatmap(full[full["model"] != BASELINE_NAME], rec, fig_dir),
         "meta": figures.summary_meta_eval(meta, fig_dir) if not meta.empty else None,
+        "icer": figures.icer_frontier(ce_kpi, ce_agg, rec, fig_dir),
     }
     hashes = {k.name: renderer.template_hash(f"kpis/{k.prompt}") for k in cfg.selected_kpis}
     report = build_report(cfg, ds, evals, full, rec, plans, costs, meta, hashes,
-                          evaluation_overhead(judge, claims), figs, out)
+                          evaluation_overhead(judge, claims), figs, out, ce_agg)
 
     manifest = {
         "kpibench_version": __version__, "python": platform.python_version(),

@@ -74,6 +74,8 @@ def test_live_flow_simulated(tmp_path):
     assert set(board["model"]) == {"claude-haiku-5-5", "gpt-6-luna"}
     assert board["indice"].between(0, 100).all() and (board["usd_1k_ligacoes"] > 0).all()
     assert bool(board.set_index("model").at["gpt-6-luna", "preco_estimado"])
+    assert {"q_norm_media", "usd_1k_efetivo", "status_ce", "icer_usd_1k_por_pp", "p_fronteira"} <= set(board.columns)
+    assert (board["status_ce"] == "fronteira").any()
     assert not live.production_comparison(res).empty
     cid = live.most_divergent_calls(res, lr.dataset, 1)[0]
     dd = live.call_drilldown(res, lr.dataset, cid)
@@ -95,7 +97,9 @@ def test_charts_render_without_plotly(tmp_path):
     figs = [A.scorecards(b, res.routing, 15), A.leaderboard(b), A.quality_vs_cost(b), A.cost_bars(b),
             A.latency_chart(b, sla_s=5), A.reliability_bars(b), A.kpi_heatmap(res.metrics, res.routing),
             A.kpi_small_multiples(res.metrics, res.routing), A.production_dumbbell(live.production_comparison(res)),
-            A.calls_per_day(lr.dataset)]
+            A.calls_per_day(lr.dataset), A.cost_effectiveness_frontier(b)]
+    assert figs[-1] is not None
+    A.style_scoreboard(b).to_html()
     for i, f in enumerate(figs):
         if f is not None:
             f.savefig(tmp_path / f"{i}.png")

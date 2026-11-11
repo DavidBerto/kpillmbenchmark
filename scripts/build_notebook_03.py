@@ -233,6 +233,15 @@ Ponto vazado = preço estimado.
 """)
 code("mostrar(charts.quality_vs_cost(placar, FOOTER))")
 
+md(r"""
+### 7.2b Custo-efetividade (ICER)
+Qualidade **normalizada** (0% = acaso, 100% = teto) × custo por 1.000 ligações com resposta válida.
+Em azul fica a **fronteira de eficiência**; os demais modelos são dominados (há opção mais barata e melhor).
+O rótulo de cada segmento é o **ICER**: quanto custa, em US$ por 1.000 ligações, cada ponto percentual de qualidade a mais
+frente ao modelo anterior da fronteira. Compare esse valor com quanto vale, para o negócio, 1 pp de qualidade.
+""")
+code("mostrar(charts.cost_effectiveness_frontier(placar, FOOTER))")
+
 md("### 7.3 Custo por 1.000 ligações")
 code("mostrar(charts.cost_bars(placar, FOOTER))")
 
@@ -290,6 +299,7 @@ paineis = {
     "01_resumo": charts.scorecards(placar, res.routing, N, FOOTER),
     "02_ranking": charts.leaderboard(placar, FOOTER, REFERENCIA),
     "03_concordancia_custo": charts.quality_vs_cost(placar, FOOTER),
+    "03b_custo_efetividade": charts.cost_effectiveness_frontier(placar, FOOTER),
     "04_custo": charts.cost_bars(placar, FOOTER),
     "05_latencia": charts.latency_chart(placar, FOOTER, sla_s=SLA_LATENCIA_S),
     "06_confiabilidade": charts.reliability_bars(placar, FOOTER),
